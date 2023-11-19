@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA , NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,9 @@ import { FooterComponent } from './footer/footer.component';
 import { LogoComponent } from './logo/logo.component';
 import { UniversityModule } from './university/university.module';
 import { register } from 'swiper/element/bundle';
+import { ValueComponent } from './value/value.component';
+import { AccordionItemDirective } from './directives/accordion-item.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 register();
 
@@ -19,12 +22,17 @@ register();
     HomeComponent,
     FooterComponent,
     LogoComponent,
- 
+    ValueComponent,
+    AccordionItemDirective,
   ],
-  imports: [BrowserModule, AppRoutingModule, UniversityModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    UniversityModule,
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA],
-
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
