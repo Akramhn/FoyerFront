@@ -1,0 +1,14 @@
+.c-container{
+    justify-content: space-around;
+    gap: 1rem;
+
+}
+.c-container>img{
+    width: 9rem;
+    height: 60px;
+    opacity: .4;
+    transition: .3s;
+}
+.c-container img:hover{
+    opacity: .6;
+}
