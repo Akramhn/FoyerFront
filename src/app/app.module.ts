@@ -19,6 +19,7 @@ register();
     HomeComponent,
     FooterComponent,
     LogoComponent,
+ 
   ],
   imports: [BrowserModule, AppRoutingModule, UniversityModule],
   providers: [],
