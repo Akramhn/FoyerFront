@@ -34,11 +34,14 @@ export class AccordionItemDirective {
   }
 
   private closeItem(item?: any) {
-    const accordionContent = (item || this.el.nativeElement).querySelector('.value__accordion-content');
+    const accordionContent = this.el.nativeElement.querySelector('.value__accordion-content');
 
-    if (item && item.classList.contains('accordion-open')) {
+    if (this.el.nativeElement.classList.contains('accordion-close')) {
       accordionContent.removeAttribute('style');
-      this.renderer.removeClass(item, 'accordion-open');
+      this.renderer.removeClass(this.el.nativeElement, 'accordion-close');
+    } else {
+      accordionContent.style.height = accordionContent.scrollHeight + 'px';
+      this.renderer.addClass(this.el.nativeElement, 'accordion-close');
     }
   }
 }

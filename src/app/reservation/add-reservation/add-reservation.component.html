@@ -1,0 +1,123 @@
+<div id="booking" class="section">
+  <div class="section-center">
+    <div class="container">
+      <div class="flexCenter" style="margin-top: -80px">
+        <div class="col-md-4">
+          <div class="booking-cta">
+            <h1>Book your ROOM today</h1>
+            <p>
+              Welcome to our "CHmaberty" site, your key to securing a
+              comfortable and convenient stay in the heart of university life.
+              Whether you're a student planning your semester or a visitor
+              seeking an immersive experience, our easy-to-use booking platform
+              is designed with you in mind. Explore our range of hostel
+              accommodations, each uniquely situated within the vibrant
+              <!-- university community. From cozy single rooms for focused study
+              sessions to shared dormitories for a dynamic social atmosphere,
+              Chamberty offers a variety of options to suit your preferences.
+              Booking a room in our university hostel is a straightforward
+              process. Simply navigate through our user-friendly interface,
+              select your desired dates, and choose the room that aligns with
+              your needs.  -->
+            </p>
+          </div>
+ 
+          <br> <br>
+          <mat-accordion>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title> This is the expansion title </mat-panel-title>
+             
+              </mat-expansion-panel-header>
+              <p>This is the primary content of the panel.</p>
+            </mat-expansion-panel>
+            <mat-expansion-panel
+              (opened)="panelOpenState = true"
+              (closed)="panelOpenState = false"
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title> Self aware panel </mat-panel-title>
+                <mat-panel-description>
+                  Currently I am {{ panelOpenState ? "open" : "closed" }}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>I'm visible because I am open</p>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+        <div class="col-md-7 col-md-offset-1">
+          <div
+            class="booking-form"
+            style="margin-left: 250px; border-radius: 20px"
+          >
+            <form>
+              <div class="form-group">
+                <div class="form-checkbox">
+                  <p class="primaryText" style="text-align: center">
+                    BOOK YOUR ROOM NOW
+                  </p>
+                </div>
+              </div>
+              <div class="">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <span class="form-label">Name</span>
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="City or airport"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <span class="form-label secondaryText">LASTNAME</span>
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="City or airport"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <span class="form-label">university year</span>
+                    <input class="form-control" type="date" required />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <span class="form-label">Bloc</span>
+                    <select class="form-control">
+                      <option>A</option>
+                      <option>B</option>
+                      <option>C</option>
+                    </select>
+                    <span class="select-arrow"></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <span class="form-label">Chambres</span>
+                    <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                    </select>
+                    <span class="select-arrow"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-btn">
+                <button class="submit-btn">Book Now</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

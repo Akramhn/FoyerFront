@@ -12,6 +12,9 @@ import { register } from 'swiper/element/bundle';
 import { ValueComponent } from './value/value.component';
 import { AccordionItemDirective } from './directives/accordion-item.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReservationModule } from './reservation/reservation.module';
+import { ReserTestComponent } from './reser-test/reser-test.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 register();
 
@@ -23,14 +26,17 @@ register();
     FooterComponent,
     LogoComponent,
     ValueComponent,
-    AccordionItemDirective,
+    ReserTestComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     UniversityModule,
     BrowserAnimationsModule,
+    ReservationModule,
+    MatExpansionModule
   ],
+
   providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
