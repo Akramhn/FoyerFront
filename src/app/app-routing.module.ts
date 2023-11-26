@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BackoffComponent } from './Back/backoff/backoff.component';
 import { Error404Component } from './error404/error404.component';
-import { FrontOfficeComponent } from './front-office/front-office.component';
+import { FrontOfficeComponent } from './front/front-office/front-office.component';
 import { DashboardComponent } from './Back/dashboard/dashboard.component';
 
 const routes: Routes = [
@@ -12,14 +12,15 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirect to 'dashboard' by default
       { path: 'dashboard', component: DashboardComponent },
+      {
+        path: 'chambre',
+        loadChildren: () =>
+          import('./Back/chambre/chambre.module').then((m) => m.ChambreModule),
+      },
     ],
   },
   { path: 'home', component: FrontOfficeComponent },
-  {
-    path: 'chambre',
-    loadChildren: () =>
-      import('./Back/chambre/chambre.module').then((m) => m.ChambreModule),
-  },
+
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: Error404Component },
 ];

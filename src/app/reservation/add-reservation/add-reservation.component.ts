@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AccordionItemDirective } from 'src/app/directives/accordion-item.directive';
+import { AccordionItemDirective } from 'src/app/front/directives/accordion-item.directive';
 
 @Component({
   selector: 'app-add-reservation',
