@@ -15,15 +15,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReservationModule } from './reservation/reservation.module';
 import { ReserTestComponent } from './reser-test/reser-test.component';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { HeaderBackComponent } from './Back/header-back/header-back.component';
-import { BackoffComponent } from './Back/backoff/backoff.component';
+
 import { Error404Component } from './error404/error404.component';
 import { FrontOfficeComponent } from './front-office/front-office.component';
-import { SidebarBackComponent } from './Back/sidebar-back/sidebar-back.component';
-import { DashboardComponent } from './Back/dashboard/dashboard.component';
-import { ChambreModule } from './Back/chambre/chambre.module';
+
 import { ContactComponent } from './contact/contact.component';
 import { GetStartedComponent } from './get-started/get-started.component';
+import { HttpClientModule } from '@angular/common/http';
+import { BlocModule } from './Back/bloc/bloc.module';
+import { DashboardComponent } from './Back/dashboard/dashboard.component';
+import { SidebarBackComponent } from './Back/sidebar-back/sidebar-back.component';
+import { BackoffComponent } from './Back/backoff/backoff.component';
+import { HeaderBackComponent } from './Back/header-back/header-back.component';
+import { FoyerModule } from './Back/foyer/foyer.module';
+import { ChambreModule } from './Back/chambre/chambre.module';
+
 
 register();
 
@@ -53,8 +59,10 @@ register();
     ReservationModule,
     MatExpansionModule,
     ChambreModule,
+    HttpClientModule,
+    FoyerModule,
+    BlocModule,
   ],
-  
 
   providers: [],
   bootstrap: [AppComponent],

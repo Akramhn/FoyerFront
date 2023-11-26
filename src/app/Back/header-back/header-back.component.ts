@@ -3,7 +3,7 @@ import { Component, Renderer2, ElementRef, OnInit } from '@angular/core';
 @Component({
   selector: 'app-header-back',
   templateUrl: './header-back.component.html',
-  styleUrls: ['./header-back.component.css']
+  styleUrls: ['./header-back.component.css' , '../../../assets/css/styleback.css']
 })
 export class HeaderBackComponent implements OnInit {
   constructor(private renderer: Renderer2, private el: ElementRef) { }

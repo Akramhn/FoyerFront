@@ -1,0 +1,157 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+    --primary: #1f3e72;
+    --secondary: rgba(255, 255, 255, 0.78);
+    --black: #131110;
+    --blue-gradient: linear-gradient(97.05deg, #4066ff 3.76%, #2949c6 100%);
+    --orange-gradient: linear-gradient(270deg, #ffb978 0%, #ff922d 100%);
+    --blue: #4066ff;
+    --lightBlue: #eeeeff;
+    --shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25);
+    --white: #ffffff;
+    --yellow: #f6bd26;
+    --primary-100: #2179ff;
+    --primary-90: #1e6de5;
+    --primary-80: #1b61cc;
+    --primary-70: #1755b2;
+    --primary-40: #0d3166;
+    --primary-20: #071833;
+    --secondary-100: #21ffff;
+    --secondary-20: #073333;
+    --neutral-100: #fafcff;
+    --neutral-98: #f2f5fa;
+    --neutral-95: #e9ecf2;
+    --neutral-90: #dadfe5;
+    --neutral-80: #c2c6cc;
+    --neutral-60: #919499;
+    --neutral-50: #797c80;
+    --neutral-40: #616366;
+    --neutral-30: #494a4d;
+    --neutral-20: #303133;
+    --neutral-10: #18191a;
+    --neutral-5: #0c0c0d;
+    --error-100: #ff2134;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    scroll-behavior: smooth;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .paddings {
+    padding: 1.5rem;
+  }
+  
+  .innerWidth {
+    width: 100%;
+  }
+  
+  .flexCenter {
+    display: flex;
+    row-gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .flexStart {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .flexEnd {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .flexColCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .flexColStart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .flexColEnd {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  
+  .primaryText {
+    color: #1f3e72;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  
+  .secondaryText {
+    color: rgb(140 139 139);
+    font-size: 0.9rem;
+  }
+  .orangeText {
+    color: orange;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  .button {
+    font-weight: 500;
+    padding: 0.6rem 1.4rem;
+    color: white;
+    background: var(--blue-gradient);
+    border: none;
+    border-radius: 4px;
+    transition: all 300ms ease-in;
+  }
+  .button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+  
+  /* media queries */
+  @media (min-width: 1536px) {
+    .innerWidth {
+      max-width: 1280px;
+      margin: auto;
+    }
+  }
+  
+  @media (min-width: 640px) {
+    .paddings {
+      padding: 4rem;
+    }
+  }
+  
+  @media (min-width: 1280px), (min-width: 768px) {
+    .paddings {
+      padding: 2rem;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .primaryText {
+      font-size: 1.5rem;
+    }
+    .orangeText {
+      font-size: 1.2rem;
+    }
+  }
+  
+  
+  /* cardTemplate */
+  
+  
+  html, body { height: 100%; }
+  body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  

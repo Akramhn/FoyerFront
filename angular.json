@@ -21,13 +21,9 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css",
-              "node_modules/swiper/swiper-bundle.min.css"
+              "src/styles.css"
             ],
             "scripts": [
-       
-              "src/assets/js/main.js"
-
             ]
           },
           "configurations": {
