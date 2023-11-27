@@ -19,7 +19,27 @@
             <!-- DATA TABLE -->
 
             <div class="table-data__tool">
-              <div class="table-data__tool-left"></div>
+              <div class="table-data__tool-left">
+                <input
+                  type="search"
+                  placeholder="search"
+                  style="
+                    border: 3px solid rgb(177, 172, 172);
+                    border-radius: 10px;
+                  "
+                />
+                <button
+                  style="
+                    color: white;
+                    background-color: #4154f1;
+                    padding: 3px 3px;
+                    border-radius: 3px;
+                    margin-left: 0.8rem;
+                  "
+                >
+                  Search
+                </button>
+              </div>
               <div class="table-data__tool-right">
                 <button class="au-btn au-btn-icon au-btn--green au-btn--small">
                   <i class="zmdi zmdi-plus"></i>add Chambre
@@ -52,22 +72,24 @@
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody *ngFor="let i of list">  
-                  <tr class="tr-shadow" >
+                <tbody *ngFor="let i of list">
+                  <tr class="tr-shadow">
                     <td>
                       <label class="au-checkbox">
                         <input type="checkbox" />
                         <span class="au-checkmark"></span>
                       </label>
                     </td>
-                    <td>{{i.bloc.foyer.universite.nomUniversite}}</td>
+                    <td>{{ i.bloc.foyer.universite.nomUniversite }}</td>
                     <td>
-                      <span class="block-email">{{i.bloc.foyer.nomFoyer}}</span>
+                      <span class="block-email">{{
+                        i.bloc.foyer.nomFoyer
+                      }}</span>
                     </td>
-                    <td class="desc">{{i.bloc.nomBloc}}</td>
-                    <td>{{i.numeroChambre}}</td>
+                    <td class="desc">{{ i.bloc.nomBloc }}</td>
+                    <td>{{ i.numeroChambre }}</td>
                     <td>
-                      <span class="status--process">{{i.typeC}}</span>
+                      <span class="status--process">{{ i.typeC }}</span>
                     </td>
 
                     <td>
@@ -85,6 +107,7 @@
                           data-toggle="tooltip"
                           data-placement="top"
                           title="Edit"
+                          (click)="onUpdate(i.idChambre)"
                         >
                           <i class="bx bx-edit-alt"></i>
                         </button>
@@ -93,6 +116,7 @@
                           data-toggle="tooltip"
                           data-placement="top"
                           title="Delete"
+                          (click)="onDelete(i.idChambre)"
                         >
                           <i class="bi bi-archive-fill"></i>
                         </button>

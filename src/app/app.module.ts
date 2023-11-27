@@ -29,6 +29,8 @@ import { BackoffComponent } from './Back/backoff/backoff.component';
 import { HeaderBackComponent } from './Back/header-back/header-back.component';
 import { FoyerModule } from './Back/foyer/foyer.module';
 import { ChambreModule } from './Back/chambre/chambre.module';
+import { ToastrModule } from 'ngx-toastr';
+
 
 
 register();
@@ -62,6 +64,7 @@ register();
     HttpClientModule,
     FoyerModule,
     BlocModule,
+    ToastrModule.forRoot(),
   ],
 
   providers: [],
