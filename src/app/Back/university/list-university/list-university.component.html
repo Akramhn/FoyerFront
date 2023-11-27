@@ -63,39 +63,19 @@
               <table class="table table-data2">
                 <thead>
                   <tr>
-                    <th>
-                      <label class="au-checkbox">
-                        <input type="checkbox" />
-                        <span class="au-checkmark"></span>
-                      </label>
-                    </th>
-                    <th>Nom University</th>
+                    <th>adresse</th>
+                    <th>Nom Universite</th>
                     <th>Nom Foyer</th>
-                    <th>Nom Bloc</th>
-                    <th>Num Chambre</th>
-                    <th>Type</th>
-                    <th>Action</th>
+                    <th style="text-align: center">Action</th>
                   </tr>
                 </thead>
                 <tbody *ngFor="let i of list">
-                  <tr class="trx&-shadow">
+                  <tr class="tr-shadow">
+                    <td>{{ i.adresse }}</td>
                     <td>
-                      <label class="au-checkbox">
-                        <input type="checkbox" />
-                        <span class="au-checkmark"></span>
-                      </label>
+                      <span class="block-email">{{ i.nomUniversite }}</span>
                     </td>
-                    <td>{{ i.bloc.foyer.universite.nomUniversite }}</td>
-                    <td>
-                      <span class="block-email">{{
-                        i.bloc.foyer.nomFoyer
-                      }}</span>
-                    </td>
-                    <td class="desc">{{ i.bloc.nomBloc }}</td>
-                    <td>{{ i.numeroChambre }}</td>
-                    <td>
-                      <span class="status--process">{{ i.typeC }}</span>
-                    </td>
+                    <td class="desc">{{ i.foyer.nomFoyer }}</td>
 
                     <td>
                       <div class="table-data-feature">
@@ -112,7 +92,6 @@
                           data-toggle="tooltip"
                           data-placement="top"
                           title="Edit"
-                          (click)="onUpdate(i.idChambre)"
                         >
                           <i class="bx bx-edit-alt"></i>
                         </button>
@@ -121,7 +100,6 @@
                           data-toggle="tooltip"
                           data-placement="top"
                           title="Delete"
-                          (click)="onDelete(i.idChambre)"
                         >
                           <i class="bi bi-archive-fill"></i>
                         </button>
@@ -160,7 +138,7 @@
             class="close"
             data-bs-dismiss="modal"
             aria-label="Close"
-            style="color: aliceblue;"
+            style="color: aliceblue"
           >
             <span aria-hidden="true">&times;</span>
           </button>
@@ -202,27 +180,27 @@
             </div>
             <hr />
             <!-- <div class="elem-group inlined">
-              <label for="adult">Adults</label>
-              <input
-                type="number"
-                id="adult"
-                name="total_adults"
-                placeholder="2"
-                min="1"
-                required
-              />
-            </div>
-            <div class="elem-group inlined">
-              <label for="child">Children</label>
-              <input
-                type="number"
-                id="child"
-                name="total_children"
-                placeholder="2"
-                min="0"
-                required
-              />
-            </div> -->
+                <label for="adult">Adults</label>
+                <input
+                  type="number"
+                  id="adult"
+                  name="total_adults"
+                  placeholder="2"
+                  min="1"
+                  required
+                />
+              </div>
+              <div class="elem-group inlined">
+                <label for="child">Children</label>
+                <input
+                  type="number"
+                  id="child"
+                  name="total_children"
+                  placeholder="2"
+                  min="0"
+                  required
+                />
+              </div> -->
 
             <div class="elem-group">
               <label for="room-selection">Select Room Preference</label>
