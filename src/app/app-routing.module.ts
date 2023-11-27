@@ -17,6 +17,12 @@ const routes: Routes = [
         loadChildren: () =>
           import('./Back/chambre/chambre.module').then((m) => m.ChambreModule),
       },
+
+      {
+        path: 'university',
+        loadChildren: () =>
+          import('./Back/university/university.module').then((c) => c.UniversityModule),
+      },
     ],
   },
   { path: 'home', component: FrontOfficeComponent },
@@ -29,4 +35,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
