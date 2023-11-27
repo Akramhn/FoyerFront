@@ -17,6 +17,26 @@ const routes: Routes = [
         loadChildren: () =>
           import('./Back/chambre/chambre.module').then((m) => m.ChambreModule),
       },
+
+      {
+        path: 'bloc',
+        loadChildren: () =>
+          import('./Back/bloc/bloc.module').then((m) => m.BlocModule),
+      },
+
+      {
+        path: 'event',
+        loadChildren: () =>
+          import('./Back/evenement/evenement.module').then((m) => m.EvenementModule),
+
+      },     
+        {
+        path: 'university',
+        loadChildren: () =>
+          import('./Back/university/university.module').then((c) => c.UniversityModule),
+
+
+      },
     ],
   },
   { path: 'home', component: FrontOfficeComponent },
@@ -29,4 +49,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
