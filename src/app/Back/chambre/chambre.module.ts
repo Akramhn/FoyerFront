@@ -5,17 +5,14 @@ import { ChambreRoutingModule } from './chambre-routing.module';
 import { ListChambreComponent } from './list-chambre/list-chambre.component';
 import { AddChambreComponent } from './add-chambre/add-chambre.component';
 import { UpdateChambreComponent } from './update-chambre/update-chambre.component';
-
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
     ListChambreComponent,
     AddChambreComponent,
-    UpdateChambreComponent
+    UpdateChambreComponent,
   ],
-  imports: [
-    CommonModule,
-    ChambreRoutingModule
-  ]
+  imports: [CommonModule, ChambreRoutingModule, ToastrModule.forRoot()],
 })
-export class ChambreModule { }
+export class ChambreModule {}
