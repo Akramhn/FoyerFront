@@ -19,14 +19,22 @@ const routes: Routes = [
       },
 
       {
+        path: 'bloc',
+        loadChildren: () =>
+          import('./Back/bloc/bloc.module').then((m) => m.BlocModule),
+      },
+
+      {
         path: 'event',
         loadChildren: () =>
           import('./Back/evenement/evenement.module').then((m) => m.EvenementModule),
 
-      {
+      },     
+        {
         path: 'university',
         loadChildren: () =>
           import('./Back/university/university.module').then((c) => c.UniversityModule),
+
 
       },
     ],
