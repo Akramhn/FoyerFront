@@ -17,6 +17,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./Back/chambre/chambre.module').then((m) => m.ChambreModule),
       },
+      {
+        path: 'bloc',
+        loadChildren: () =>
+          import('./Back/bloc/bloc.module').then((m) => m.BlocModule),
+      },
     ],
   },
   { path: 'home', component: FrontOfficeComponent },
