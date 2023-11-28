@@ -30,7 +30,6 @@ import { HeaderBackComponent } from './Back/header-back/header-back.component';
 import { FoyerModule } from './Back/foyer/foyer.module';
 import { ChambreModule } from './Back/chambre/chambre.module';
 import { ToastrModule } from 'ngx-toastr';
-import { EvenementModule } from './Back/evenement/evenement.module';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -45,7 +44,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { UpdateEvenementComponent } from './Back/evnement/update-evenement/update-evenement.component';
+import { EvenementModule } from './Back/evenement/evenement.module';
+
 
 
 
@@ -68,7 +68,7 @@ register();
     DashboardComponent,
     ContactComponent,
     GetStartedComponent,
-    UpdateEvenementComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -96,7 +96,7 @@ register();
     FoyerModule,
     BlocModule,
     ToastrModule.forRoot(),
-    EvenementModule
+    EvenementModule,
   ],
 
   providers: [],
