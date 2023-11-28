@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddEvenementComponent } from './add-evenement/add-evenement.component';
-import { ListEvenementComponent } from './list-evenement/list-evenement.component';
 
+import { EvenementRoutingModule } from './evenement-routing.module';
+import { ListEvenementComponent } from './list-evenement/list-evenement.component';
+import { UpdateEvenementComponent } from './update-evenement/update-evenement.component';
 
 
 @NgModule({
-  declarations: [
-    AddEvenementComponent,
-    ListEvenementComponent
-  ],
+  declarations: [ListEvenementComponent, UpdateEvenementComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    EvenementRoutingModule
   ]
 })
 export class EvenementModule { }
