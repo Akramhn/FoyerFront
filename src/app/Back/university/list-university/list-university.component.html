@@ -1,11 +1,11 @@
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Chambre List</h1>
+    <h1>Liste des universités</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item">Gestion Chambre</li>
-        <li class="breadcrumb-item active">List Chambres</li>
+        <li class="breadcrumb-item">Gestion d'université</li>
+        <li class="breadcrumb-item active">Liste université</li>
       </ol>
     </nav>
   </div>
@@ -47,7 +47,7 @@
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModalLong"
                 >
-                  <i class="zmdi zmdi-plus"></i>add Chambre
+                  <i class="zmdi zmdi-plus"></i>add université
                 </button>
                 <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
                   <select class="js-select2" name="type">
@@ -100,6 +100,7 @@
                           data-toggle="tooltip"
                           data-placement="top"
                           title="Delete"
+                          (click)="onDelete(i.idUniversite)"
                         >
                           <i class="bi bi-archive-fill"></i>
                         </button>
@@ -144,10 +145,10 @@
           </button>
         </div>
         <div class="modal-body">
-          <h1 style="text-align: center; color: #333">Add Chambre</h1>
+          <h1 style="text-align: center; color: #333">Add université</h1>
           <form class="booking-form" action="#" method="post">
             <div class="elem-group">
-              <label for="name">Your Name</label>
+              <label for="name">adresse</label>
               <input
                 type="text"
                 id="name"
@@ -158,7 +159,7 @@
               />
             </div>
             <div class="elem-group">
-              <label for="email">Your E-mail</label>
+              <label for="email">Nom Universite</label>
               <input
                 type="email"
                 id="email"
@@ -168,7 +169,7 @@
               />
             </div>
             <div class="elem-group">
-              <label for="phone">Your Phone</label>
+              <label for="phone">Nom Foyer</label>
               <input
                 type="tel"
                 id="phone"

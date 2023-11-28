@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UniversityService } from '../../service/university.service';
 import { Router } from '@angular/router';
 import { Universite } from 'src/app/Model/universite';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-university',
@@ -10,18 +11,33 @@ import { Universite } from 'src/app/Model/universite';
 })
 export class ListUniversityComponent implements OnInit {
   list: Universite[] = [];
-  constructor(private universiteS: UniversityService, private router: Router) {}
+  constructor(
+    private universiteS: UniversityService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
-    this.universiteS.getUniversites().subscribe(
-      (data) => {
-        this.list = data;  // Correction : Utilisez "=" au lieu de ","
-        console.log(data);
-      },
-      (error) => {
-        console.error('Une erreur s\'est produite lors de la récupération des universités : ', error);
-      }
+    this.universiteS.getUniversites().subscribe((data) => {
+      this.list = data;
+      console.log(data);
+    });
+  }
+
+  onDelete(id: number) {
+    const isConfirmed = window.confirm(
+      'Are you sure you want to delete this item?'
     );
-  }   
-  
+
+    if (isConfirmed) {
+      this.universiteS.deleteUniversite(id).subscribe((res) => {
+        this.toastr.success('Deleted Successfully');
+        setTimeout(() => {
+          location.reload(); // Reload the page after deletion
+        }, 2000);
+      });
+    } else {
+      console.log('Deletion canceled by user');
+    }
+  }
 }
