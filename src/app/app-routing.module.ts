@@ -37,6 +37,11 @@ const routes: Routes = [
 
 
       },
+      {
+        path: 'foyer',
+        loadChildren: () =>
+          import('./Back/foyer/foyer.module').then((f) => f.FoyerModule),
+      },
     ],
   },
   { path: 'home', component: FrontOfficeComponent },
