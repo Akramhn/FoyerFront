@@ -30,6 +30,7 @@ import { HeaderBackComponent } from './Back/header-back/header-back.component';
 import { FoyerModule } from './Back/foyer/foyer.module';
 import { ChambreModule } from './Back/chambre/chambre.module';
 import { ToastrModule } from 'ngx-toastr';
+import { EvenementModule } from './Back/evenement/evenement.module';
 
 
 
@@ -65,6 +66,7 @@ register();
     FoyerModule,
     BlocModule,
     ToastrModule.forRoot(),
+    EvenementModule
   ],
 
   providers: [],

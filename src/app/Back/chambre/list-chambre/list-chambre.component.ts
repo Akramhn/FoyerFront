@@ -19,7 +19,7 @@ export class ListChambreComponent implements OnInit {
   ngOnInit(): void {
     this.chambreS.getChambres().subscribe((data) => {
       (this.list = data), console.log(data);
-    });
+    });   
   }
 
   onDelete(id: number) {

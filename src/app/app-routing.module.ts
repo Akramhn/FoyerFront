@@ -18,7 +18,7 @@ const routes: Routes = [
           import('./Back/chambre/chambre.module').then((m) => m.ChambreModule),
       },
       {
-        path: 'event',
+        path: 'evenement',
         loadChildren: () =>
           import('./Back/evenement/evenement.module').then((m) => m.EvenementModule),
       },
