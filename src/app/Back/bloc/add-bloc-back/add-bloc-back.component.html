@@ -38,14 +38,11 @@
       <div class="elem-group">
         <label for="room-selection">Select Room Preference</label>
         <select id="room-selection" name="room_preference" required>
-          <option value="">Choose a Room from the List</option>
-          <option value="connecting">Connecting</option>
-          <option value="adjoining">Adjoining</option>
-          <option value="adjacent">Adjacent</option>
+          <option value="connecting"  *ngFor="let i of listFoyer">{{i.nomFoyer}}</option>
         </select>
       </div>
       <hr />
-      <button type="submit">Add the Bloc </button>
+      <button type="submit">Add the Bloc</button>
     </form>
   </main>
   
