@@ -17,10 +17,30 @@ const routes: Routes = [
         loadChildren: () =>
           import('./Back/chambre/chambre.module').then((m) => m.ChambreModule),
       },
+
+      {
+        path: 'bloc',
+        loadChildren: () =>
+          import('./Back/bloc/bloc.module').then((m) => m.BlocModule),
+      },
+
       {
         path: 'evenement',
         loadChildren: () =>
           import('./Back/evenement/evenement.module').then((m) => m.EvenementModule),
+
+      },     
+        {
+        path: 'university',
+        loadChildren: () =>
+          import('./Back/university/university.module').then((c) => c.UniversityModule),
+
+
+      },
+      {
+        path: 'foyer',
+        loadChildren: () =>
+          import('./Back/foyer/foyer.module').then((f) => f.FoyerModule),
       },
     ],
   },
@@ -34,4 +54,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
