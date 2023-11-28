@@ -3,6 +3,8 @@ import { ChambreService } from '../../service/chambre.service';
 import { Chambre } from 'src/app/Model/chambre';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { AddChambreComponent } from '../add-chambre/add-chambre.component';
 
 @Component({
   selector: 'app-list-chambre',
@@ -14,12 +16,17 @@ export class ListChambreComponent implements OnInit {
   constructor(
     private chambreS: ChambreService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private _dialog: MatDialog
   ) {}
   ngOnInit(): void {
     this.chambreS.getChambres().subscribe((data) => {
       (this.list = data), console.log(data);
     });
+  }
+
+  openAddEditChambreForm(){
+    this._dialog.open(AddChambreComponent)
   }
 
   onDelete(id: number) {

@@ -19,10 +19,12 @@ export class UniversityService {
   }
 
   deleteUniversite(id: number) {
-   return this.http.delete<Universite[]>(`${this.URL}/${id}`);
+   return this.http.delete<Universite>(`${this.URL}/${id}`);
   }
+
+
   addUniversite(u: Universite) {
-    return this.http.post<Universite[]>(`${this.URL}`, u);
+    return this.http.post<Universite>(`${this.URL}`, u);
   }
   // updateUniversite(u: Universite, id: number) {
   //   this.http.put<Universite[]>(`${URL}/${id}`, u);
