@@ -23,6 +23,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./Back/university/university.module').then((c) => c.UniversityModule),
       },
+      {
+        path: 'foyer',
+        loadChildren: () =>
+          import('./Back/foyer/foyer.module').then((f) => f.FoyerModule),
+      },
     ],
   },
   { path: 'home', component: FrontOfficeComponent },
