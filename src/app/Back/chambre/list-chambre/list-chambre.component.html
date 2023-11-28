@@ -41,12 +41,7 @@
                 </button>
               </div>
               <div class="table-data__tool-right">
-                <button
-                  type="button"
-                  class="au-btn au-btn-icon au-btn--green au-btn--small"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModalLong"
-                >
+                <button mat-raised-button color="primary" (click)="openAddEditChambreForm()">
                   <i class="zmdi zmdi-plus"></i>add Chambre
                 </button>
                 <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
@@ -78,7 +73,7 @@
                   </tr>
                 </thead>
                 <tbody *ngFor="let i of list">
-                  <tr class="trx&-shadow">
+                  <tr class="tr-shadow">
                     <td>
                       <label class="au-checkbox">
                         <input type="checkbox" />
@@ -138,7 +133,8 @@
       </div>
     </div>
   </section>
-  <div
+
+  <!-- <div
     class="modal fade"
     id="exampleModalLong"
     tabindex="-1"
@@ -201,28 +197,7 @@
               />
             </div>
             <hr />
-            <!-- <div class="elem-group inlined">
-              <label for="adult">Adults</label>
-              <input
-                type="number"
-                id="adult"
-                name="total_adults"
-                placeholder="2"
-                min="1"
-                required
-              />
-            </div>
-            <div class="elem-group inlined">
-              <label for="child">Children</label>
-              <input
-                type="number"
-                id="child"
-                name="total_children"
-                placeholder="2"
-                min="0"
-                required
-              />
-            </div> -->
+        
 
             <div class="elem-group">
               <label for="room-selection">Select Room Preference</label>
@@ -245,6 +220,6 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </main>
 <!-- End #main -->
