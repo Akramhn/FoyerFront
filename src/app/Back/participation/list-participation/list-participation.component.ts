@@ -1,28 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Evenement } from 'src/app/Model/evenement';
+import { Participation } from 'src/app/Model/participation';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { EvenementService } from '../../service/evenement.service';
-
-
-
+import { ParticipationService } from '../../service/participation.service';
 
 @Component({
-  selector: 'app-list-evenement',
-  templateUrl: './list-evenement.component.html',
-  styleUrls: ['./list-evenement.component.css']
+  selector: 'app-list-participation',
+  templateUrl: './list-participation.component.html',
+  styleUrls: ['./list-participation.component.css']
 })
-export class ListEvenementComponent {
+export class ListParticipationComponent {
+
   
-  list: Evenement[] = [];
+  list: Participation[] = [];
   constructor(
-    private evenements: EvenementService,
+    private participations: ParticipationService,
     private toastr: ToastrService,
     private router: Router
   ) {
+
   }
   ngOnInit(): void {
-    this.evenements.getEvenements().subscribe((data) => {
+    this.participations.getParticipations().subscribe((data) => {
       (this.list = data), console.log(data);
     });
   }
@@ -33,7 +32,7 @@ export class ListEvenementComponent {
     );
 
     if (isConfirmed) {
-      this.evenements.deleteEvenement(id).subscribe((res) => {
+      this.participations.deleteParticipation(id).subscribe((res) => {
         this.toastr.success('Deleted Successfully');
 
         // Introduce a delay of, for example, 2 seconds (2000 milliseconds) before reloading
@@ -49,4 +48,5 @@ export class ListEvenementComponent {
   onUpdate(id: number) {
     this.router.navigate([`/update/${id}`]);
   }
+
 }

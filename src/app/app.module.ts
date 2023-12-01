@@ -45,6 +45,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { EvenementModule } from './Back/evenement/evenement.module';
+import { ParticipationModule } from './Back/participation/participation.module';
+
 
 
 
@@ -97,6 +99,7 @@ register();
     BlocModule,
     ToastrModule.forRoot(),
     EvenementModule,
+    ParticipationModule,
   ],
 
   providers: [],
