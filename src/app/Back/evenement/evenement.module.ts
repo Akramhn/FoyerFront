@@ -7,11 +7,12 @@ import { UpdateEvenementComponent } from './update-evenement/update-evenement.co
 import { AddEvenementComponent } from './add-evenement/add-evenement.component';
 
 
+
 @NgModule({
   declarations: [AddEvenementComponent, ListEvenementComponent, UpdateEvenementComponent],
   imports: [
     CommonModule,
-    EvenementRoutingModule
+    EvenementRoutingModule,
   ]
 })
 export class EvenementModule { }

@@ -1,12 +1,12 @@
-<p>list-evenement works!</p>
+<p>list-Participation works!</p>
 <main id="main" class="main">
     <div class="pagetitle">
-      <h1>Chambre List</h1>
+      <h1>Participation List</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item">Gestion Evenement</li>
-          <li class="breadcrumb-item active">List Evenement</li>
+          <li class="breadcrumb-item">Gestion Participation</li>
+          <li class="breadcrumb-item active">List Participation</li>
         </ol>
       </nav>
     </div>
@@ -70,11 +70,9 @@
                           <span class="au-checkmark"></span>
                         </label>
                       </th>
-                      <th>Nom Evenement</th>
-                      <th>Lieu Evenement</th>
-                      <th>Description Evenement</th>
-                      <th>Date </th>
-                      <th>Action</th>
+                      <th>Date Participation</th>
+                      <th>Type Participation</th>
+                      <th> Raison Participation </th>
                     </tr>
                   </thead>
                   <tbody *ngFor="let i of list">
@@ -85,14 +83,9 @@
                           <span class="au-checkmark"></span>
                         </label>
                       </td>
-                      <td>{{ i.nomEvenement }}</td>
-                      <td>
-                        <span class="block-email">{{
-                          i.lieu
-                        }}</span>
-                      </td>
-                      <td class="desc">{{ i.description }}</td>
-                      <td>{{ i.dateEvenement }}</td>
+                      <td>{{ i.dateParticipation }}</td>
+                      <td>{{ i.typeP }}</td>
+                      <td>{{ i.raisonDeParticipation }}</td>
   
                       <td>
                         <div class="table-data-feature">
@@ -109,7 +102,7 @@
                             data-toggle="tooltip"
                             data-placement="top"
                             title="Edit"
-                            (click)="onUpdate(i.idEvenement)"
+                            (click)="onUpdate(i.idParticipation)"
                           >
                             <i class="bx bx-edit-alt"></i>
                           </button>
@@ -118,7 +111,7 @@
                             data-toggle="tooltip"
                             data-placement="top"
                             title="Delete"
-                            (click)="onDelete(i.idEvenement)"
+                            (click)="onDelete(i.idParticipation)"
                           >
                             <i class="bi bi-archive-fill"></i>
                           </button>
@@ -163,7 +156,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <h1 style="text-align: center; color: #333">Add Evenement</h1>
+            <h1 style="text-align: center; color: #333">Add Participation</h1>
             <form class="booking-form" action="#" method="post">
               <div class="elem-group">
                 <label for="name">Your Name</label>
