@@ -75,7 +75,10 @@
                     <td>
                       <span class="block-email">{{ i.nomUniversite }}</span>
                     </td>
-                    <td class="desc">{{ i.foyer.nomFoyer}}</td>
+                    <td class="desc" *ngIf="i.foyer; else autreContenu">
+                      {{ i.foyer.nomFoyer }}
+                    </td>
+                    <ng-template #autreContenu>pas du foyer</ng-template>
 
                     <td>
                       <div class="table-data-feature">
@@ -147,7 +150,6 @@
         <div class="modal-body">
           <h1 style="text-align: center; color: #333">Add université</h1>
           <form class="booking-form" action="#" method="post">
-            
             <!-- <div class="elem-group inlined">
                 <label for="adult">Adults</label>
                 <input
@@ -173,40 +175,8 @@
 
             <!-- upload image-->
 
-
-            <div>
-              <h2>Ajouter une Université</h2>
-              <form [formGroup]="universityForm" (ngSubmit)="onSubmit()">
-                <div>
-                  <label for="nomUniversite">Nom de l'Université:</label>
-                  <input type="text" id="nomUniversite" formControlName="nomUniversite" required>
-                </div>
-                
-                <div>
-                  <label for="adresse">Adresse de l'Université:</label>
-                  <input type="text" id="adresse" formControlName="adresse" required>
-                </div>
-
-                
-                <div>
-                  <label for="image">Image de l'Université:</label>
-                  <input type="file" id="image" (change)="onFileChanged($event)">
-                </div>
-                
-                <!-- Ajoutez d'autres champs de l'université ici -->
-            
-                <div>
-                  <button class="au-btn au-btn-icon au-btn--green au-btn--small" type="submit">Ajouter Université</button>
-                </div>
-              </form>
-            </div>
-            
-
-
-
-
             <!--/upload image-->
-           <!--<hr />
+            <!--<hr />
 
             <button
               class="au-btn au-btn-icon au-btn--green au-btn--small"
@@ -215,7 +185,7 @@
               (click)="onUpload()"
             >
               Ajouter univercité
-            </button>--> 
+            </button>-->
           </form>
         </div>
       </div>
