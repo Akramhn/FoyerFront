@@ -2,12 +2,16 @@
   <h1>Chambre Form</h1>
   <hr />
 </div>
-<form>
+<form [formGroup]="chambForm">
   <div mat-dialog-content class="content custom-dialog-content">
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>University</mat-label>
-        <mat-select>
+        <mat-select
+          [(ngModel)]="selectedUni"
+          (selectionChange)="getFoyersByUniversity()"
+          [ngModelOptions]="{ standalone: true }"
+        >
           <mat-option *ngFor="let i of uni" [value]="i">
             {{ i.nomUniversite }}</mat-option
           >
@@ -17,15 +21,19 @@
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Foyer</mat-label>
-        <mat-select formControlName="education">
-          <mat-option *ngFor="let i of foy" [value]="i"
-            >{{ i.nomFoyer }}
+        <mat-select
+          [(ngModel)]="selectedFoyer"
+          (selectionChange)="getBlocByFoyer()"
+          [ngModelOptions]="{ standalone: true }"
+        >
+          <mat-option *ngIf="foyers" [value]="foyers"
+            >{{ foyers.nomFoyer }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>BlOC</mat-label>
-        <mat-select formControlName="education">
+        <mat-select>
           <mat-option *ngFor="let i of bloc" [value]="i"
             >{{ i.nomBloc }}
           </mat-option>
@@ -41,8 +49,10 @@
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>TYPE</mat-label>
-        <mat-select formControlName="type">
-          <mat-option> </mat-option>
+        <mat-select>
+          <mat-option value="SIMPLE"> SIMPLE</mat-option>
+          <mat-option value="DOUBLE"> DOUBLE</mat-option>
+          <mat-option value="TRIPLE"> TRIPLE</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -52,6 +62,6 @@
     <button mat-raised-button type="button" [mat-dialog-close]="false">
       Cancel
     </button>
-    <button mat-raised-button color="primary" type="submit">Save</button>
+    <button mat-raised-button color="primary" type="submit">save</button>
   </div>
 </form>

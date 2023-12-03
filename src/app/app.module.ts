@@ -44,6 +44,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { EvenementModule } from './Back/evenement/evenement.module';
 import { ParticipationModule } from './Back/participation/participation.module';
 
@@ -98,8 +101,12 @@ register();
     FoyerModule,
     BlocModule,
     ToastrModule.forRoot(),
+
+    ReactiveFormsModule
+
     EvenementModule,
     ParticipationModule,
+
   ],
 
   providers: [],
