@@ -21,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     UpdateChambreComponent,
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     ChambreRoutingModule,
     MatButtonModule,

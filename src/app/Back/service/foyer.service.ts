@@ -25,4 +25,7 @@ export class FoyerService {
   addFoyer(f: Foyer) {
     return this.http.post<Foyer>(`${this.data}`, f);
   }
+  getFoyerByUni(idU : number) {
+    return this.http.get<Foyer>(`${this.data}/foyer/${idU}` );
+  }
 }
