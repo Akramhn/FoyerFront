@@ -3,6 +3,6 @@ export class Universite {
   idUniversite!: number;
   nomUniversite!: string;
   adresse!: string;
-  imageUrl!:string;
+  imageUrl!:Blob;
   foyer!: Foyer;
 }
