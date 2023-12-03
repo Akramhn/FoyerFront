@@ -7,7 +7,13 @@ import { Chambre } from 'src/app/Model/chambre';
 import { FoyerService } from './../../service/foyer.service';
 import { BlocService } from './../../service/bloc.service';
 import { ChambreService } from '../../service/chambre.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-chambre',
@@ -29,14 +35,15 @@ export class AddChambreComponent implements OnInit {
     private FoyerS: FoyerService,
     private blocS: BlocService,
     private cha: ChambreService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) {
     this.chambForm = this.fb.group({
-      university: '',
-      foyer: '',
-      bloc: '',
-      numChamb: '',
-      typeCh: '',
+      university: new FormControl('', Validators.required),
+      foyer: new FormControl('', Validators.required),
+      bloc: new FormControl('', Validators.required),
+      numChamb: new FormControl('', Validators.required),
+      typeCh: new FormControl('', Validators.required),
     });
   }
 
@@ -71,5 +78,41 @@ export class AddChambreComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUni();
+  }
+
+  onFormSubmit() {
+    console.log('Form submitted');
+    if (this.chambForm.valid) {
+      console.log(this.chambForm.value);
+      const numChambre: number = this.chambForm.value.numChamb;
+      console.log('numChambre:', numChambre);
+      console.log('selectedBloc:', this.selectedBloc);
+      if (this.selectedBloc && numChambre) {
+        const chambreToAdd: Chambre = {
+          idChambre: 0,
+          numeroChambre: numChambre,
+          typeC: this.chambForm.value.typeCh,
+          bloc: this.selectedBloc,
+          reservation: [],
+        };
+        console.log('Chambre to add:', chambreToAdd);
+
+        this.cha.addChambre(chambreToAdd).subscribe((data) => {
+          console.log('Chambre added successfully:', data);
+
+          this.blocS
+            .affecterChambreABloc([data.idChambre], this.selectedBloc!.idBloc)
+            .subscribe((data) => {
+              // Handle success, if needed
+              console.log('Chambre affected to bloc successfully:', data);
+
+              // Display success notification
+              this.toastr.success(
+                'Chambre added and affected to bloc successfully'
+              );
+            });
+        });
+      }
+    }
   }
 }

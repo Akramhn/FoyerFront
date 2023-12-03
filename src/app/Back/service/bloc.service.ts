@@ -4,10 +4,9 @@ import { Observable } from 'rxjs';
 import { Bloc } from 'src/app/Model/bloc';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BlocService {
-
   urlBloc = 'http://localhost:9090/bloc';
   constructor(private http: HttpClient) {}
   httpOptions = {
@@ -28,8 +27,10 @@ export class BlocService {
   addBloc(b: Bloc): Observable<Bloc> {
     return this.http.post<Bloc>(`${this.urlBloc}`, b);
   }
-  getBlocByFoyer(idB:number){
+  getBlocByFoyer(idB: number) {
     return this.http.get<Bloc[]>(`${this.urlBloc}/bloc/${idB}`);
   }
-
+  affecterChambreABloc(numChamb: number[], idBloc: number): Observable<any> {
+    return this.http.put(`${this.urlBloc}/${idBloc}`, numChamb);
+  }
 }
