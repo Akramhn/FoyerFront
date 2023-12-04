@@ -14,6 +14,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-chambre',
@@ -36,7 +37,8 @@ export class AddChambreComponent implements OnInit {
     private blocS: BlocService,
     private cha: ChambreService,
     private fb: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private _dialogRef: MatDialogRef<AddChambreComponent>
   ) {
     this.chambForm = this.fb.group({
       university: new FormControl('', Validators.required),
@@ -63,6 +65,8 @@ export class AddChambreComponent implements OnInit {
 
   getBlocByFoyer(): void {
     console.log(this.selectedFoyer?.idFoyer);
+
+
     this.blocS.getBlocByFoyer(this.selectedFoyer!.idFoyer).subscribe((data) => {
       this.bloc = data;
       console.log(this.bloc);
@@ -84,13 +88,12 @@ export class AddChambreComponent implements OnInit {
     console.log('Form submitted');
     if (this.chambForm.valid) {
       console.log(this.chambForm.value);
-      const numChambre: number = this.chambForm.value.numChamb;
-      console.log('numChambre:', numChambre);
+      console.log('numChambre:', this.chambForm.value.numChamb);
       console.log('selectedBloc:', this.selectedBloc);
-      if (this.selectedBloc && numChambre) {
+      if (this.selectedBloc && this.chambForm.value.numChamb) {
         const chambreToAdd: Chambre = {
           idChambre: 0,
-          numeroChambre: numChambre,
+          numeroChambre: this.chambForm.value.numChamb,
           typeC: this.chambForm.value.typeCh,
           bloc: this.selectedBloc,
           reservation: [],
@@ -103,13 +106,12 @@ export class AddChambreComponent implements OnInit {
           this.blocS
             .affecterChambreABloc([data.idChambre], this.selectedBloc!.idBloc)
             .subscribe((data) => {
-              // Handle success, if needed
               console.log('Chambre affected to bloc successfully:', data);
 
-              // Display success notification
               this.toastr.success(
                 'Chambre added and affected to bloc successfully'
               );
+              this._dialogRef.close(true);
             });
         });
       }
