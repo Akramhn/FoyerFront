@@ -42,6 +42,12 @@ const routes: Routes = [
         loadChildren: () =>
           import('./Back/foyer/foyer.module').then((f) => f.FoyerModule),
       },
+      {
+        path: 'participation',
+        loadChildren: () =>
+          import('./Back/participation/participation.module').then((m) => m.ParticipationModule),
+
+      },
     ],
   },
   { path: 'home', component: FrontOfficeComponent },

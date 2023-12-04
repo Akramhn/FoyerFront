@@ -3,6 +3,8 @@ import { Evenement } from 'src/app/Model/evenement';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { EvenementService } from '../../service/evenement.service';
+import { MatDialog } from '@angular/material/dialog';
+
 
 
 
@@ -13,12 +15,14 @@ import { EvenementService } from '../../service/evenement.service';
   styleUrls: ['./list-evenement.component.css']
 })
 export class ListEvenementComponent {
+
   
   list: Evenement[] = [];
   constructor(
     private evenements: EvenementService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private _dialog: MatDialog
   ) {
   }
   ngOnInit(): void {
@@ -49,4 +53,5 @@ export class ListEvenementComponent {
   onUpdate(id: number) {
     this.router.navigate([`/update/${id}`]);
   }
+
 }

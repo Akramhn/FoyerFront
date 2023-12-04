@@ -102,7 +102,7 @@ register();
     BlocModule,
     ToastrModule.forRoot(),
 
-    ReactiveFormsModule
+    ReactiveFormsModule,
 
     EvenementModule,
     ParticipationModule,
