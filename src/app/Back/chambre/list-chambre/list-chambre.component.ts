@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AddChambreComponent } from '../add-chambre/add-chambre.component';
+import { UpdateChambreComponent } from '../update-chambre/update-chambre.component';
 
 @Component({
   selector: 'app-list-chambre',
@@ -56,9 +57,8 @@ export class ListChambreComponent implements OnInit {
     }
   }
 
-  onUpdate(id: number) {
-    this.router.navigate([`/update/${id}`]);
+  openUpdate(data: Chambre) {
+    this._dialog.open(UpdateChambreComponent, { data });
+    console.log("data" , data);
   }
-
-  
 }

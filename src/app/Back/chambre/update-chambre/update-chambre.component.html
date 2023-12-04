@@ -3,7 +3,7 @@
     <h1>Chambre Form</h1>
     <hr />
   </div>
-  <form [formGroup]="chambForm" >
+  <form [formGroup]="chambForm" (ngSubmit)="onFormSubmit()" >
     <div mat-dialog-content class="content custom-dialog-content">
       <div class="row">
         <mat-form-field appearance="outline">
@@ -18,19 +18,18 @@
         <mat-form-field appearance="outline">
           <mat-label>Foyer</mat-label>
           <mat-select
-            [(ngModel)]="selectedFoyer"
-            (selectionChange)="getBlocByFoyer()"
+           
             formControlName="foyer"
           >
-            <mat-option *ngIf="foyers" [value]="foyers"
-              >{{ foyers.nomFoyer }}
+            <mat-option *ngFor="let i of foyers"   [value]="i.nomFoyer"
+              >{{ i.nomFoyer }}
             </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>BlOC</mat-label>
           <mat-select formControlName="bloc" [(ngModel)]="selectedBloc">
-            <mat-option *ngFor="let i of bloc" [value]="i"
+            <mat-option *ngFor="let i of bloc" [value]="i.nomBloc"
               >{{ i.nomBloc }}
             </mat-option>
           </mat-select>
