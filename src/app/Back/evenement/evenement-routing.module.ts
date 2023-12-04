@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: '',
     component: BackoffComponent,
-    children: [{ path: 'addChambre', component: AddEvenementComponent }],
+    children: [{ path: 'addEvent', component: AddEvenementComponent }],
   }
 ];
 
