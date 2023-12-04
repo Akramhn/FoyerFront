@@ -19,14 +19,23 @@ export class ListChambreComponent implements OnInit {
     private router: Router,
     private _dialog: MatDialog
   ) {}
-  ngOnInit(): void {
+
+  getChambres() {
     this.chambreS.getChambres().subscribe((data) => {
       (this.list = data), console.log(data);
-    });   
+    });
+  }
+  ngOnInit(): void {
+    this.getChambres();
   }
 
-  openAddEditChambreForm(){
-    this._dialog.open(AddChambreComponent)
+  openAddEditChambreForm() {
+    const dialogRef = this._dialog.open(AddChambreComponent);
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        this.getChambres();
+      }
+    });
   }
 
   onDelete(id: number) {
@@ -37,11 +46,10 @@ export class ListChambreComponent implements OnInit {
     if (isConfirmed) {
       this.chambreS.deleteChambre(id).subscribe((res) => {
         this.toastr.success('Deleted Successfully');
+        this.getChambres();
 
         // Introduce a delay of, for example, 2 seconds (2000 milliseconds) before reloading
-        setTimeout(() => {
-          location.reload(); // Reload the page after deletion
-        }, 2000);
+        setTimeout(() => {}, 2000);
       });
     } else {
       console.log('Deletion canceled by user');
@@ -51,4 +59,6 @@ export class ListChambreComponent implements OnInit {
   onUpdate(id: number) {
     this.router.navigate([`/update/${id}`]);
   }
+
+  
 }

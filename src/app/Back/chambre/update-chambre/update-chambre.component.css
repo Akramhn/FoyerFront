@@ -1,63 +1,29 @@
-.booking-form {
-    width: 800px;
-    margin: 0 auto;
-    padding: 50px;
-    background: #fff;
-  }
-  
-  div.elem-group {
-    margin: 20px 0;
-  }
-  
-  div.elem-group.inlined {
-    width: 49%;
-    display: inline-block;
-    float: left;
-    margin-left: 1%;
-  }
-  
-  label {
-    display: block;
-    font-family: 'Nanum Gothic';
-    padding-bottom: 10px;
-    font-size: 1.25em;
-  }
-  
-  input, select, textarea {
-    border-radius: 2px;
-    border: 2px solid #777;
-    box-sizing: border-box;
-    font-size: 1.25em;
-    font-family: 'Nanum Gothic';
-    width: 100%;
-    padding: 10px;
-  }
-  
-  div.elem-group.inlined input {
-    width: 95%;
-    display: inline-block;
-  }
-  
-  textarea {
-    height: 250px;
-  }
-  
-  hr {
-    border: 1px dotted #ccc;
-  }
-  
-  button {
-    height: 50px;
-    background: orange;
-    border: none;
-    color: white;
-    font-size: 1.25em;
-    font-family: 'Nanum Gothic';
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 0 12px;
-  }
-  
-  button:hover {
-    background: #333;
-  }
+.content {
+  padding-top: 10px;
+  align-items: center;
+
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.row mat-form-field {
+  width: 100%;
+}
+
+.action {
+  padding: 0px 25px 20px;
+}
+
+.action button {
+  flex: 1;
+}
+.custom-dialog-content {
+  width: 700px;
+}
+.cc{
+  box-shadow: 0 2px 5px rgba(204, 115, 115, 0.3); /* Set the desired width */
+
+}
