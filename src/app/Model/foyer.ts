@@ -4,6 +4,7 @@ export class Foyer {
   idFoyer!: number;
   nomFoyer!: string;
   capaciteFoyer!: number;
+  imageUrl!:Blob;
   blocs!: Bloc[];
   universite!: Universite;
 }

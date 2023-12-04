@@ -1,16 +1,27 @@
-<div>
+<div class="row">
+  <div class="col-md-4"></div>
+
+  <div class="col-md-4">
+    <h1>******</h1><!--bech nahihom-->
+    <h1>------</h1><!--bech nahihom-->
     <h2>Ajouter une Université</h2>
     <form [formGroup]="universityForm" (ngSubmit)="onAddUniversite()">
-      <!-- Vos champs de formulaire ici -->
-      <label for="nomUniversite">Nom de l'université:</label>
-      <input type="text" id="nomUniversite" formControlName="nomUniversite" />
-    
+      <label for="nomUniversite  " >Nom de l'université:</label>
+      <input type="text" id="nomUniversite" formControlName="nomUniversite"  placeholder="nom université" />
+
       <label for="adresse">Adresse:</label>
-      <input type="text" id="adresse" formControlName="adresse" />
-    
+      <input type="text" id="adresse" formControlName="adresse"  placeholder="adresse université"/>
+
       <label for="image">Image:</label>
       <input type="file" id="image" (change)="onFileChanged($event)" />
-    
-      <button type="submit"class="au-btn au-btn-icon au-btn--green au-btn--small">Ajouter Université</button>
+
+      <button
+        type="submit"
+        class="au-btn au-btn-icon au-btn--green au-btn--small"
+      >
+        Ajouter Université
+      </button>
     </form>
   </div>
+  <div class="col-md-4"></div>
+</div>
