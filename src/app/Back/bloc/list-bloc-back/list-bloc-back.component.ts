@@ -3,6 +3,9 @@ import { Bloc } from 'src/app/Model/bloc';
 import { BlocService } from '../../service/bloc.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { AddChambreComponent } from '../../chambre/add-chambre/add-chambre.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AddBlocBackComponent } from '../add-bloc-back/add-bloc-back.component';
 
 @Component({
   selector: 'app-list-bloc-back',
@@ -14,14 +17,17 @@ export class ListBlocBackComponent {
   constructor(
     private blocS: BlocService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private _dialog: MatDialog
   ) {}
   ngOnInit(): void {
     this.blocS.getBlocs().subscribe((data) => {
       (this.list = data), console.log(data);
     });
   }
-
+  openAddEditChambreForm(){
+    this._dialog.open(AddBlocBackComponent)
+  }
   onDelete(id: number) {
     const isConfirmed = window.confirm(
       'Are you sure you want to delete this item?'
