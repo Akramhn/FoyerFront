@@ -5,6 +5,6 @@ export class Foyer {
   nomFoyer!: string;
   capaciteFoyer!: number;
   imageUrl!:Blob;
-  blocs!: Bloc[];
   universite!: Universite;
+  blocs!: Bloc[];
 }

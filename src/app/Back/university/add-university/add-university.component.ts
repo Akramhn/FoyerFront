@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { UniversityService } from '../../service/university.service';
 import { Router } from '@angular/router';
@@ -24,8 +24,8 @@ export class AddUniversityComponent {
     
   ) {
     this.universityForm = this.fb.group({
-      nomUniversite: [''],
-      adresse: [''],
+      nomUniversite: new FormControl('', Validators.required),
+      adresse: new FormControl('', Validators.required),
       
     });
   }
