@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Foyer } from 'src/app/Model/foyer';
 
 @Injectable({
@@ -25,7 +26,16 @@ export class FoyerService {
   addFoyer(f: Foyer) {
     return this.http.post<Foyer>(`${this.data}`, f);
   }
-  getFoyerByUni(idU : number) {
-    return this.http.get<Foyer>(`${this.data}/foyer/${idU}` );
+  getFoyerByUni(idU: number) {
+    return this.http.get<Foyer>(`${this.data}/foyer/${idU}`);
+  }
+
+  addFoyerWithImage(foyer: Foyer, image: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('nomFoyer', foyer.nomFoyer);
+    formData.append('image', image);
+    console.log(image);
+  console.log(foyer)
+    return this.http.post<any>(`${this.data}`, formData);
   }
 }

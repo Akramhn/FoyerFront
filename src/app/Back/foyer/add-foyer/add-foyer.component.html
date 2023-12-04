@@ -1,1 +1,28 @@
-<p>add-foyer works!</p>
+<div class="row">
+    <div class="col-md-4"></div>
+  
+    <div class="col-md-4">
+      <h1>******</h1><!--bech nahihom-->
+      <h1>------</h1><!--bech nahihom-->
+      <h2>Ajouter un foyer</h2>
+      <form [formGroup]="foyerFormGroup" (ngSubmit)="onAddFoyer()">
+        <label for="nomFoyer  " >Nom de lfoyer:</label>
+        <input type="text" id="nomFoyer" formControlName="nomFoyer"  placeholder="nom foyer" />
+  
+        <label for="adresse">capacité:</label>
+        <input type="text" id="capacite" formControlName="capacite"  placeholder="capacite foyer"/>
+  
+        <label for="image">Image:</label>
+        <input type="file" id="image" (change)="onFileChanged($event)" />
+  
+        <button
+          type="submit"
+          class="au-btn au-btn-icon au-btn--green au-btn--small"
+        >
+          Ajouter foyer
+        </button>
+      </form>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+  
