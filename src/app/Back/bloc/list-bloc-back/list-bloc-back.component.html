@@ -41,12 +41,7 @@
                   </button>
                 </div>
                 <div class="table-data__tool-right">
-                  <button
-                    type="button"
-                    class="au-btn au-btn-icon au-btn--green au-btn--small"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModalLong"
-                  >
+                  <button mat-raised-button color="primary" (click)="openAddEditChambreForm()">
                     <i class="zmdi zmdi-plus"></i>add Bloc
                   </button>
                   <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
@@ -76,7 +71,7 @@
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody *ngFor="let i of list">
+                  <tbody  *ngFor="let i of list">
                     <tr class="tr-shadow">
                       <td>
                         <label class="au-checkbox">

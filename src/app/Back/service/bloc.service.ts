@@ -33,4 +33,7 @@ export class BlocService {
   affecterChambreABloc(numChamb: number[], idBloc: number): Observable<any> {
     return this.http.put(`${this.urlBloc}/${idBloc}`, numChamb);
   }
+  affecterBlocAFoyer(idbloc: number, idfoyer: number): Observable<Bloc> {
+    return this.http.put<Bloc>(`${this.urlBloc}/affect/${idbloc}`,idfoyer);
+  }
 }
