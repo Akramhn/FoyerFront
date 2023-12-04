@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Foyer } from 'src/app/Model/foyer';
+import { Universite } from 'src/app/Model/universite';
 
 @Injectable({
   providedIn: 'root',
@@ -30,12 +31,14 @@ export class FoyerService {
     return this.http.get<Foyer>(`${this.data}/foyer/${idU}`);
   }
 
-  addFoyerWithImage(foyer: Foyer, image: File): Observable<any> {
-    const formData = new FormData();
-    formData.append('nomFoyer', foyer.nomFoyer);
-    formData.append('image', image);
-    console.log(image);
-  console.log(foyer)
-    return this.http.post<any>(`${this.data}`, formData);
+  addFoyerWithImage(foyer: Foyer, idUniversite: number, image: File): Observable<any> {
+    const formDataWithImage = new FormData();
+    formDataWithImage.append('nomFoyer', foyer.nomFoyer);
+    formDataWithImage.append('capacite', foyer.capaciteFoyer.toString());
+    formDataWithImage.append('image', image, image.name);
+
+    console.log("FormData avec image:", formDataWithImage);
+
+    return this.http.post<any>(`${this.data}/adduni/${idUniversite}`, formDataWithImage);
   }
 }

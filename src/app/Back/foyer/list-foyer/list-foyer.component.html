@@ -63,17 +63,26 @@
                 <table class="table table-data2">
                   <thead>
                     <tr>
+                      <th>Image foyer</th>
                       <th>Nom foyer</th>
                       <th>Capacité foyer</th>
+                      <!--<th>Nom univercité</th>-->
+                      
                       <th style="text-align: center">Action</th>
                     </tr>
                   </thead>
                   <tbody *ngFor="let i of listFoyer" >
                     <tr class="tr-shadow">
+                       <td><img [src]="'data:image/jpeg;base64,' + i.imageUrl" alt="Université Image"></td>
+
                       <td>{{i.nomFoyer}}</td>
                       <td>
                         <span class="block-email">{{i.capaciteFoyer}}</span>
-                      </td>  
+                      </td>
+                        <!--<td>
+                        <span >{{i.universite.nomUniversite}}</span>
+                      </td> -->
+                      
                       <td>
                         <div class="table-data-feature">
                           <button

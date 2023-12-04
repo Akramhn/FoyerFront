@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FoyerService } from '../../service/foyer.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
+import { Universite } from 'src/app/Model/universite';
+import { UniversityService } from '../../service/university.service';
+import { Foyer } from 'src/app/Model/foyer';
 
 @Component({
   selector: 'app-add-foyer',
@@ -14,7 +17,11 @@ export class AddFoyerComponent {
 
   foyerFormGroup: FormGroup;
   selectedFile?: File;
+  uni: Universite[] = [];
+  selectedUni: Universite | null = null;
+
   constructor(
+    private universiteS: UniversityService,
     private fb: FormBuilder,
     private foyerS: FoyerService,
     private router: Router,
@@ -24,12 +31,22 @@ export class AddFoyerComponent {
     
   ) {
     this.foyerFormGroup = this.fb.group({
-      nomFoyer: [''],
-      capacite: [''],
+      university: new FormControl('', Validators.required),
+      nomFoyer: new FormControl('', Validators.required),
+  capaciteFoyer: new FormControl('', Validators.required),
       
     });
   }
 
+  getUni() {
+    this.universiteS.getUniversites().subscribe((data) => {
+      this.uni = data;
+      console.log("hahom hna",data);
+    });
+  }
+  ngOnInit(): void {
+    this.getUni();
+  }
   resetForm() {
     this.foyerFormGroup.reset();
     this.selectedFile = undefined;
@@ -39,24 +56,30 @@ export class AddFoyerComponent {
   onFileChanged(event: any) {
     this.selectedFile = event.target.files[0];
   }
+
   onAddFoyer() {
     const formData = this.foyerFormGroup.value;
+    
     const imageFile = this.selectedFile;
-  
+    const idUniversite = this.selectedUni!.idUniversite;
+console.log(formData);
     if (imageFile) {
-      this.foyerS.addFoyerWithImage(formData, imageFile).subscribe(
+      
+      this.foyerS.addFoyerWithImage(formData, idUniversite, imageFile).subscribe(
         (response) => {
-          this.toastr.success('Foyer ajoutée avec succès');
+          this.toastr.success('Foyer ajouté avec succès');
           this.resetForm();
-         
         },
         (error) => {
-          console.error('Erreur lors de l\'ajout de foyer', error);
-          this.toastr.error('Erreur lors de l\'ajout de foyer');
+          console.error('Erreur lors de l\'ajout du foyer', error);
+          this.toastr.error('Erreur lors de l\'ajout du foyer');
         }
       );
     } else {
       console.error('Aucun fichier sélectionné.');
+      this.toastr.warning('Veuillez sélectionner un fichier.');
     }
   }
+  
+  
 }
