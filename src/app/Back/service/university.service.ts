@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Foyer } from 'src/app/Model/foyer';
 import { Universite } from 'src/app/Model/universite';
 
 @Injectable({
@@ -17,6 +19,30 @@ export class UniversityService {
   getUniversite(id: number) {
     return this.http.get<Universite>(`${this.URL}/${id}`);
   }
+
+  addUniversiteWithImage(universite: Universite, image: File): Observable<any> {
+   
+ 
+
+    const formData = new FormData();
+    formData.append('nomUni', universite.nomUniversite);
+    formData.append('adresse', universite.adresse);
+
+    
+    formData.append('image', image);
+
+  console.log(image);
+  console.log(universite)
+ 
+  
+    return this.http.post<any>(`${this.URL}`, formData );
+  }
+  
+  
+
+
+  
+  
 
   deleteUniversite(id: number) {
    return this.http.delete<Universite>(`${this.URL}/${id}`);

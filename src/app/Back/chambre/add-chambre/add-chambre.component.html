@@ -33,7 +33,7 @@
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>BlOC</mat-label>
-        <mat-select formControlName="bloc"  [(ngModel)]="selectedBloc">
+        <mat-select formControlName="bloc" [(ngModel)]="selectedBloc">
           <mat-option *ngFor="let i of bloc" [value]="i"
             >{{ i.nomBloc }}
           </mat-option>

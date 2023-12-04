@@ -1,1 +1,16 @@
-<p>add-university works!</p>
+<div>
+    <h2>Ajouter une Université</h2>
+    <form [formGroup]="universityForm" (ngSubmit)="onAddUniversite()">
+      <!-- Vos champs de formulaire ici -->
+      <label for="nomUniversite">Nom de l'université:</label>
+      <input type="text" id="nomUniversite" formControlName="nomUniversite" />
+    
+      <label for="adresse">Adresse:</label>
+      <input type="text" id="adresse" formControlName="adresse" />
+    
+      <label for="image">Image:</label>
+      <input type="file" id="image" (change)="onFileChanged($event)" />
+    
+      <button type="submit"class="au-btn au-btn-icon au-btn--green au-btn--small">Ajouter Université</button>
+    </form>
+  </div>

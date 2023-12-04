@@ -1,48 +1,51 @@
-<p>add-bloc-back works!</p>
 <main id="main" class="main">
-    <div class="pagetitle">
-      <h1>Bloc List</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item">Gestion Bloc</li>
-          <li class="breadcrumb-item active">List Blocs</li>
-        </ol>
-      </nav>
+  <div mat-dialog-title class="cc">
+    <h1>Bloc Form</h1>
+    <hr />
+  </div>
+  <form [formGroup]="blocForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content custom-dialog-content">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>University</mat-label>
+          <mat-select formControlName="university" [(ngModel)]="selectedUni" (selectionChange)="getFoyersByUniversity()">
+            <mat-option *ngFor="let i of uni" [value]="i">
+              {{ i.nomUniversite }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Foyer</mat-label>
+          <mat-select
+            [(ngModel)]="selectedFoyer"
+            formControlName="foyer"
+          >
+            <mat-option *ngIf="foyers" [value]="foyers"
+              >{{ foyers.nomFoyer }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Nom Bloc</mat-label>
+          <input matInput type="text" placeholder="Ex . 120" formControlName="nombloc" />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>capacite</mat-label>
+          <input matInput type="number" placeholder="Ex . 120" formControlName="capacite" />
+        </mat-form-field>
+      </div>
     </div>
-    <!-- End Page Title -->
-    <br />
-    <form class="booking-form" action="#" method="post">
-      <div class="elem-group">
-        <label for="name">Bloc Name</label>
-        <input
-          type="text"
-          id="name"
-          name="visitor_name"
-          placeholder="John Doe"
-          pattern="[A-Z\sa-z]{3,20}"
-          required
-        />
-      </div>
-      <div class="elem-group">
-        <label for="capacity">Bloc Capacity</label>
-        <input
-          type="number"
-          id="capacity"
-          name="capaciteBloc"
-          placeholder="Bloc capacity"
-          required
-        />
-      </div>
-      <hr />
-      <div class="elem-group">
-        <label for="room-selection">Select Room Preference</label>
-        <select id="room-selection" name="room_preference" required>
-          <option value="connecting"  *ngFor="let i of listFoyer">{{i.nomFoyer}}</option>
-        </select>
-      </div>
-      <hr />
-      <button type="submit">Add the Bloc</button>
-    </form>
-  </main>
-  
+    <hr />
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">
+        Cancel
+      </button>
+      <button mat-raised-button color="primary" type="submit">save</button>
+    </div>
+  </form>
+</main>

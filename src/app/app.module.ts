@@ -50,10 +50,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EvenementModule } from './Back/evenement/evenement.module';
 import { ParticipationModule } from './Back/participation/participation.module';
 
-
-
-
-
 register();
 
 @NgModule({
@@ -73,7 +69,6 @@ register();
     DashboardComponent,
     ContactComponent,
     GetStartedComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -106,7 +101,6 @@ register();
 
     EvenementModule,
     ParticipationModule,
-
   ],
 
   providers: [],
