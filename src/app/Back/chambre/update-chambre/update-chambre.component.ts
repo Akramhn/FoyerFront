@@ -33,6 +33,7 @@ import { ValueComponent } from './../../../front/value/value.component';
     selectedFoyer!: Foyer;
     selectedBloc!: Bloc;
     id!: any;
+    bl = new Bloc();
 
     constructor(
       private universiteS: UniversityService,
@@ -139,12 +140,13 @@ import { ValueComponent } from './../../../front/value/value.component';
         console.log(this.chambForm.value);
         console.log('numChambre:', this.chambForm.value.numChamb);
         console.log('selectedBloc:', this.selectedBloc);
+        this.bl.nomBloc = this.selectedBloc.toString();
         if (this.selectedBloc && this.chambForm.value.numChamb) {
           const chambreToAdd: Chambre = {
             idChambre: this.data.idChambre,
             numeroChambre: this.chambForm.value.numChamb,
             typeC: this.chambForm.value.typeCh,
-            bloc: this.selectedBloc,
+            bloc: this.bl,
             reservation: this.data.reservation,
           };
           console.log('Chambre to add:', chambreToAdd);
@@ -154,7 +156,7 @@ import { ValueComponent } from './../../../front/value/value.component';
               console.log('Chambre added successfully:', data);
 
               this.blocS
-                .affecterChambreABloc([data.idChambre], this.selectedBloc!.idBloc)
+                .affecterChambreABloc([data.idChambre], this.data.bloc.idBloc)
                 .subscribe((data) => {
                   console.log('Chambre affected to bloc successfully:', data);
 
