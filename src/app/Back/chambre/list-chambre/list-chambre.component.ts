@@ -57,7 +57,7 @@ export class ListChambreComponent implements OnInit {
     }
   }
 
-  openUpdate(data: Chambre) {
+  openUpdate(data: any) {
     this._dialog.open(UpdateChambreComponent, { data });
     console.log("data" , data);
   }

@@ -8,8 +8,8 @@
       <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>University</mat-label>
-          <mat-select formControlName="university">
-            <mat-option *ngFor="let i of uni" [value]="i.nomUniversite">{{ i.nomUniversite }}</mat-option>
+          <mat-select  formControlName="university">
+            <mat-option *ngFor="let i of uni" [value]="i.nomUniversite" >{{ i.nomUniversite }}</mat-option>
           </mat-select>
           
         </mat-form-field>
@@ -28,8 +28,8 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>BlOC</mat-label>
-          <mat-select formControlName="bloc" [(ngModel)]="selectedBloc">
-            <mat-option *ngFor="let i of bloc" [value]="i.nomBloc"
+          <mat-select formControlName="bloc" >
+            <mat-option *ngFor="let i of blocs" [value]="i.nomBloc"
               >{{ i.nomBloc }}
             </mat-option>
           </mat-select>
