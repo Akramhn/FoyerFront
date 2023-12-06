@@ -104,7 +104,7 @@ export class AddChambreComponent implements OnInit {
           console.log('Chambre added successfully:', data);
 
           this.blocS
-            .affecterChambreABloc([data.idChambre], this.selectedBloc!.idBloc)
+            .affecterChambreABloc(data.idChambre, this.selectedBloc!.idBloc)
             .subscribe((data) => {
               console.log('Chambre affected to bloc successfully:', data);
 
