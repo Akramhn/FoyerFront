@@ -33,7 +33,6 @@ export class UpdateChambreComponent implements OnInit {
   selectedUni!: Universite;
   selectedFoyer!: Foyer;
   selectedBloc!: Bloc;
-  
 
   constructor(
     private universiteS: UniversityService,
@@ -61,10 +60,7 @@ export class UpdateChambreComponent implements OnInit {
     this.populateForm();
     this.chambForm
       .get('university')
-      ?.valueChanges.pipe(
-        debounceTime(10), 
-        distinctUntilChanged() 
-      )
+      ?.valueChanges.pipe(debounceTime(10), distinctUntilChanged())
       .subscribe((selectedUniversity) => {
         this.selectedUni =
           this.uni.find((u) => u.nomUniversite === selectedUniversity) ||
@@ -75,23 +71,17 @@ export class UpdateChambreComponent implements OnInit {
 
     this.chambForm
       .get('foyer')
-      ?.valueChanges.pipe(
-        debounceTime(200), 
-        distinctUntilChanged() 
-      )
+      ?.valueChanges.pipe(debounceTime(200), distinctUntilChanged())
       .subscribe((selectfoy) => {
         this.selectedFoyer =
           this.foyers.find((u) => u.nomFoyer === selectfoy) || new Foyer();
         // Optionally, call other methods or perform additional actions here
         this.getBlocByFoyer();
       });
-      
-      this.chambForm
+
+    this.chambForm
       .get('bloc')
-      ?.valueChanges.pipe(
-        debounceTime(300), 
-        distinctUntilChanged() 
-      )
+      ?.valueChanges.pipe(debounceTime(300), distinctUntilChanged())
       .subscribe((selectedblo) => {
         this.selectedBloc =
           this.blocs.find((u) => u.nomBloc === selectedblo) || new Bloc();
@@ -141,27 +131,24 @@ export class UpdateChambreComponent implements OnInit {
     );
   }
   getBlocByFoyer(): void {
-    console.log("nvdhvdfvd",this.selectedFoyer)
+    console.log('nvdhvdfvd', this.selectedFoyer);
 
     this.blocs = []; // Clear the array before fetching new data
 
-    this.blocS
-      .getBlocByFoyer(this.selectedFoyer.idFoyer)
-      .subscribe((data) => {
-        this.blocs = data;
-      });
+    this.blocS.getBlocByFoyer(this.selectedFoyer.idFoyer).subscribe((data) => {
+      this.blocs = data;
+    });
   }
   getBlocB(): void {
-    console.log("bloc",this.selectedBloc)
+    console.log('bloc', this.selectedBloc);
   }
-  
+
   onFormSubmit() {
     if (this.chambForm.valid) {
-
       console.log(this.chambForm.value);
       console.log('numChambre:', this.chambForm.value.numChamb);
       console.log('selectedBloc:', this.chambForm.getRawValue());
-      
+
       console.log('selectedd uni ba3ed l bl', this.selectedUni);
       if (this.selectedBloc && this.chambForm.value.numChamb) {
         const chambreToAdd: Chambre = {
@@ -173,26 +160,14 @@ export class UpdateChambreComponent implements OnInit {
         };
         console.log('Chambre to add:', chambreToAdd);
 
-        this.cha.updateChambre(chambreToAdd).subscribe(
-          (data) => {
-            console.log('Chambre added successfully:', data);
+        this.cha.updateChambre(chambreToAdd).subscribe((data) => {
+          console.log('Chambre added successfully:', data);
 
-            this.blocS
-              .affecterChambreABloc(data.idChambre, this.selectedBloc.idBloc)
-              .subscribe((data) => {
-                console.log('Chambre affected to bloc successfully:', data);
-
-                this.toastr.success(
-                  'Chambre added and affected to bloc successfully'
-                );
-                this._dialogRef.close(true);
-              });
-          },
-          (error) => {
-            console.error('Error updating chambre:', error);
-            // Handle error (log, display message, etc.)
-          }
-        );
+          this.toastr.success(
+            'Chambre added and affected to bloc successfully'
+          );
+          this._dialogRef.close(true);
+        });
       }
     }
   }
