@@ -10,6 +10,6 @@ export class UniversiteService {
 
   constructor(private http: HttpClient) { }
   getAllUniversites() {
-    return this.http.get<Universite[]>(`${environment.baseUrl}/universite/all`);
+    return this.http.get<Universite[]>(`${environment.baseUrl}/universite`);
   }
 }
