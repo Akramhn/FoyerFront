@@ -17,7 +17,7 @@ import { ListUserComponent } from './Back/user-back/list-user/list-user.componen
 const routes: Routes = [
   {
     path: 'admin',
-    component: BackoffComponent,
+    component: BackoffComponent,canActivate:[AuthGuard,AdminGuardGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirect to 'dashboard' by default
       { path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard,AdminGuardGuard] },
