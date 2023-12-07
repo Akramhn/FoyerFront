@@ -1,14 +1,25 @@
 <section class="h-wrapper">
-  <div class=" h-container flexCenter paddings innerWidth">
-    <img class="logo" src="../../assets//images/lo.png" alt="" width="100" height="80"  />
+  <div class="h-container flexCenter paddings innerWidth">
+    <img class="logo" src="../../assets/images/lo.png" alt="" width="100" height="80" />
     <div class="h-menu flexCenter">
       <a href="#">University</a>
       <a href="#">Our Value</a>
       <a href="#">Contact Us</a>
       <a href="#">Get Started</a>
-      <button class="button">
-        <a href="#">Sign Up</a>
-      </button>
+      <!-- Conditionally show buttons based on authentication status -->
+      <ng-container *ngIf="userconnect">
+        <button class="button" (click)="logout()">
+          <a>Logout</a>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="!userconnect">
+        <button class="button" routerLink="/register">
+          <a>Sign Up</a>
+        </button>
+        <button class="button" routerLink="/login">
+          <a>Login</a>
+        </button>
+      </ng-container>
     </div>
   </div>
 </section>
