@@ -29,6 +29,9 @@ import { BackoffComponent } from './Back/backoff/backoff.component';
 import { HeaderBackComponent } from './Back/header-back/header-back.component';
 import { FoyerModule } from './Back/foyer/foyer.module';
 import { ChambreModule } from './Back/chambre/chambre.module';
+import { MaterialModule } from 'src/material.module';
+import { AccessdeniedComponent } from './accessdenied/accessdenied.component';
+import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -69,6 +72,8 @@ register();
     DashboardComponent,
     ContactComponent,
     GetStartedComponent,
+    AccessdeniedComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -95,12 +100,14 @@ register();
     HttpClientModule,
     FoyerModule,
     BlocModule,
+    MaterialModule,
+    RouterModule.forRoot([]),
+    RouterModule ,
     ToastrModule.forRoot(),
-
     ReactiveFormsModule,
-
     EvenementModule,
     ParticipationModule,
+
   ],
 
   providers: [],

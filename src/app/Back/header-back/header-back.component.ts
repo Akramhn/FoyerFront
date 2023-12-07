@@ -1,4 +1,5 @@
 import { Component, Renderer2, ElementRef, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-back',
@@ -6,7 +7,9 @@ import { Component, Renderer2, ElementRef, OnInit } from '@angular/core';
   styleUrls: ['./header-back.component.css' , '../../../assets/css/styleback.css']
 })
 export class HeaderBackComponent implements OnInit {
-  constructor(private renderer: Renderer2, private el: ElementRef) { }
+ 
+  userconnect = JSON.parse(localStorage.getItem("userconnect")!);
+  constructor(private renderer: Renderer2, private el: ElementRef,private router:Router) { }
   private isSidebarOpen = false;
 
   ngOnInit() {
@@ -24,5 +27,11 @@ export class HeaderBackComponent implements OnInit {
         this.renderer.removeClass(document.body, 'toggle-sidebar');
       }
     });
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+    
   }
 }

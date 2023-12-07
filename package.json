@@ -25,6 +25,7 @@
     "angularx-qrcode": "^15.0.1",
     "ngx-toastr": "^16.0.2",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.10.1",
     "swiper": "^9.4.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

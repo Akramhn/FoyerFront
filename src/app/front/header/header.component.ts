@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,5 +8,16 @@ import { Component } from '@angular/core';
   
 })
 export class HeaderComponent {
+  
+  
+  constructor(private router:Router) {}
+
+  userconnect = JSON.parse(localStorage.getItem("userconnect")!);
+
+logout() {
+  localStorage.clear();
+  this.router.navigate(['/login']);
+  
+}
 
 }

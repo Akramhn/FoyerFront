@@ -1,14 +1,10 @@
 import { Reservation } from "./reservation";
+import { Universite } from "./universite";
+import { User } from "./user.model";
 
-export class Etudiant {
-      idEtudiant!:number ;
-      nomEt !:string ;
-      prenomEt !:string ;
-      cin  !:number ;
-      ecole !:string ;
-
-      dateNaissance !:Date;
-
-    
-     reservations !:Reservation[];
+export class Etudiant extends User {
+      cin!: number;
+      universite!: Universite;
+      dateNaissance!: Date;
+      reservations !:Reservation[];
 }
