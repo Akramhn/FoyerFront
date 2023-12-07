@@ -1,9 +1,8 @@
-import { Foyer } from "./foyer";
-
+import { Foyer } from './foyer';
 export class Universite {
-      idUniversite!: number ;
-      nomUniversite!:string ;
-       adresse!:string ;
-   
-       foyer!:Foyer ;
+  idUniversite!: number;
+  nomUniversite!: string;
+  adresse!: string;
+  imageUrl!:Blob;
+  foyer!: Foyer;
 }

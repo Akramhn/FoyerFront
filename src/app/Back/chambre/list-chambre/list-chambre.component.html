@@ -19,9 +19,29 @@
             <!-- DATA TABLE -->
 
             <div class="table-data__tool">
-              <div class="table-data__tool-left"></div>
+              <div class="table-data__tool-left">
+                <input
+                  type="search"
+                  placeholder="search"
+                  style="
+                    border: 3px solid rgb(177, 172, 172);
+                    border-radius: 10px;
+                  "
+                />
+                <button
+                  style="
+                    color: white;
+                    background-color: #4154f1;
+                    padding: 3px 3px;
+                    border-radius: 3px;
+                    margin-left: 0.8rem;
+                  "
+                >
+                  Search
+                </button>
+              </div>
               <div class="table-data__tool-right">
-                <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                <button mat-raised-button color="primary" (click)="openAddEditChambreForm()">
                   <i class="zmdi zmdi-plus"></i>add Chambre
                 </button>
                 <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
@@ -52,22 +72,24 @@
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody *ngFor="let i of list">  
-                  <tr class="tr-shadow" >
+                <tbody *ngFor="let i of list">
+                  <tr class="tr-shadow">
                     <td>
                       <label class="au-checkbox">
                         <input type="checkbox" />
                         <span class="au-checkmark"></span>
                       </label>
                     </td>
-                    <td>{{i.bloc.foyer.universite.nomUniversite}}</td>
+                    <td>{{ i.bloc.foyer.universite.nomUniversite }}</td>
                     <td>
-                      <span class="block-email">{{i.bloc.foyer.nomFoyer}}</span>
+                      <span class="block-email">{{
+                        i.bloc.foyer.nomFoyer
+                      }}</span>
                     </td>
-                    <td class="desc">{{i.bloc.nomBloc}}</td>
-                    <td>{{i.numeroChambre}}</td>
+                    <td class="desc">{{ i.bloc.nomBloc }}</td>
+                    <td>{{ i.numeroChambre }}</td>
                     <td>
-                      <span class="status--process">{{i.typeC}}</span>
+                      <span class="status--process">{{ i.typeC }}</span>
                     </td>
 
                     <td>
@@ -85,6 +107,7 @@
                           data-toggle="tooltip"
                           data-placement="top"
                           title="Edit"
+                          (click)="openUpdate(i)"
                         >
                           <i class="bx bx-edit-alt"></i>
                         </button>
@@ -93,6 +116,7 @@
                           data-toggle="tooltip"
                           data-placement="top"
                           title="Delete"
+                          (click)="onDelete(i.idChambre)"
                         >
                           <i class="bi bi-archive-fill"></i>
                         </button>
@@ -109,5 +133,93 @@
       </div>
     </div>
   </section>
+
+  <!-- <div
+    class="modal fade"
+    id="exampleModalLong"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #63c76a">
+          <img
+            src="../../../../assets/images/lo.png"
+            alt=""
+            width="80px"
+            height="50px"
+          />
+          <button
+            type="button"
+            class="close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            style="color: aliceblue;"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h1 style="text-align: center; color: #333">Add Chambre</h1>
+          <form class="booking-form" action="#" method="post">
+            <div class="elem-group">
+              <label for="name">Your Name</label>
+              <input
+                type="text"
+                id="name"
+                name="visitor_name"
+                placeholder="John Doe"
+                pattern="[A-Z\sa-z]{3,20}"
+                required
+              />
+            </div>
+            <div class="elem-group">
+              <label for="email">Your E-mail</label>
+              <input
+                type="email"
+                id="email"
+                name="visitor_email"
+                placeholder="john.doe@email.com"
+                required
+              />
+            </div>
+            <div class="elem-group">
+              <label for="phone">Your Phone</label>
+              <input
+                type="tel"
+                id="phone"
+                name="visitor_phone"
+                placeholder="498-348-3872"
+                pattern="(\d{3})-?\s?(\d{3})-?\s?(\d{4})"
+                required
+              />
+            </div>
+            <hr />
+        
+
+            <div class="elem-group">
+              <label for="room-selection">Select Room Preference</label>
+              <select id="room-selection" name="room_preference" required>
+                <option value="">Choose a Room from the List</option>
+                <option value="connecting">Connecting</option>
+                <option value="adjoining">Adjoining</option>
+                <option value="adjacent">Adjacent</option>
+              </select>
+            </div>
+            <hr />
+
+            <button
+              class="au-btn au-btn-icon au-btn--green au-btn--small"
+              type="submit"
+            >
+              Book The Rooms
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> -->
 </main>
 <!-- End #main -->

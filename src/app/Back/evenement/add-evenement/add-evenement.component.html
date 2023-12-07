@@ -1,0 +1,19 @@
+<div>
+    <h2>Ajouter une Université</h2>
+    <form [formGroup]="eventForm" (ngSubmit)="onAddEvenement()">
+      <!-- Vos champs de formulaire ici -->
+      <label for="nomEvenement">Nom Evenement:</label>
+      <input type="text" id="nomEvenement" formControlName="nomEvenement" />
+    
+      <label for="lieu">Adresse:</label>
+      <input type="text" id="lieu" formControlName="lieu" />
+    
+      <label for="dateEvenement">date</label>
+      <input type="date" id="dateEvenement" formControlName="dateEvenement" />
+     
+      <label for="description">Adresse:</label>
+      <input type="text" id="description" formControlName="description" />
+    
+      <button type="submit"class="au-btn au-btn-icon au-btn--green au-btn--small">Ajouter Evenement</button>
+    </form>
+  </div>

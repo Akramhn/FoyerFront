@@ -41,6 +41,38 @@ const routes: Routes = [
     children: [
       { path: 'etudiantProfile', component: EtudiantProfileComponent,canActivate:[AuthGuard,EtudiantGuardGuard] },
 
+
+
+      {
+        path: 'bloc',
+        loadChildren: () =>
+          import('./Back/bloc/bloc.module').then((m) => m.BlocModule),
+      },
+
+      {
+        path: 'evenement',
+        loadChildren: () =>
+          import('./Back/evenement/evenement.module').then((m) => m.EvenementModule),
+
+      },     
+        {
+        path: 'university',
+        loadChildren: () =>
+          import('./Back/university/university.module').then((c) => c.UniversityModule),
+
+
+      },
+      {
+        path: 'foyer',
+        loadChildren: () =>
+          import('./Back/foyer/foyer.module').then((f) => f.FoyerModule),
+      },
+      {
+        path: 'participation',
+        loadChildren: () =>
+          import('./Back/participation/participation.module').then((m) => m.ParticipationModule),
+
+      },
     ],
   },
   { path: 'home', component: FrontOfficeComponent },
@@ -80,4 +112,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

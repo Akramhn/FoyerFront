@@ -16,15 +16,15 @@
       </a>
     </div>
 
-    <div class="property-list">
-      <div class="card">
+    <div class="property-list" >
+      <div class="card" *ngFor="let i of list">
         <div class="card-banner">
           <figure class="img-holder" style="--width: 585; --height: 390">
             <img
-              src="../../../assets/images/popular1.jpg"
+              [src]="'data:image/jpeg;base64,' + i.imageUrl"
+              alt="Université Image"
               width="585"
               height="390"
-              alt="Esprit"
               class="img-cover"
             />
           </figure>
@@ -46,15 +46,16 @@
           <h3>
             <a href="#" class="title-small card-title"
               ><span class="title-large">
-                <i class="bx bxs-institution"></i> ESPRIT</span
+                <i class="bx bxs-institution"></i> {{ i.nomUniversite }}</span
               ></a
             >
           </h3>
 
           <address class="body-medium card-text">
-            ESPRIT: Tunisian private university, engineering, technology,
-            innovation, practical education, international collaboration.
-          </address>
+            {{ i.adresse }}<br>
+            Une université est une institution d'enseignement supérieur,
+             d'étude et de recherche, constituée par la réunion de divers  
+             </address>
 
           <div class="card-meta-list">
             <div class="meta-item">
@@ -64,7 +65,7 @@
                 >bed</span
               >
 
-              <span class="meta-text label-medium">3 Foyer</span>
+              <span class="meta-text label-medium"></span>
             </div>
 
             <div class="meta-item">
@@ -90,222 +91,7 @@
         </div>
       </div>
 
-      <div class="card ">
-        <div class="card-banner">
-          <figure class="img-holder" style="--width: 585; --height: 390">
-            <img
-              src="../../../assets/images/popular1.jpg"
-              width="585"
-              height="390"
-              alt="Esprit"
-              class="img-cover"
-            />
-          </figure>
-
-          <span class="badge label-medium">HOT</span>
-
-          <button
-            class="icon-btn fav-btn"
-            aria-label="add to favorite"
-            data-toggle-btn
-          >
-            <span class="material-symbols-rounded" aria-hidden="true"
-              >favorite</span
-            >
-          </button>
-        </div>
-
-        <div class="card-content">
-          <h3>
-            <a href="#" class="title-small card-title"
-              ><span class="title-large">
-                <i class="bx bxs-institution"></i> ESPRIT</span
-              ></a
-            >
-          </h3>
-
-          <address class="body-medium card-text">
-            ESPRIT: Tunisian private university, engineering, technology,
-            innovation, practical education, international collaboration.
-          </address>
-
-          <div class="card-meta-list">
-            <div class="meta-item">
-              <span
-                class="material-symbols-rounded meta-icon"
-                aria-hidden="true"
-                >bed</span
-              >
-
-              <span class="meta-text label-medium">3 Foyer</span>
-            </div>
-
-            <div class="meta-item">
-              <span
-                class="material-symbols-rounded meta-icon"
-                aria-hidden="true"
-                >bathtub</span
-              >
-
-              <span class="meta-text label-medium">2 Bath</span>
-            </div>
-
-            <div class="meta-item">
-              <span
-                class="material-symbols-rounded meta-icon"
-                aria-hidden="true"
-                >straighten</span
-              >
-
-              <span class="meta-text label-medium">10 bed </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-banner">
-          <figure class="img-holder" style="--width: 585; --height: 390">
-            <img
-              src="../../../assets/images/popular1.jpg"
-              width="585"
-              height="390"
-              alt="Esprit"
-              class="img-cover"
-            />
-          </figure>
-
-          <span class="badge label-medium">HOT</span>
-
-          <button
-            class="icon-btn fav-btn"
-            aria-label="add to favorite"
-            data-toggle-btn
-          >
-            <span class="material-symbols-rounded" aria-hidden="true"
-              >favorite</span
-            >
-          </button>
-        </div>
-
-        <div class="card-content">
-          <h3>
-            <a href="#" class="title-small card-title"
-              ><span class="title-large">
-                <i class="bx bxs-institution"></i> ESPRIT</span
-              ></a
-            >
-          </h3>
-
-          <address class="body-medium card-text">
-            ESPRIT: Tunisian private university, engineering, technology,
-            innovation, practical education, international collaboration.
-          </address>
-
-          <div class="card-meta-list">
-            <div class="meta-item">
-              <span
-                class="material-symbols-rounded meta-icon"
-                aria-hidden="true"
-                >bed</span
-              >
-
-              <span class="meta-text label-medium">3 Foyer</span>
-            </div>
-
-            <div class="meta-item">
-              <span
-                class="material-symbols-rounded meta-icon"
-                aria-hidden="true"
-                >bathtub</span
-              >
-
-              <span class="meta-text label-medium">2 Bath</span>
-            </div>
-
-            <div class="meta-item">
-              <span
-                class="material-symbols-rounded meta-icon"
-                aria-hidden="true"
-                >straighten</span
-              >
-
-              <span class="meta-text label-medium">10 bed </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-banner">
-          <figure class="img-holder" style="--width: 585; --height: 390">
-            <img
-              src="../../../assets/images/popular1.jpg"
-              width="585"
-              height="390"
-              alt="Esprit"
-              class="img-cover"
-            />
-          </figure>
-
-          <span class="badge label-medium">HOT</span>
-
-          <button
-            class="icon-btn fav-btn"
-            aria-label="add to favorite"
-            data-toggle-btn
-          >
-            <span class="material-symbols-rounded" aria-hidden="true"
-              >favorite</span
-            >
-          </button>
-        </div>
-
-        <div class="card-content">
-          <h3>
-            <a href="#" class="title-small card-title"
-              ><span class="title-large">
-                <i class="bx bxs-institution"></i> ESPRIT</span
-              ></a
-            >
-          </h3>
-
-          <address class="body-medium card-text">
-            ESPRIT: Tunisian private university, engineering, technology,
-            innovation, practical education, international collaboration.
-          </address>
-
-          <div class="card-meta-list">
-            <div class="meta-item">
-              <span
-                class="material-symbols-rounded meta-icon"
-                aria-hidden="true"
-                >bed</span
-              >
-
-              <span class="meta-text label-medium">3 Foyer</span>
-            </div>
-
-            <div class="meta-item">
-              <span
-                class="material-symbols-rounded meta-icon"
-                aria-hidden="true"
-                >bathtub</span
-              >
-
-              <span class="meta-text label-medium">2 Bath</span>
-            </div>
-
-            <div class="meta-item">
-              <span
-                class="material-symbols-rounded meta-icon"
-                aria-hidden="true"
-                >straighten</span
-              >
-
-              <span class="meta-text label-medium">10 bed </span>
-            </div>
-          </div>
-        </div>
-      </div>
+      
     </div>
   </div>
 </section>

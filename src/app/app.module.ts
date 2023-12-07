@@ -30,11 +30,28 @@ import { HeaderBackComponent } from './Back/header-back/header-back.component';
 import { FoyerModule } from './Back/foyer/foyer.module';
 import { ChambreModule } from './Back/chambre/chambre.module';
 import { MaterialModule } from 'src/material.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
 import { AccessdeniedComponent } from './accessdenied/accessdenied.component';
 import { RouterModule } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { EvenementModule } from './Back/evenement/evenement.module';
+import { ParticipationModule } from './Back/participation/participation.module';
 
 register();
 
@@ -65,16 +82,32 @@ register();
     BrowserAnimationsModule,
     ReservationModule,
     MatExpansionModule,
+    MatToolbarModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSnackBarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    MatSelectModule,
     ChambreModule,
     HttpClientModule,
     FoyerModule,
     BlocModule,
     MaterialModule,
-    ReactiveFormsModule,
-    ToastrModule,
     RouterModule.forRoot([]),
-    RouterModule 
-    
+    RouterModule ,
+    ToastrModule.forRoot(),
+    ReactiveFormsModule,
+    EvenementModule,
+    ParticipationModule,
+
   ],
 
   providers: [],
