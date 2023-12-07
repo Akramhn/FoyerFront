@@ -32,17 +32,7 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: () =>
           import('./Back/user-back/user-back.module').then((m) => m.UserBackModule),
-      }
-    ],
-  },
-  {
-    path: 'etudiant',
-   
-    children: [
-      { path: 'etudiantProfile', component: EtudiantProfileComponent,canActivate:[AuthGuard,EtudiantGuardGuard] },
-
-
-
+      },
       {
         path: 'bloc',
         loadChildren: () =>
@@ -73,6 +63,17 @@ const routes: Routes = [
           import('./Back/participation/participation.module').then((m) => m.ParticipationModule),
 
       },
+    ],
+  },
+  {
+    path: 'etudiant',
+   
+    children: [
+      { path: 'etudiantProfile', component: EtudiantProfileComponent,canActivate:[AuthGuard,EtudiantGuardGuard] },
+
+
+
+     
     ],
   },
   { path: 'home', component: FrontOfficeComponent },
