@@ -34,6 +34,9 @@ export class UpdateChambreComponent implements OnInit {
   selectedFoyer!: Foyer;
   selectedBloc!: Bloc;
 
+  newFoyer: Foyer= new Foyer();
+
+
   constructor(
     private universiteS: UniversityService,
     private FoyerS: FoyerService,
@@ -144,6 +147,8 @@ export class UpdateChambreComponent implements OnInit {
   }
 
   onFormSubmit() {
+    this.newFoyer.idFoyer = this.selectedFoyer!.idFoyer;
+    this.selectedBloc!.foyer=this.newFoyer
     if (this.chambForm.valid) {
       console.log(this.chambForm.value);
       console.log('numChambre:', this.chambForm.value.numChamb);

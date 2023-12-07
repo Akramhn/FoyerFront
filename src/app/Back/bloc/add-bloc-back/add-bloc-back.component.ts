@@ -24,7 +24,7 @@ export class AddBlocBackComponent implements OnInit{
 
 
   blocForm: FormGroup;
-
+  newFoyer: Foyer= new Foyer();
   uni: Universite[] = [];
   foyers!: Foyer;
  
@@ -64,19 +64,21 @@ export class AddBlocBackComponent implements OnInit{
   }
 
   onFormSubmit() {
+    this.newFoyer.idFoyer = this.selectedFoyer!.idFoyer;
     console.log('Form submitted');
     if (this.blocForm.valid) {
       console.log(this.blocForm.value);
       const capacitebloc: number = this.blocForm.value.capacite;
       const nombloc : string=this.blocForm.value.nombloc
       console.log('capacitebloc:', capacitebloc);
-      console.log('selectedFoyer:', this.selectedFoyer);
+      console.log('newfoy:', this.newFoyer);
+      
       if (this.selectedFoyer && capacitebloc) {
         const blocToadd: Bloc = {
           idBloc:0,
           capaciteBloc: capacitebloc,
           nomBloc: nombloc,
-          foyer: this.selectedFoyer,
+          foyer: this.newFoyer,
           Chambre: [],
         };
         console.log('Bloc to add:', blocToadd);
@@ -84,17 +86,9 @@ export class AddBlocBackComponent implements OnInit{
         this.blocS.addBloc(blocToadd).subscribe((data) => {
           console.log('bloc added successfully:', data);
 
-          this.blocS
-            .affecterBlocAFoyer(data.idBloc, this.selectedFoyer!.idFoyer)
-            .subscribe((data) => {
-              // Handle success, if needed
-              console.log('Bloc affected to foyer successfully:', data);
-
-              // Display success notification
-              this.toastr.success(
-                'bloc added and affected to foyer successfully'
-              );
-            });
+          this.toastr.success(
+            'bloc added and affected to foyer successfully'
+          );
         });
       }
     }

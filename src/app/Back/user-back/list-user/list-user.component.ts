@@ -22,6 +22,7 @@ export class ListUserComponent {
   constructor(private userService: EtudiantService) {}
   ngOnInit(): void {
     this.loadUsers(this.currentPage);
+    console.log()
   }
 
   loadUsers(pageNumber: number): void {
