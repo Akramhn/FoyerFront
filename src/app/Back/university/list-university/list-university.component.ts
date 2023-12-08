@@ -5,6 +5,8 @@ import { Universite } from 'src/app/Model/universite';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { FoyerService } from '../../service/foyer.service';
+import { Foyer } from 'src/app/Model/foyer';
 //import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -19,6 +21,7 @@ export class ListUniversityComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private universiteS: UniversityService,
+    private foyerS: FoyerService,
     private router: Router,
     private toastr: ToastrService,
     private httpClient: HttpClient ,
@@ -29,7 +32,12 @@ export class ListUniversityComponent implements OnInit {
   ngOnInit(): void {
     this.universiteS.getUniversites().subscribe((data) => {
       this.list = data;
-      console.log(data);
+      this.list.forEach(uni => {
+        this.foyerS.getFoyerByUni(uni.idUniversite).subscribe((foyer: Foyer) => {
+          uni.foyer = foyer;
+        });
+      });    
+  console.log(data);
     });
   }
   onDelete(id: number) {
