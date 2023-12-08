@@ -76,6 +76,8 @@
                   <tr class="tr-shadow">
                     <td>
                       <img
+                      width="200"
+                        height="100"
                         [src]="'data:image/jpeg;base64,' + i.imageUrl"
                         alt="Université Image"
                       />
@@ -104,6 +106,7 @@
                           data-toggle="tooltip"
                           data-placement="top"
                           title="Edit"
+                          (click)="openUpdate(i)"
                         >
                           <i class="bx bx-edit-alt"></i>
                         </button>

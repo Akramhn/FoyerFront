@@ -37,7 +37,7 @@ export class UniversityService {
     console.log(image);
     console.log(universite);
 
-    return this.http.post<any>(`${this.URL}`, formData)
+    return this.http.post<any>(`${this.URL}/${universite.idUniversite}`, formData)
       .pipe(
         catchError(error => {
           // Gérez les erreurs ici si nécessaire
@@ -68,4 +68,28 @@ export class UniversityService {
   // updateUniversite(u: Universite, id: number) {
   //   this.http.put<Universite[]>(`${URL}/${id}`, u);
   // }
+
+
+  UpdateUniversiteWithImage(universite: Universite, image: File): Observable<any> {
+    if (this.depasseLimiteMots(universite.description, 140)) {
+      return throwError("La description dépasse la limite de 140 mots.");
+    }
+
+    const formData = new FormData();
+    formData.append('nomUni', universite.nomUniversite);
+    formData.append('adresse', universite.adresse);
+    formData.append('desc', universite.description);
+    formData.append('image', image);
+
+    console.log(image);
+    console.log(universite);
+
+    return this.http.put<any>(`${this.URL}/${universite.idUniversite}`, formData)
+      .pipe(
+        catchError(error => {
+          return throwError(error);
+        })
+      );
+  }
+
 }

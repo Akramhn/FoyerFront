@@ -1,1 +1,52 @@
-<p>update-university works!</p>
+<main id="main" class="main">
+  <div mat-dialog-title class="cc">
+    <h1>Modifier Université</h1>
+    <hr />
+  </div>
+  <form [formGroup]="universityForm" (ngSubmit)="onUpdateUniversite()" >
+    <div mat-dialog-content class="content custom-dialog-content">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Nom Universite</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Nom Universite"
+            formControlName="nomUniversite"
+          />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Adresse Universite</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Adresse"
+            formControlName="adresse"
+          />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Description Universite</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Description "
+            formControlName="description"
+          />
+        </mat-form-field>
+      </div>
+      <label for="image">Image:</label>
+      <input type="file" id="image" (change)="onFileChanged($event)" />
+    </div>
+    <hr />
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">
+        Fermer
+      </button>
+      <button mat-raised-button color="primary" type="submit">Enregistrer</button>
+    </div>
+  </form>
+</main>
