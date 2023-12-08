@@ -46,13 +46,15 @@
             <div class="input-field">
               <i class="fas fa-user" aria-hidden="true"></i>
               <input type="text" formControlName="nom" placeholder="first name">
-              <span class="text text-danger" *ngIf="registerForm.controls['nom'].invalid && registerForm.controls['nom'].touched">First Name is required </span>
             </div>
+            <span class="text text-danger" *ngIf="registerForm.controls['nom'].invalid && registerForm.controls['nom'].touched">First Name is required </span>
+
             <div class="input-field">
               <i class="fas fa-user" aria-hidden="true"></i>
               <input type="text" formControlName="prenom" placeholder="last name">
-              <span class="text text-danger" *ngIf="registerForm.controls['prenom'].invalid && registerForm.controls['prenom'].touched">prenom is required </span>
             </div>
+            <span class="text text-danger" *ngIf="registerForm.controls['prenom'].invalid && registerForm.controls['prenom'].touched">prenom is required </span>
+
             <div class="input-field">
               <i class="fas fa-school" aria-hidden="true"></i>
               <select class="border-0 bg-light rounded-end ps-1 form-select border-0 z-index-9" id="exampleInputEcole" formControlName="universite">

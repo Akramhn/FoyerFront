@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
     prenom: new FormControl('', [Validators.required, Validators.minLength(3)]),
     cin: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
     image: new FormControl('', [Validators.required]),
-    universite: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    universite: new FormControl('', [Validators.required]),
     dateNaissance: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
@@ -66,10 +66,10 @@ export class RegisterComponent implements OnInit {
       addValueToFormData('dateNaissance', this.registerForm.get('dateNaissance')?.value);
       addValueToFormData('email', this.registerForm.get('email')?.value);
       addValueToFormData('password', this.registerForm.get('password')?.value);
-    
       if (this.selectedFile) {
         formData.append('image', this.selectedFile, this.selectedFile.name);
       }
+      
   
       this.authenticationService.registerEtudiant(formData).subscribe(
         (response: any) => {
@@ -141,7 +141,7 @@ export class RegisterComponent implements OnInit {
       prenom: 'Prénom',
       cin: 'CIN',
       image: 'Image',
-      universite: 'Université',
+  
       dateNaissance: 'Date de naissance',
       email: 'Email',
       password: 'Mot de passe'
