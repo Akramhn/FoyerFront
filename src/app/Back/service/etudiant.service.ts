@@ -44,9 +44,9 @@ export class EtudiantService {
     return this.http.get<any>(`${environment.baseUrl}/etudiant/usersperpage`, { params });
   }
 
-  deleteEtudiant(idEtudiant: number, httpOptions: any): Observable<any> {
+  deleteEtudiant(idEtudiant: number){
     const url = `${environment.baseUrl}/etudiant/delete/${idEtudiant}`;
-    return this.http.delete(url, httpOptions);
+    return this.http.delete(url);
   }
   updatePassword(idEtudiant:number , password:string){
     return this.http.put(`${environment.baseUrl}/etudiant/updatePassword/${idEtudiant}/${password}`, {})

@@ -69,13 +69,13 @@ export class ListUserComponent {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': 'http://localhost:8089', // Set your backend URL
+      'Access-Control-Allow-Origin': 'http://localhost:9090', // Set your backend URL
       // Other headers if needed
     })
   };
 
   deleteUser(userId: number): void {
-    this.userService.deleteEtudiant(userId, this.httpOptions).subscribe(
+    this.userService.deleteEtudiant(userId).subscribe(
       () => {
         console.log('User deleted successfully.');
         this.loadUsers(this.currentPage);
