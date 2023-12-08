@@ -1,32 +1,35 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { EvenementService } from '../../service/evenement.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
-import { Evenement } from 'src/app/Model/evenement';
-import { Router } from '@angular/router';
+
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-add-evenement',
-  templateUrl: './add-evenement.component.html',
-  styleUrls: ['./add-evenement.component.css']
+  selector: 'app-add-modal-evenement',
+  templateUrl: './add-modal-evenement.component.html',
+  styleUrls: ['./add-modal-evenement.component.css']
 })
-export class AddEvenementComponent {
+export class AddModalEvenementComponent {
   eventForm: FormGroup; 
   selectedFile?: File;
+  
   constructor(
     private fb: FormBuilder,
     private evenements: EvenementService,
     private router: Router,
     private toastr: ToastrService,
     private httpClient: HttpClient ,
+    private _dialog: MatDialog
     
   ) {
     this.eventForm = this.fb.group({
-      nomEvenement: ['', Validators.required],
-      lieu: ['', Validators.required],
-      dateEvenement: ['', Validators.required],
-      description: ['', Validators.required],
+      nomEvenement: [''],
+      lieu: [''],
+      dateEvenement:[''],
+      description:[''],
     });
   }
 
@@ -40,20 +43,10 @@ export class AddEvenementComponent {
     this.selectedFile = event.target.files[0];
   }
   onAddEvenement() {
-    if (this.eventForm.invalid) {
-      this.toastr.error('Please fill out all required fields.');
-      return;
-    }
-    
     const formData = this.eventForm.value;
     const imageFile = this.selectedFile;
   
-
-    console.log('FormData:', formData);
-    console.log('ImageFile:', imageFile);
     if (imageFile) {
-      
-
       this.evenements.addEvenement(formData, imageFile ).subscribe(
         (response) => {
           this.toastr.success('Evenement ajoutée avec succès');
@@ -65,17 +58,12 @@ export class AddEvenementComponent {
         this.toastr.error('Erreur lors de l\'ajout de l\'université');
       }
       );
-      
+    } else {
+      console.error('Aucun fichier sélectionné.');
+    }
       this.router.navigate([`admin/evenement`]);
-    
+ 
   }
 
 
- /**  public onFileChanged(event:any) {
-    //Select File
-    this.selectedFile = event.target.files[0];
-  }*/
-
-
-  }
 }

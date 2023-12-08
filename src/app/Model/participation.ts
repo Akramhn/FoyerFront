@@ -4,6 +4,7 @@ import { Evenement } from "./evenement";
 export class Participation {
     idParticipation!:number;
     dateParticipation!:Date;
+    nomEvenement!:String;
     typeP!: TypeParticipation;
     raisonDeParticipation!:String;
     etudiant!: Etudiant;
