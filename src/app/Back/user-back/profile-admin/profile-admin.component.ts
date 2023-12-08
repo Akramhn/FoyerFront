@@ -17,10 +17,10 @@ export class ProfileAdminComponent {
   etudiant!: Etudiant;
   listUniversite: Universite[] = [];
   fileToUpload: Array<File> = [];
-
+newUniversite: Universite=new Universite;
   updateForm: FormGroup;
 
-  constructor(private etudiantService: EtudiantService, private formBuilder: FormBuilder, private universiteService: UniversiteService) {
+  constructor(private etudiantService: EtudiantService, private formBuilder: FormBuilder) {
     this.updateForm = this.formBuilder.group({
       nom: ['', [Validators.required, Validators.minLength(3)]],
       prenom: ['', Validators.required],
@@ -35,7 +35,7 @@ export class ProfileAdminComponent {
   ngOnInit(): void {
     this.userconnect;
     this.getOneEtudiant();
-    this.getAllUniversites();
+  
   }
 
   getOneEtudiant() {
@@ -67,19 +67,17 @@ export class ProfileAdminComponent {
     }
   }
 
-  getAllUniversites() {
-    this.universiteService.getAllUniversites().subscribe((data: Universite[]) => {
-      this.listUniversite = data;
-    });
-  }
-
   updateAdmin() {
  
       const updatedEtudiant: Etudiant = {
         ...this.etudiant,
         ...this.updateForm.value
       };
-      console.log(this.updateForm.value)
+      updatedEtudiant.id=this.etudiant.id;
+      console.log("updated user",updatedEtudiant)
+      this.newUniversite.idUniversite=updatedEtudiant.universite.idUniversite;
+      updatedEtudiant.universite=this.newUniversite;
+
       this.etudiantService.updateEtudiant(updatedEtudiant).subscribe(res => {
         Swal.fire({
           icon: 'success',

@@ -3,11 +3,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script><style media="all" id="fa-v4-font-face"></style>
+   
     <link rel="stylesheet" href="/assets/css/login.css">
 
     <title>Sign in &amp; Sign up Form</title>
   </head>
   <body>
+    
     <div class="container sign-up-mode">
       <div class="forms-container">
         <div class="signin-signup">
@@ -44,11 +46,12 @@
             <div class="input-field">
               <i class="fas fa-user" aria-hidden="true"></i>
               <input type="text" formControlName="nom" placeholder="first name">
-              <span class="text text-danger" *ngIf="registerForm.controls['nom'].invalid && registerForm.controls['nom'].touched">First Name is required and</span>
+              <span class="text text-danger" *ngIf="registerForm.controls['nom'].invalid && registerForm.controls['nom'].touched">First Name is required </span>
             </div>
             <div class="input-field">
               <i class="fas fa-user" aria-hidden="true"></i>
               <input type="text" formControlName="prenom" placeholder="last name">
+              <span class="text text-danger" *ngIf="registerForm.controls['prenom'].invalid && registerForm.controls['prenom'].touched">prenom is required </span>
             </div>
             <div class="input-field">
               <i class="fas fa-school" aria-hidden="true"></i>
@@ -82,7 +85,13 @@
               <i class="fas fa-lock" aria-hidden="true"></i>
               <input type="password" placeholder="Password" formControlName="password">
             </div>
+
+
+
             <input type="submit" class="btn" value="Sign up"  >
+            
+  
+           
             <p class="social-text">Or Sign up with social platforms</p>
             <div class="social-media">
               <a href="#" class="social-icon">
