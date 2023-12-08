@@ -42,7 +42,7 @@
                   </button>
                 </div>
                 <div class="table-data__tool-right">
-                  <button mat-raised-button color="primary" >
+                  <button mat-raised-button color="primary" (click)="openModalAddEvenementForm()">
                     <i class="zmdi zmdi-plus"></i>add Evenement
                   </button>
                   <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
@@ -82,9 +82,7 @@
                       </td>
                       <td>{{ i.nomEvenement }}</td>
                       <td>
-                        <span class="block-email">{{
-                          i.lieu
-                        }}</span>
+                        {{i.lieu}}
                       </td>
                       <td class="desc">{{ i.description }}</td>
                       <td>{{ i.dateEvenement }}</td>

@@ -71,6 +71,8 @@
                         </label>
                       </th>
                       <th>Date Participation</th>
+                      <th>Nom Evenement</th>
+                      
                     </tr>
                   </thead>
                   <tbody *ngFor="let i of list">
@@ -82,7 +84,7 @@
                         </label>
                       </td>
                       <td>{{ i.dateParticipation }}</td>
-  
+                      <td>{{ i.nomEvenement }}</td>
                       <td>
                         <div class="table-data-feature">
                           <button
