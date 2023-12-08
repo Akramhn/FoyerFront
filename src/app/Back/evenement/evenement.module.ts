@@ -48,7 +48,6 @@ import { MatSelectModule } from '@angular/material/select';
     MatRadioModule,
     MatSelectModule,
     ToastrModule.forRoot(),
-    
   ]
 })
 export class EvenementModule { }
