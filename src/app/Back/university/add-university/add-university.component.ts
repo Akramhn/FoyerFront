@@ -26,6 +26,7 @@ export class AddUniversityComponent {
     this.universityForm = this.fb.group({
       nomUniversite: new FormControl('', Validators.required),
       adresse: new FormControl('', Validators.required),
+      description: new FormControl(''),
       
     });
   }
