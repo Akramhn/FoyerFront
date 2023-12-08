@@ -4,6 +4,7 @@ export class Evenement {
     nomEvenement!:String ;
     lieu!:String;
     dateEvenement!:Date;
+    imageUrl!:Blob;
     description!:String;
     participation!:Participation[] ;
 }

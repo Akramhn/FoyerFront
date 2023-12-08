@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { EvenementService } from '../../service/evenement.service';
 import { MatDialog } from '@angular/material/dialog';
+import { AddModalEvenementComponent } from '../add-modal-evenement/add-modal-evenement.component';
+import { UpdateEvenementComponent } from '../update-evenement/update-evenement.component';
 
 
 
@@ -49,9 +51,30 @@ export class ListEvenementComponent {
       console.log('Deletion canceled by user');
     }
   }
-
-  onUpdate(id: number) {
-    this.router.navigate([`/update/${id}`]);
+  getEvenements() {
+    this.evenements.getEvenements().subscribe((data) => {
+      (this.list = data), console.log(data);
+    });
   }
 
+
+  openModalAddEvenementForm() {
+    const dialogRef = this._dialog.open(AddModalEvenementComponent);
+    dialogRef.afterClosed().subscribe((data) => {       
+      
+    });
+    
+  }
+  onUpdate(id: number) {
+    this.router.navigate([`/update/${id}`]);
+    const dialogRef = this._dialog.open(UpdateEvenementComponent);
+    dialogRef.afterClosed().subscribe((data) => {       
+      this.getEvenements();
+    });
+  }
+
+
+      
+
+  
 }
