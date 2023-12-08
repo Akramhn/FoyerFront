@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FoyerService } from '../../service/foyer.service';
 import { Foyer } from 'src/app/Model/foyer';
 import { ToastrService } from 'ngx-toastr';
+import { UpdateFoyerComponent } from '../update-foyer/update-foyer.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-list-foyer',
@@ -11,7 +13,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ListFoyerComponent implements OnInit {
   listFoyer: Foyer[] = [];
-  constructor(private router: Router, private foyerS: FoyerService, private toastr: ToastrService) {}
+  constructor(private router: Router, private foyerS: FoyerService, private toastr: ToastrService,    private _dialog: MatDialog
+    ) {}
   ngOnInit(): void {
     this.foyerS.getFoyers().subscribe((data)=>{
       this.listFoyer=data;
@@ -34,6 +37,10 @@ export class ListFoyerComponent implements OnInit {
     } else {
       console.log('Deletion canceled by user');
     }
+  }
+  openUpdate(data: any) {
+    this._dialog.open(UpdateFoyerComponent, { data });
+    console.log("data" , data);
   }
 
 }

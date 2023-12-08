@@ -53,6 +53,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EvenementModule } from './Back/evenement/evenement.module';
 import { ParticipationModule } from './Back/participation/participation.module';
 
+
 register();
 
 @NgModule({

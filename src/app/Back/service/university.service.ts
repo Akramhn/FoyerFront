@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { Foyer } from 'src/app/Model/foyer';
 import { Universite } from 'src/app/Model/universite';
 
@@ -13,6 +13,8 @@ export class UniversityService {
   constructor(private http: HttpClient) {}
   
 
+
+
   getUniversites() {
     return this.http.get<Universite[]>(`${this.URL}`);
   }
@@ -21,21 +23,32 @@ export class UniversityService {
   }
 
   addUniversiteWithImage(universite: Universite, image: File): Observable<any> {
-   
- 
+    if (this.depasseLimiteMots(universite.description, 140)) {
+      // Gérez la logique en cas de dépassement de la limite
+      return throwError("La description dépasse la limite de 140 mots.");
+    }
 
     const formData = new FormData();
     formData.append('nomUni', universite.nomUniversite);
     formData.append('adresse', universite.adresse);
-
-    
+    formData.append('desc', universite.description);
     formData.append('image', image);
 
-  console.log(image);
-  console.log(universite)
- 
-  
-    return this.http.post<any>(`${this.URL}`, formData );
+    console.log(image);
+    console.log(universite);
+
+    return this.http.post<any>(`${this.URL}/${universite.idUniversite}`, formData)
+      .pipe(
+        catchError(error => {
+          // Gérez les erreurs ici si nécessaire
+          return throwError(error);
+        })
+      );
+  }
+
+  private depasseLimiteMots(description: string, limite: number): boolean {
+    const mots = description.split(/\s+/).length;
+    return mots > limite;
   }
   
   
@@ -55,4 +68,28 @@ export class UniversityService {
   // updateUniversite(u: Universite, id: number) {
   //   this.http.put<Universite[]>(`${URL}/${id}`, u);
   // }
+
+
+  UpdateUniversiteWithImage(universite: Universite, image: File): Observable<any> {
+    if (this.depasseLimiteMots(universite.description, 140)) {
+      return throwError("La description dépasse la limite de 140 mots.");
+    }
+
+    const formData = new FormData();
+    formData.append('nomUni', universite.nomUniversite);
+    formData.append('adresse', universite.adresse);
+    formData.append('desc', universite.description);
+    formData.append('image', image);
+
+    console.log(image);
+    console.log(universite);
+
+    return this.http.put<any>(`${this.URL}/${universite.idUniversite}`, formData)
+      .pipe(
+        catchError(error => {
+          return throwError(error);
+        })
+      );
+  }
+
 }
