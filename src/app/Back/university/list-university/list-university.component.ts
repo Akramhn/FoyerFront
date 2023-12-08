@@ -7,6 +7,9 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FoyerService } from '../../service/foyer.service';
 import { Foyer } from 'src/app/Model/foyer';
+import { UpdateUniversityComponent } from '../update-university/update-university.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AddUniversityComponent } from '../add-university/add-university.component';
 //import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -16,7 +19,6 @@ import { Foyer } from 'src/app/Model/foyer';
 })
 export class ListUniversityComponent implements OnInit {
   list: Universite[] = [];
- 
 
   constructor(
     private fb: FormBuilder,
@@ -25,6 +27,7 @@ export class ListUniversityComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private httpClient: HttpClient ,
+    private _dialog: MatDialog
   //  private modalService: NgbModal
     
   ){} 
@@ -55,6 +58,11 @@ export class ListUniversityComponent implements OnInit {
     } else {
       console.log('Deletion canceled by user');
     }
+  }
+ 
+  openUpdate(data: any) {
+    this._dialog.open(UpdateUniversityComponent, { data });
+    console.log("data" , data);
   }
 
   }
