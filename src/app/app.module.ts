@@ -74,7 +74,6 @@ register();
     ContactComponent,
     GetStartedComponent,
     AccessdeniedComponent,
-    
   ],
   imports: [
     BrowserModule,
