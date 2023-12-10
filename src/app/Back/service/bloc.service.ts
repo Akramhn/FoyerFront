@@ -27,6 +27,9 @@ export class BlocService {
   addBloc(b: Bloc): Observable<Bloc> {
     return this.http.post<Bloc>(`${this.urlBloc}`, b);
   }
+  updateBloc(b: Bloc): Observable<Bloc> {
+    return this.http.put<Bloc>(`${this.urlBloc}`, b);
+  }
   getBlocByFoyer(idB: number) {
     return this.http.get<Bloc[]>(`${this.urlBloc}/bloc/${idB}`);
   }

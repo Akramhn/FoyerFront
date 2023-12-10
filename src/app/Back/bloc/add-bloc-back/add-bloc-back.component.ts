@@ -14,6 +14,7 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { Universite } from 'src/app/Model/universite';
 import { UniversityService } from '../../service/university.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-bloc-back',
@@ -36,14 +37,17 @@ export class AddBlocBackComponent implements OnInit{
     private FoyerS: FoyerService,
     private blocS: BlocService,
     private fb: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private _dialogRef: MatDialogRef<AddBlocBackComponent>
   ) {
     this.blocForm = this.fb.group({
       university: new FormControl('', Validators.required),
       foyer: new FormControl('', Validators.required),
-      nombloc: new FormControl('', Validators.required),
-      capacite: new FormControl('', Validators.required),
+      nomBloc: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z]+$/)]), // Uppercase only
+      capacite: new FormControl('', [Validators.required, Validators.min(10), Validators.max(100)]), // Between 10 and 100
     });
+    
+    
   }
   getFoyersByUniversity(): void {
     console.log( this.selectedUni?.idUniversite);
@@ -69,7 +73,7 @@ export class AddBlocBackComponent implements OnInit{
     if (this.blocForm.valid) {
       console.log(this.blocForm.value);
       const capacitebloc: number = this.blocForm.value.capacite;
-      const nombloc : string=this.blocForm.value.nombloc
+      const nombloc : string=this.blocForm.value.nomBloc
       console.log('capacitebloc:', capacitebloc);
       console.log('newfoy:', this.newFoyer);
       
@@ -89,7 +93,9 @@ export class AddBlocBackComponent implements OnInit{
           this.toastr.success(
             'bloc added and affected to foyer successfully'
           );
+          this._dialogRef.close(true);
         });
+        
       }
     }
   }

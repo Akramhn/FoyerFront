@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { AddChambreComponent } from '../../chambre/add-chambre/add-chambre.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AddBlocBackComponent } from '../add-bloc-back/add-bloc-back.component';
+import { ModifBlocBackComponent } from '../modif-bloc-back/modif-bloc-back.component';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-list-bloc-back',
@@ -14,6 +16,7 @@ import { AddBlocBackComponent } from '../add-bloc-back/add-bloc-back.component';
 })
 export class ListBlocBackComponent {
   list: Bloc[] = [];
+  
   constructor(
     private blocS: BlocService,
     private toastr: ToastrService,
@@ -25,8 +28,16 @@ export class ListBlocBackComponent {
       (this.list = data), console.log(data);
     });
   }
-  openAddEditChambreForm(){
-    this._dialog.open(AddBlocBackComponent)
+  openAddEditBlocForm(){
+    const dialogRef = this._dialog.open(AddBlocBackComponent);
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        this.blocS.getBlocs().subscribe((data) => {
+          (this.list = data), console.log(data);
+        });
+      }
+    });
+    
   }
   onDelete(id: number) {
     const isConfirmed = window.confirm(
@@ -36,19 +47,29 @@ export class ListBlocBackComponent {
     if (isConfirmed) {
       this.blocS.deleteBloc(id).subscribe((res) => {
         this.toastr.success('Deleted Successfully');
-
-        // Introduce a delay of, for example, 2 seconds (2000 milliseconds) before reloading
-        setTimeout(() => {
-          location.reload(); // Reload the page after deletion
-        }, 2000);
+        this.blocS.getBlocs().subscribe((data) => {
+          (this.list = data), console.log(data);
+        });
+        setTimeout(() => {}, 2000);
       });
     } else {
       console.log('Deletion canceled by user');
     }
   }
 
-  onUpdate(id: number) {
-    this.router.navigate([`/update/${id}`]);
+  openUpdate(data: any) {
+    const dialogRef = this._dialog.open(ModifBlocBackComponent, { data });
+
+    dialogRef.componentInstance.blocUpdated.subscribe(() => {
+      this.updateBlocList();
+    });
+    
+  }
+  private updateBlocList() {
+    this.blocS.getBlocs().pipe(debounceTime(10), distinctUntilChanged()).subscribe((data) => {
+      this.list = data;
+      console.log(data);
+    });
   }
 
 }
