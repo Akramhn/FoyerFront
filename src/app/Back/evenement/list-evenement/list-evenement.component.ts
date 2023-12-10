@@ -6,9 +6,9 @@ import { EvenementService } from '../../service/evenement.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddModalEvenementComponent } from '../add-modal-evenement/add-modal-evenement.component';
 import { UpdateEvenementComponent } from '../update-evenement/update-evenement.component';
-import { Participation } from 'src/app/Model/participation';
 import { ParticipationService } from '../../service/participation.service';
-
+import { QRCodeModule } from 'angularx-qrcode';
+import { QrcodepopupComponent } from '../qrcodepopup/qrcodepopup.component';
 
 
 
@@ -19,7 +19,7 @@ import { ParticipationService } from '../../service/participation.service';
   styleUrls: ['./list-evenement.component.css']
 })
 export class ListEvenementComponent {
-  
+  searchTerm: string = '';
   disabledButtons: { [key: number]: boolean } = {};
   buttonColorClass = 'not-clicked';
   userconnect = JSON.parse(localStorage.getItem("userconnect")!);
@@ -63,6 +63,11 @@ export class ListEvenementComponent {
       (this.list = data), console.log(data);
     });
   }
+  getEvenement(id:number){
+    this.evenements.getEvenementById(id).subscribe((data) => {
+     
+    });
+  }
 
 
   openModalAddEvenementForm() {
@@ -76,14 +81,39 @@ export class ListEvenementComponent {
     this._dialog.open(UpdateEvenementComponent, { data });
     console.log("data" , data);
   }
-  onAddParticipation(nomEvenement: String, idEtudiant: number){
+  onAddParticipation(idEvenement: number, idEtudiant: number){
     this.disabledButtons[idEtudiant] = true;
     this.buttonColorClass = 'clicked';
-    this.participations.addParticipation(nomEvenement, idEtudiant).subscribe(
+    this.participations.addParticipation(idEvenement, idEtudiant).subscribe(
       (response) => {
-        this.toastr.success('Evenement ajoutée avec succès');
+        this.toastr.success('Participation ajoutée avec succès');
       },
       // You might be missing this closing parenthesis
     );
+  }
+  openQrCodePopup(evenement: Evenement) {
+    const dialogRef = this._dialog.open(QrcodepopupComponent, {
+      data: { evenement }, // Pass data to the QR code popup component
+      width: 'auto', // Set the width as per your requirement
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The QR code popup was closed');
+    });
+  }
+  searchByNom(nomEvenement: string) {
+    this.evenements.searchEvenementByNom(nomEvenement).subscribe((data) => {
+      this.list = data;
+    });
+  }
+
+  // Call this method when you want to search by name
+  onSearchByName(nomEvenement: string) {
+    if (nomEvenement) {
+      this.searchByNom(nomEvenement);
+    } else {
+      // If the search input is empty, get all events
+      this.getEvenements();
+    }
   }
 }

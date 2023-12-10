@@ -74,7 +74,7 @@ register();
     ContactComponent,
     GetStartedComponent,
     AccessdeniedComponent,
-
+    
   ],
   imports: [
     BrowserModule,
@@ -108,7 +108,8 @@ register();
     ReactiveFormsModule,
     EvenementModule,
     ParticipationModule,
-
+    
+    
   ],
 
   providers: [],
