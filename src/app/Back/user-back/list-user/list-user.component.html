@@ -110,7 +110,7 @@
                 </div>
                    
             </div>
-
+     
             <table class="table datatable">
               <thead>
                 <tr>
@@ -124,9 +124,13 @@
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr *ngFor="let user of foundAdmin">
-                  <td>{{ user.nom }}</td>
+  
+              <tbody appHover>
+                <tr *ngFor="let user of foundAdmin"
+                
+            >
+      
+                  <td >{{ user.nom }}</td>
                   <td>{{ user.prenom }}</td>
                   <td>{{ user.email }}</td>
                   <td>{{ user.dateNaissance }}</td>

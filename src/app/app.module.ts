@@ -74,6 +74,7 @@ register();
     ContactComponent,
     GetStartedComponent,
     AccessdeniedComponent,
+ 
 
   ],
   imports: [

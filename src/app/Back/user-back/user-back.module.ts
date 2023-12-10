@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListUserComponent } from './list-user/list-user.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccordionItemDirective } from 'src/app/front/directives/accordion-item.directive';
+import { HoverDirective } from '../directive2/hover.directive';
 
 
 
@@ -13,7 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     ProfileAdminComponent,
-    ListUserComponent
+    ListUserComponent,
+    HoverDirective
   ],
   imports: [
     CommonModule,
@@ -21,6 +24,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     MatDialogModule,
     BrowserAnimationsModule
-  ]
+  ],exports:[HoverDirective]
 })
 export class UserBackModule { }
