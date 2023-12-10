@@ -67,4 +67,7 @@ export class EvenementService {
     return this.http.post<any>(`${this.data}`, formData );
     //return this.http.post(`${this.data}`, formData);
   }
+  searchEvenementByNom(nomEvenement: string): Observable<Evenement[]> {
+    return this.http.get<Evenement[]>(`${this.data}/search/${nomEvenement}`);
+  }
 }

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { EvenementRoutingModule } from './evenement-routing.module';
 import { ListEvenementComponent } from './list-evenement/list-evenement.component';
 import { UpdateEvenementComponent } from './update-evenement/update-evenement.component';
+import { FormsModule } from '@angular/forms';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
@@ -24,14 +25,21 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { QrcodepopupComponent } from './qrcodepopup/qrcodepopup.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+
+
+
 
 
 @NgModule({
-  declarations: [ ListEvenementComponent, UpdateEvenementComponent, AddEvenementComponent, AddModalEvenementComponent],
+  declarations: [ ListEvenementComponent, UpdateEvenementComponent, AddEvenementComponent, AddModalEvenementComponent, QrcodepopupComponent],
   imports: [
+    
     CommonModule,
     EvenementRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     MatButtonModule,
     MatExpansionModule,
     MatToolbarModule,
@@ -48,6 +56,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatRadioModule,
     MatSelectModule,
     ToastrModule.forRoot(),
+    NgxQRCodeModule
   ]
 })
 export class EvenementModule { }
