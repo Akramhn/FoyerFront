@@ -41,6 +41,7 @@ export class ListFoyerComponent implements OnInit {
   openUpdate(data: any) {
     this._dialog.open(UpdateFoyerComponent, { data });
     console.log("data" , data);
+    
   }
 
 }
