@@ -65,6 +65,7 @@
                           <span class="au-checkmark"></span>
                         </label>
                       </th>
+                      <th>image</th>
                       <th>Nom Evenement</th>
                       <th>Lieu Evenement</th>
                       <th>Description Evenement</th>
@@ -80,29 +81,42 @@
                           <span class="au-checkmark"></span>
                         </label>
                       </td>
+                      <td>
+                        <img
+                          width="200"
+                          height="100"
+                          [src]="'data:image/jpeg;base64,' + i.imageUrl"
+                          alt="Université Image"
+                        />
+                      </td>
+  
                       <td>{{ i.nomEvenement }}</td>
                       <td>
                         {{i.lieu}}
                       </td>
                       <td class="desc">{{ i.description }}</td>
                       <td>{{ i.dateEvenement }}</td>
+                      
   
                       <td>
                         <div class="table-data-feature">
                           <button
-                            class="item"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Send"
-                          >
-                            <i class="bi bi-house-add-fill"></i>
-                          </button>
+                          class="item"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Send"
+                          
+                          (click)="onAddParticipation(i.nomEvenement, userconnect.id)"
+                          [disabled]="disabledButtons[i.idEvenement]"
+                        >
+                          <i class="bi bi-house-add-fill"></i>
+                        </button>
                           <button
                             class="item"
                             data-toggle="tooltip"
                             data-placement="top"
                             title="Edit"
-                            (click)="onUpdate(i.idEvenement)"
+                            (click)="onUpdate(i)"
                           >
                             <i class="bx bx-edit-alt"></i>
                           </button>
