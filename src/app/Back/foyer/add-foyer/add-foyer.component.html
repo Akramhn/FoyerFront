@@ -8,25 +8,35 @@
     <!--bech nahihom-->
     <h2>Ajouter un foyer</h2>
     <form [formGroup]="foyerFormGroup" (ngSubmit)="onAddFoyer()">
-      <label for="nomFoyer  ">Nom de lfoyer:</label>
-      <input
-        type="text"
-        id="nomFoyer"
-        formControlName="nomFoyer"
-        placeholder="nom foyer"
-      />
+      <div class="form-group">
+        <label for="nomFoyer">Nom du foyer:</label>
+        <input type="text" id="nomFoyer" formControlName="nomFoyer" placeholder="nom foyer" />
+        <small class="text text-danger" *ngIf="foyerFormGroup.get('nomFoyer')?.hasError('required')">
+          Le nom du foyer est requis.
+        </small>
+        <small class="text text-danger" *ngIf="foyerFormGroup.get('nomFoyer')?.hasError('pattern')">
+          Le nom du foyer doit contenir uniquement des lettres.
+        </small>
+      </div>
 
-      <label for="capaciteFoyer">capacité:</label>
-      <input
-        type="text"
-        id="capacite"
-        formControlName="capaciteFoyer"
-        placeholder="capacite foyer"
-      />
+      <div class="form-group">
+        <label for="capaciteFoyer">Capacité:</label>
+        <input type="text" id="capacite" formControlName="capaciteFoyer" placeholder="capacité foyer" />
+        <small class="text text-danger" *ngIf="foyerFormGroup.get('capaciteFoyer')?.hasError('required')">
+          La capacité est requise.
+        </small>
+        <small class="text text-danger" *ngIf="foyerFormGroup.get('capaciteFoyer')?.hasError('pattern')">
+          La capacité doit contenir uniquement des chiffres.
+        </small>
+      </div>
 
-      <label for="image">Image:</label>
-      <input type="file" id="image" (change)="onFileChanged($event)" />
-
+      <div class="form-group">
+        <label for="image">Image:</label>
+        <input type="file" id="image" (change)="onFileChanged($event)" formControlName="image" />
+        <small class="text text-danger" *ngIf="foyerFormGroup.get('image')?.hasError('required')">
+          L'image est requise.
+        </small>
+      </div>
       <label for="universite">Affecté université:</label>
       <div mat-dialog-content class="content custom-dialog-content">
         <div class="row">

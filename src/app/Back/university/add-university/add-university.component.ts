@@ -24,10 +24,10 @@ export class AddUniversityComponent {
     
   ) {
     this.universityForm = this.fb.group({
-      nomUniversite: new FormControl('', Validators.required),
-      adresse: new FormControl('', Validators.required),
-      description: new FormControl(''),
-      
+      nomUniversite: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]),
+      adresse: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]),
+      description: new FormControl('',[Validators.required, Validators.maxLength(140)]),
+      image:new FormControl('', Validators.required)
     });
   }
 
@@ -43,6 +43,7 @@ export class AddUniversityComponent {
   onAddUniversite() {
     const formData = this.universityForm.value;
     const imageFile = this.selectedFile;
+    console.log(formData);
   
     if (imageFile) {
       this.universiteS.addUniversiteWithImage(formData, imageFile).subscribe(
