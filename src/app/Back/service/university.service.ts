@@ -37,7 +37,7 @@ export class UniversityService {
     console.log(image);
     console.log(universite);
 
-    return this.http.post<any>(`${this.URL}/${universite.idUniversite}`, formData)
+    return this.http.post<any>(`${this.URL}`, formData)
       .pipe(
         catchError(error => {
           // Gérez les erreurs ici si nécessaire
