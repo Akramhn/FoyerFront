@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UpdatePopupComponent } from './update-popup/update-popup.component';
 import { ProfileAdminComponent } from './profile-admin/profile-admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListUserComponent } from './list-user/list-user.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -11,14 +12,15 @@ import { ListUserComponent } from './list-user/list-user.component';
 
 @NgModule({
   declarations: [
-    UpdatePopupComponent,
     ProfileAdminComponent,
     ListUserComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ]
 })
 export class UserBackModule { }
