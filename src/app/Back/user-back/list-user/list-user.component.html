@@ -49,15 +49,15 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let user of students">
-                  <td>{{ user.nom }}</td>
-                  <td>{{ user.prenom }}</td>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.dateNaissance }}</td>
-                  <td>{{ user.cin }}</td>
-                  <td>{{ user.universite?.nomUniversite }}</td>
-                <td>    <img src="http://localhost:9090/auth/{{user.image}}" alt="Profile" class="rounded-circle" width="80" height="80">  </td>
-                  <td>
+                <tr *ngFor="let user of students" >
+                  <td appHover>{{ user.nom }}</td>
+                  <td appHover>{{ user.prenom }}</td>
+                  <td appHover>{{ user.email }}</td>
+                  <td appHover>{{ user.dateNaissance }}</td>
+                  <td appHover>{{ user.cin }}</td>
+                  <td appHover>{{ user.universite?.nomUniversite }}</td>
+                <td appHover>    <img src="http://localhost:9090/auth/{{user.image}}" alt="Profile" class="rounded-circle" width="80" height="80">  </td>
+                  <td appHover>
                     <button type="button" class="btn btn-danger"  (click)="deleteUser(user.id)">Delete</button>
                   </td>
                 </tr>
@@ -125,19 +125,19 @@
                 </tr>
               </thead>
   
-              <tbody appHover>
-                <tr *ngFor="let user of foundAdmin"
-                
+              <tbody>
+                <tr  *ngFor="let user of foundAdmin"
+                 
             >
       
-                  <td >{{ user.nom }}</td>
-                  <td>{{ user.prenom }}</td>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.dateNaissance }}</td>
-                  <td>{{ user.cin }}</td>
-                  <td>{{ user.universite?.nomUniversite }}</td>
-                <td>    <img src="http://localhost:9090/auth/{{user.image}}" alt="Profile" class="rounded-circle" width="80" height="80">  </td>
-                  <td>
+                  <td appHover >{{ user.nom }}</td>
+                  <td appHover>{{ user.prenom }}</td>
+                  <td appHover>{{ user.email }}</td>
+                  <td appHover>{{ user.dateNaissance }}</td>
+                  <td appHover>{{ user.cin }}</td>
+                  <td appHover>{{ user.universite?.nomUniversite }}</td>
+                <td appHover>    <img src="http://localhost:9090/auth/{{user.image}}" alt="Profile" class="rounded-circle" width="80" height="80">  </td>
+                  <td appHover>
                     <button type="button" class="btn btn-danger"  (click)="deleteUser(user.id)">Delete</button>
                   </td>
                 </tr>

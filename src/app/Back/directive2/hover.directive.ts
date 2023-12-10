@@ -17,7 +17,8 @@ export class HoverDirective {
 
   private setHoverStyles(isHovered: boolean) {
     if (isHovered) {
-      this.renderer.setStyle(this.el.nativeElement, 'background-color', '#f0f0f0');
+      this.renderer.setStyle(this.el.nativeElement, 'background', 'linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%)');
+
       this.renderer.setStyle(this.el.nativeElement, 'cursor', 'pointer');
       // Add other styles as needed
     } else {
