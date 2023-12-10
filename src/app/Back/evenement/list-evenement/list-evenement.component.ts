@@ -6,6 +6,8 @@ import { EvenementService } from '../../service/evenement.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddModalEvenementComponent } from '../add-modal-evenement/add-modal-evenement.component';
 import { UpdateEvenementComponent } from '../update-evenement/update-evenement.component';
+import { Participation } from 'src/app/Model/participation';
+import { ParticipationService } from '../../service/participation.service';
 
 
 
@@ -17,11 +19,16 @@ import { UpdateEvenementComponent } from '../update-evenement/update-evenement.c
   styleUrls: ['./list-evenement.component.css']
 })
 export class ListEvenementComponent {
+  
+  disabledButtons: { [key: number]: boolean } = {};
+  buttonColorClass = 'not-clicked';
+  userconnect = JSON.parse(localStorage.getItem("userconnect")!);
 
   
   list: Evenement[] = [];
   constructor(
     private evenements: EvenementService,
+    private participations: ParticipationService,
     private toastr: ToastrService,
     private router: Router,
     private _dialog: MatDialog
@@ -35,7 +42,7 @@ export class ListEvenementComponent {
 
   onDelete(id: number) {
     const isConfirmed = window.confirm(
-      'Are you sure you want to delete this item?'
+      'Are you sure you want to delete this item?', 
     );
 
     if (isConfirmed) {
@@ -65,16 +72,18 @@ export class ListEvenementComponent {
     });
     
   }
-  onUpdate(id: number) {
-    this.router.navigate([`/update/${id}`]);
-    const dialogRef = this._dialog.open(UpdateEvenementComponent);
-    dialogRef.afterClosed().subscribe((data) => {       
-      this.getEvenements();
-    });
+  onUpdate(data: Evenement) {
+    this._dialog.open(UpdateEvenementComponent, { data });
+    console.log("data" , data);
   }
-
-
-      
-
-  
+  onAddParticipation(nomEvenement: String, idEtudiant: number){
+    this.disabledButtons[idEtudiant] = true;
+    this.buttonColorClass = 'clicked';
+    this.participations.addParticipation(nomEvenement, idEtudiant).subscribe(
+      (response) => {
+        this.toastr.success('Evenement ajoutée avec succès');
+      },
+      // You might be missing this closing parenthesis
+    );
+  }
 }

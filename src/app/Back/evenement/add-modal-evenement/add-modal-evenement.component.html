@@ -47,7 +47,12 @@
             formControlName="description"
           />
         </mat-form-field>
+      </div>
+      <div class="row">
+        <label for="image">Image:</label>
+        <input type="file" id="image" (change)="onFileChanged($event)" />
       </div>        
+
      
     </div>
     <hr />
