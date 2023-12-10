@@ -11,13 +11,19 @@ import { UpdateUniversityComponent } from '../update-university/update-universit
 import { MatDialog } from '@angular/material/dialog';
 import { AddUniversityComponent } from '../add-university/add-university.component';
 //import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import * as XLSX from 'xlsx';
+import * as jspdfImport from 'jspdf';
 @Component({
   selector: 'app-list-university',
   templateUrl: './list-university.component.html',
   styleUrls: ['./list-university.component.css'],
 })
 export class ListUniversityComponent implements OnInit {
+  exportType: string = '';
+  searchTerm: string = '';
+  originalList: Universite[] = [];
+
+
   list: Universite[] = [];
 
   constructor(
@@ -34,6 +40,7 @@ export class ListUniversityComponent implements OnInit {
 
   ngOnInit(): void {
     this.universiteS.getUniversites().subscribe((data) => {
+      this.originalList = data;
       this.list = data;
       this.list.forEach(uni => {
         this.foyerS.getFoyerByUni(uni.idUniversite).subscribe((foyer: Foyer) => {
@@ -42,6 +49,24 @@ export class ListUniversityComponent implements OnInit {
       });    
   console.log(data);
     });
+  }
+  exportData(): void {
+    if (this.exportType === 'excel') {
+      this.exportAsExcel();
+    
+    } else {
+      console.log('Invalid export type');
+    }
+  }
+
+
+  private exportAsExcel(): void {
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.list);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    // Save to file
+    XLSX.writeFile(wb, 'exported_data.xlsx');
   }
   onDelete(id: number) {
     const isConfirmed = window.confirm(
@@ -57,6 +82,17 @@ export class ListUniversityComponent implements OnInit {
       });
     } else {
       console.log('Deletion canceled by user');
+    }
+  }
+  onSearch(): void {
+    if (this.searchTerm.trim() === '') {
+      // If search term is empty, reset the list to the original list
+      this.list = this.originalList;
+    } else {
+      // If search term is not empty, filter the list
+      this.list = this.originalList.filter((item) =>
+        item.nomUniversite.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
     }
   }
  
