@@ -16,7 +16,7 @@ import { HeaderComponent } from '../header/header.component';
     LoginComponent,
     RegisterComponent,
     EtudiantProfileComponent,
-   
+
   ],
   imports: [
     CommonModule,
@@ -24,6 +24,7 @@ import { HeaderComponent } from '../header/header.component';
     ReactiveFormsModule,
     FormsModule,
     RouterModule.forRoot([])
-  ]
+  ],
+ 
 })
 export class UserFrontModule { }

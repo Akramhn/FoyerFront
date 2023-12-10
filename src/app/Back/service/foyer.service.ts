@@ -41,4 +41,14 @@ export class FoyerService {
 
     return this.http.post<any>(`${this.data}/adduni/${idUniversite}`, formDataWithImage);
   }
+
+
+  updateFoyer( nom: string, cap: number, image: File, idFoyer: number, idUniversite: number): Observable<any> {
+    const formData = new FormData();
+    formData.append('nomFoyer', nom);
+    formData.append('cap', cap.toString());
+    formData.append('image', image);
+
+    return this.http.put<any>(`${this.data}/${idFoyer}/${idUniversite}`, formData);
+  }
 }

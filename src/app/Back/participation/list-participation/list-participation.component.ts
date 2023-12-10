@@ -10,7 +10,7 @@ import { ParticipationService } from '../../service/participation.service';
   styleUrls: ['./list-participation.component.css']
 })
 export class ListParticipationComponent {
-
+isDeleted: boolean = false; 
   
   list: Participation[] = [];
   constructor(
@@ -34,11 +34,11 @@ export class ListParticipationComponent {
     if (isConfirmed) {
       this.participations.deleteParticipation(id).subscribe((res) => {
         this.toastr.success('Deleted Successfully');
-
-        // Introduce a delay of, for example, 2 seconds (2000 milliseconds) before reloading
-        setTimeout(() => {
-          location.reload(); // Reload the page after deletion
-        }, 2000);
+        // Mark the participation as deleted
+        const deletedParticipation = this.list.find(participation => participation.idParticipation === id);
+        if (deletedParticipation) {
+          this.isDeleted = true;
+        }
       });
     } else {
       console.log('Deletion canceled by user');

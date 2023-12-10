@@ -44,4 +44,23 @@ export class AccordionItemDirective {
       this.renderer.addClass(this.el.nativeElement, 'accordion-close');
     }
   }
+  @HostListener('mouseenter') onMouseEnter() {
+    this.setHoverStyles(true);
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    this.setHoverStyles(false);
+  }
+
+  private setHoverStyles(isHovered: boolean) {
+    if (isHovered) {
+      this.renderer.setStyle(this.el.nativeElement, 'background-color', '#ed1515');
+      this.renderer.setStyle(this.el.nativeElement, 'cursor', 'pointer');
+      // Add other styles as needed
+    } else {
+      this.renderer.removeStyle(this.el.nativeElement, 'background-color');
+      this.renderer.removeStyle(this.el.nativeElement, 'cursor');
+      // Remove other styles as needed
+    }
+  }
 }

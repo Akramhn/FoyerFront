@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UpdatePopupComponent } from './update-popup.component';
+import { QrcodepopupComponent } from './qrcodepopup.component';
 
-describe('UpdatePopupComponent', () => {
-  let component: UpdatePopupComponent;
-  let fixture: ComponentFixture<UpdatePopupComponent>;
+describe('QrcodepopupComponent', () => {
+  let component: QrcodepopupComponent;
+  let fixture: ComponentFixture<QrcodepopupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UpdatePopupComponent ]
+      declarations: [ QrcodepopupComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UpdatePopupComponent);
+    fixture = TestBed.createComponent(QrcodepopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-modal-evenement',
@@ -17,6 +17,7 @@ export class AddModalEvenementComponent {
   selectedFile?: File;
   
   constructor(
+    private _dialogRef: MatDialogRef<AddModalEvenementComponent>,
     private fb: FormBuilder,
     private evenements: EvenementService,
     private router: Router,
@@ -43,27 +44,37 @@ export class AddModalEvenementComponent {
     this.selectedFile = event.target.files[0];
   }
   onAddEvenement() {
+    if (this.eventForm.invalid) {
+      this.toastr.error('Please fill out all required fields.');
+      return;
+    }
+    
     const formData = this.eventForm.value;
     const imageFile = this.selectedFile;
   
+
+    console.log('FormData:', formData);
+    console.log('ImageFile:', imageFile);
     if (imageFile) {
+      
+
       this.evenements.addEvenement(formData, imageFile ).subscribe(
         (response) => {
           this.toastr.success('Evenement ajoutée avec succès');
           this.resetForm();
-         
+          this._dialogRef.close(true);
+          location.reload();
         },
+        
+        
       (error) => {
         console.error('Erreur lors de l\'ajout de l\'université', error);
         this.toastr.error('Erreur lors de l\'ajout de l\'université');
       }
+      
       );
-    } else {
-      console.error('Aucun fichier sélectionné.');
-    }
-      this.router.navigate([`admin/evenement`]);
- 
+    
   }
-
-
+  }
+  
 }

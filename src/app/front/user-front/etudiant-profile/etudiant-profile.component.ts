@@ -1,6 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { EtudiantService } from 'src/app/Back/service/etudiant.service';
 import { UniversiteService } from 'src/app/Back/service/universite.service';
 import { Etudiant } from 'src/app/Model/etudiant';
@@ -20,9 +21,9 @@ export class EtudiantProfileComponent {
 
   updateForm: FormGroup;
 
-  constructor(private etudiantService: EtudiantService, private formBuilder:FormBuilder, private universiteService: UniversiteService) {
+  constructor(private etudiantService: EtudiantService, private formBuilder:FormBuilder, private universiteService: UniversiteService,private route: ActivatedRoute) {
     this.updateForm = this.formBuilder.group({
-      nom: ['', [Validators.required, Validators.minLength(3)]],
+      nom: ['', [Validators.required, Validators.maxLength(10)]],
       prenom: ['', Validators.required],
       image: ['', Validators.required],
       email: ['', Validators.required],

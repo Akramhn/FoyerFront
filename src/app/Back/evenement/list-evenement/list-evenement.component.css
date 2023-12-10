@@ -14655,4 +14655,11 @@ section {
   #exampleModalLong .modal-dialog {
     max-width: 50%; /* Adjust as needed */
   }
+  .not-clicked {
+    background-color: green;
+  }
+  
+  .clicked {
+    background-color: red;
+  }
   
