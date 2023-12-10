@@ -41,7 +41,7 @@
                   </button>
                 </div>
                 <div class="table-data__tool-right">
-                  <button mat-raised-button color="primary" (click)="openAddEditChambreForm()">
+                  <button mat-raised-button color="primary" (click)="openAddEditBlocForm()">
                     <i class="zmdi zmdi-plus"></i>add Bloc
                   </button>
                   <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
@@ -104,7 +104,7 @@
                             data-toggle="tooltip"
                             data-placement="top"
                             title="Edit"
-                            (click)="onUpdate(i.idBloc)"
+                            (click)="openUpdate(i)"
                           >
                             <i class="bx bx-edit-alt"></i>
                           </button>

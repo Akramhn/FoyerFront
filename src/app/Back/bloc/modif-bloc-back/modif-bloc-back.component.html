@@ -1,1 +1,65 @@
-<p>modif-bloc-back works!</p>
+<main id="main" class="main">
+    <div mat-dialog-title class="cc">
+      <h1>Bloc Form</h1>
+      <hr />
+    </div>
+    <form [formGroup]="blocForm" (ngSubmit)="onFormSubmit()" >
+      <div mat-dialog-content class="content custom-dialog-content">
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>University</mat-label>
+            <mat-select  formControlName="university">
+              <mat-option *ngFor="let i of uni" [value]="i.nomUniversite" >{{ i.nomUniversite }}</mat-option>
+            </mat-select>
+            
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Foyer</mat-label>
+            <mat-select
+             
+              formControlName="foyer"
+            >
+              <mat-option *ngFor="let i of foyers"   [value]="i.nomFoyer"
+                >{{ i.nomFoyer }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        
+        </div>
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Nom Bloc</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Ex . 120"
+              formControlName="nomBloc"
+            />
+          </mat-form-field>
+        </div>
+        
+        <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Capacite Bloc</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="Ex . 120"
+                formControlName="capBloc"
+              />
+            </mat-form-field>
+          </div>
+
+      </div>
+      <hr />
+      <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">
+          Cancel
+        </button>
+        <button mat-raised-button color="primary" type="submit">save</button>
+      </div>
+    </form>
+  </main>
+  
