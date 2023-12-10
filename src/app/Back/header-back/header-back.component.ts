@@ -9,16 +9,14 @@ import { Router } from '@angular/router';
 export class HeaderBackComponent implements OnInit {
  
   userconnect = JSON.parse(localStorage.getItem("userconnect")!);
+
   constructor(private renderer: Renderer2, private el: ElementRef,private router:Router) { }
   private isSidebarOpen = false;
 
   ngOnInit() {
-    // Get the button element by class name
     const toggleSidebarBtn = this.el.nativeElement.querySelector('.toggle-sidebar-btn');
 
-    // Add click event listener
     this.renderer.listen(toggleSidebarBtn, 'click', () => {
-      // Toggle the 'toggle-sidebar' class on the body element
       this.isSidebarOpen = !this.isSidebarOpen;
 
       if (this.isSidebarOpen) {
@@ -33,5 +31,9 @@ export class HeaderBackComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['/login']);
     
+  }
+  getUserID() {
+   
+    this.userconnect.id;
   }
 }

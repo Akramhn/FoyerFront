@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormControl,FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder,FormControl,FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Back/service/auth.service';
 import { RegisterService } from 'src/app/Back/service/register.service';
@@ -17,14 +17,18 @@ export class RegisterComponent implements OnInit {
   listUniversite: Universite[] = [];
 
   registerForm = new FormGroup({
-    nom: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    prenom: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    cin: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
-    image: new FormControl('', [Validators.required]),
+    nom: new FormControl('', [Validators.required,Validators.maxLength(10)]),
+    prenom: new FormControl('', [Validators.required,Validators.maxLength(10)]),
+    cin: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^\d{8}$/) // Utilisation d'une expression régulière pour valider exactement 8 chiffres
+    ]),    image: new FormControl(''),
     universite: new FormControl('', [Validators.required]),
     dateNaissance: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)])
+    password: new FormControl('', [
+      Validators.required
+    ]),
   });
 
   selectedFile: File | null = null;
@@ -45,18 +49,21 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+    
 
   register() {
     // Your existing code
-  
+    const formData = new FormData();
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile, this.selectedFile.name);
+    }
     if (this.registerForm.valid) {
-      // Proceed with registration if the form is valid
-      const formData = new FormData();
-  
+     
       const addValueToFormData = (key: string, value: any) => {
         if (value != null) {
           formData.append(key, value);
         }
+
       };
     
       addValueToFormData('nom', this.registerForm.get('nom')?.value);
@@ -66,9 +73,7 @@ export class RegisterComponent implements OnInit {
       addValueToFormData('dateNaissance', this.registerForm.get('dateNaissance')?.value);
       addValueToFormData('email', this.registerForm.get('email')?.value);
       addValueToFormData('password', this.registerForm.get('password')?.value);
-      if (this.selectedFile) {
-        formData.append('image', this.selectedFile, this.selectedFile.name);
-      }
+  
       
   
       this.authenticationService.registerEtudiant(formData).subscribe(
@@ -140,8 +145,7 @@ export class RegisterComponent implements OnInit {
       nom: 'Nom',
       prenom: 'Prénom',
       cin: 'CIN',
-      image: 'Image',
-  
+      universite: 'Université',
       dateNaissance: 'Date de naissance',
       email: 'Email',
       password: 'Mot de passe'
@@ -153,8 +157,8 @@ export class RegisterComponent implements OnInit {
       required: `${fieldLabels[fieldName]} est requis`,
       minlength: `${fieldLabels[fieldName]} doit contenir au moins ${errors?.['minlength']?.requiredLength} caractères`,
       maxlength: `${fieldLabels[fieldName]} doit contenir au maximum ${errors?.['maxlength']?.requiredLength} caractères`,
-      email: `Veuillez saisir une adresse email valide`
-      // Add other custom error messages as needed
+      cin: `${fieldLabels[fieldName]} doit correspondre au modèle requis`,
+      email: `Veuillez saisir une adresse email valide`,
     };
   
     return errorMessages[validatorName];
