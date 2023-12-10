@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FoyerRoutingModule } from './foyer-routing.module';
 import { ListFoyerComponent } from './list-foyer/list-foyer.component';
 import { AddFoyerComponent } from './add-foyer/add-foyer.component';
 import { UpdateFoyerComponent } from './update-foyer/update-foyer.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -32,6 +32,7 @@ import { MatSelectModule } from '@angular/material/select';
   ],
   imports: [
     CommonModule,
+    FormsModule, 
     FoyerRoutingModule,
     ReactiveFormsModule,
     MatButtonModule,
@@ -48,8 +49,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatDatepickerModule,
     MatNativeDateModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+   
 
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class FoyerModule { }
