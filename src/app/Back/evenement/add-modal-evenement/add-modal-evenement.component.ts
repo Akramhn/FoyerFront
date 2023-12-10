@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-modal-evenement',
@@ -17,6 +17,7 @@ export class AddModalEvenementComponent {
   selectedFile?: File;
   
   constructor(
+    private _dialogRef: MatDialogRef<AddModalEvenementComponent>,
     private fb: FormBuilder,
     private evenements: EvenementService,
     private router: Router,
@@ -61,15 +62,17 @@ export class AddModalEvenementComponent {
         (response) => {
           this.toastr.success('Evenement ajoutée avec succès');
           this.resetForm();
-         
+          this._dialogRef.close(true);
+          location.reload();
         },
+        
+        
       (error) => {
         console.error('Erreur lors de l\'ajout de l\'université', error);
         this.toastr.error('Erreur lors de l\'ajout de l\'université');
       }
-      );
       
-      this.router.navigate([`admin/evenement`]);
+      );
     
   }
   }

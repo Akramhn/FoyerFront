@@ -38,8 +38,18 @@ export class ListEvenementComponent {
     this.evenements.getEvenements().subscribe((data) => {
       (this.list = data), console.log(data);
     });
+    this.evenements.getEvenements().subscribe((data) => {
+      this.list = data;
+      // Update disabledButtons based on stored state
+      this.updateDisabledButtonsFromStorage();
+    });
   }
-
+  updateDisabledButtonsFromStorage() {
+    this.list.forEach((event) => {
+      const isDisabled = localStorage.getItem(`disabledButton_${event.idEvenement}`) === 'true';
+      this.disabledButtons[event.idEvenement] = isDisabled;
+    });
+  }
   onDelete(id: number) {
     const isConfirmed = window.confirm(
       'Are you sure you want to delete this item?', 
@@ -82,14 +92,23 @@ export class ListEvenementComponent {
     console.log("data" , data);
   }
   onAddParticipation(idEvenement: number, idEtudiant: number){
-    this.disabledButtons[idEtudiant] = true;
-    this.buttonColorClass = 'clicked';
-    this.participations.addParticipation(idEvenement, idEtudiant).subscribe(
-      (response) => {
-        this.toastr.success('Participation ajoutée avec succès');
-      },
-      // You might be missing this closing parenthesis
-    );
+    // Check if the button for this specific event is not already disabled
+    if (!this.disabledButtons[idEvenement]) {
+      this.disabledButtons[idEvenement] = true;
+      this.buttonColorClass = 'clicked';
+      this.participations.addParticipation(idEvenement, idEtudiant).subscribe(
+        (response) => {
+          this.toastr.success('Participation ajoutée avec succès');
+          // Store the disabled state in localStorage
+          localStorage.setItem(`disabledButton_${idEvenement}`, 'true');
+        },
+        (error) => {
+          // If there is an error, enable the button again
+          this.disabledButtons[idEvenement] = false;
+          this.buttonColorClass = 'not-clicked';
+        }
+      );
+    }
   }
   openQrCodePopup(evenement: Evenement) {
     const dialogRef = this._dialog.open(QrcodepopupComponent, {
