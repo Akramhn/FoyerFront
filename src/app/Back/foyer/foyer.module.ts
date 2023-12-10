@@ -29,6 +29,7 @@ import { MatSelectModule } from '@angular/material/select';
     AddFoyerComponent,
     UpdateFoyerComponent,
     
+    
   ],
   imports: [
     CommonModule,

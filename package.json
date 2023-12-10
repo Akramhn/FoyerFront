@@ -23,12 +23,15 @@
     "@fortawesome/fontawesome-free": "^6.4.2",
     "@kurkle/color": "^0.3.2",
     "@techiediaries/ngx-qrcode": "^9.1.0",
+    "@types/jspdf": "^2.0.0",
     "angularx-qrcode": "^15.0.1",
+    "jspdf": "^2.5.1",
     "ngx-toastr": "^16.2.0",
     "rxjs": "~7.8.0",
-    "sweetalert2": "^11.10.1",
+    "sweetalert2": "^11.6.13",
     "swiper": "^9.4.1",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
