@@ -23,6 +23,7 @@ import { UserService } from 'src/app/Back/service/user.service';
 import { EtudiantService } from 'src/app/Back/service/etudiant.service';
 import Swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
+import { MailServiceService } from 'src/app/Back/service/mail-service.service';
 
 @Component({
   selector: 'app-reser-test',
@@ -66,7 +67,8 @@ export class ReserTestComponent {
     private ChambreS: ChambreService,
     private resS: ReservationService,
     private toastr: ToastrService,
-    private etudiantService: EtudiantService
+    private etudiantService: EtudiantService,
+    private mailS: MailServiceService
   ) {}
 
   ngOnInit(): void {
@@ -197,6 +199,22 @@ export class ReserTestComponent {
             );
           } else {
             this.toastr.success('Reservation added successfully!', 'Success');
+            this.mailS
+              .sendMail(
+                this.userconnect.email,
+                'Reservation Succed ',
+                'Your Reservation  IN ' +
+                  this.selectedUniversity.nomUniversite +
+                  ' at Foyer ' +
+                  this.foyers.nomFoyer +
+                  ' In Bloc ' +
+                  this.selectedBloc.nomBloc +
+                  ' at Chambre ' +
+                  this.selectedChambre.numeroChambre+' has been successfully'
+              )
+              .subscribe((data) => {
+                console.log(data, 'here my data');
+              });
           }
         }
       );
