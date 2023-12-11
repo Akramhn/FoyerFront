@@ -9,6 +9,7 @@ import { UpdateEvenementComponent } from '../update-evenement/update-evenement.c
 import { ParticipationService } from '../../service/participation.service';
 import { QRCodeModule } from 'angularx-qrcode';
 import { QrcodepopupComponent } from '../qrcodepopup/qrcodepopup.component';
+import * as XLSX from 'xlsx';
 
 
 
@@ -19,6 +20,7 @@ import { QrcodepopupComponent } from '../qrcodepopup/qrcodepopup.component';
   styleUrls: ['./list-evenement.component.css']
 })
 export class ListEvenementComponent {
+  exportType: string = '';
   searchTerm: string = '';
   disabledButtons: { [key: number]: boolean } = {};
   buttonColorClass = 'not-clicked';
@@ -120,19 +122,34 @@ export class ListEvenementComponent {
       console.log('The QR code popup was closed');
     });
   }
-  searchByNom(nomEvenement: string) {
-    this.evenements.searchEvenementByNom(nomEvenement).subscribe((data) => {
-      this.list = data;
-    });
-  }
 
-  // Call this method when you want to search by name
-  onSearchByName(nomEvenement: string) {
-    if (nomEvenement) {
-      this.searchByNom(nomEvenement);
-    } else {
-      // If the search input is empty, get all events
+  onSearch(): void {
+    if (this.searchTerm.trim() === '') {
+      // If search term is empty, reset the list to the original list
       this.getEvenements();
+    } else {
+      // If search term is not empty, filter the list
+      this.list = this.list.filter((item) =>
+        item.nomEvenement.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
     }
   }
+  private exportAsExcel(): void {
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.list);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    // Save to file
+    XLSX.writeFile(wb, 'exported_data.xlsx');
+  }
+
+
+  exportData(): void {
+    if (this.exportType === 'excel') {
+      this.exportAsExcel();
+    } else {
+      console.log('Invalid export type');
+    }
+  }
+
 }

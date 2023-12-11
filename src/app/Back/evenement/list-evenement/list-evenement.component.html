@@ -23,9 +23,10 @@
                 <div class="table-data__tool-left">
                   <input
                   type="search"
-                  [(ngModel)]="searchTerm"
                   placeholder="search"
                   style="border: 3px solid rgb(177, 172, 172); border-radius: 10px;"
+                  [(ngModel)]="searchTerm"
+                  (input)="onSearch()"
                 />
                 <button
                   style="
@@ -35,7 +36,6 @@
                     border-radius: 3px;
                     margin-left: 0.8rem;
                   "
-                  (click)="onSearchByName(searchTerm)"
                 >
                   Search
                 </button>
@@ -45,12 +45,15 @@
                     <i class="zmdi zmdi-plus"></i>add Evenement
                   </button>
                   <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
-                    <select class="js-select2" name="type">
+                    <select class="js-select2" name="type" [(ngModel)]="exportType">
                       <option selected="selected">Export</option>
-                      <option value="">Option 1</option>
-                      <option value="">Option 2</option>
+                      <option value="excel">Excel</option>
+                      
                     </select>
                     <div class="dropDownSelect2"></div>
+                    <button mat-raised-button color="primary" class="export-button" (click)="exportData()">
+                      Export
+                    </button>
                   </div>
                 </div>
               </div>

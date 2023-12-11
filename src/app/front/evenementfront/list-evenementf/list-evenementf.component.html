@@ -4,7 +4,7 @@
     <div class="container">
       <div class="title-wrapper">
         <div>
-          <h2 class="orangeText">Best events</h2>
+
   
           <p class="primaryText">Popular events</p>
         </div>
@@ -19,7 +19,7 @@
   
       <div class="property-list" >
         <div class="card" *ngFor="let i of list" (click)="openQrCodePopup">
-            <img [src]="'data:image/jpeg;base64,' + i.imageUrl" alt="{{ i.nomEvenement }}" >
+            <img [src]="'data:image/jpeg;base64,' + i.imageUrl" alt="{{ i.nomEvenement }}" (click)="openQrCodePopup(i)">
             <div class="card-content">
               <h2>
                 {{ i.nomEvenement }}
@@ -35,7 +35,9 @@
             (click)="onAddParticipation(i.idEvenement,userconnect.id)">
                 participate
            </button>
+           
             </div>
+            
           </div>
   
         
