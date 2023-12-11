@@ -20,7 +20,6 @@ export class ListBlocBackComponent implements AfterViewInit {
   searchTerm: string = '';
   exportType: string = '';
   originalList: Bloc[] = [];
-
   @ViewChild('content') content!: ElementRef;
 
   constructor(
@@ -90,7 +89,7 @@ export class ListBlocBackComponent implements AfterViewInit {
       );
     }
   }
-
+  
   openAddEditBlocForm(): void {
     const dialogRef = this._dialog.open(AddBlocBackComponent);
     dialogRef.afterClosed().subscribe((data) => {
