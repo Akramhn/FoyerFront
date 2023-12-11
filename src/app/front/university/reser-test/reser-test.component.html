@@ -66,69 +66,124 @@
           class="booking-form"
           style="margin-left: 180px; border-radius: 20px"
         >
-          <form>
+          <form #bookingForm="ngForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <div class="form-checkbox">
-                <p class="primaryText" style="text-align: center">
-                  BOOK YOUR ROOM NOW
+                <p
+                  class="primaryText"
+                  style="text-align: center; font-size: 20px"
+                  *ngIf="foyers"
+                >
+                  BOOK YOUR ROOM IN {{ foyers.nomFoyer }} NOW
                 </p>
               </div>
             </div>
             <div class="">
               <div class="col-md-12">
                 <div class="form-group">
-                  <span class="form-label">Name</span>
+                  <label for="name" class="form-label">Name</label>
                   <input
+                    id="name"
+                    name="name"
                     class="form-control"
                     type="text"
-                    placeholder="City or airport"
+                    placeholder="Your Name"
+                    [(ngModel)]="userconnect.prenom"
+                    [disabled]="true"
                   />
+                  <!-- Display validation error message -->
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="form-group">
-                  <span class="form-label secondaryText">LASTNAME</span>
+                  <label for="lastName" class="form-label secondaryText"
+                    >LASTNAME</label
+                  >
                   <input
+                    id="lastName"
+                    name="lastName"
                     class="form-control"
                     type="text"
-                    placeholder="City or airport"
+                    placeholder="Last Name"
+                    [(ngModel)]="userconnect.nom"
+                    [disabled]="true"
                   />
+                  <!-- Display validation error message -->
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-12">
+              <!-- Duplicate the template-driven form for "Bloc" -->
+              <div class="col-md-6">
                 <div class="form-group">
-                  <span class="form-label">university year</span>
-                  <input class="form-control" type="date" required />
+                  <label for="bloc" class="form-label">Bloc</label>
+                  <select
+                    id="bloc"
+                    name="bloc"
+                    class="form-control"
+                    [(ngModel)]="selectedBloc"
+                    (change)="onBlocSelectionChange()"
+                    required
+                  >
+                    <option *ngFor="let item of bloc" [ngValue]="item">
+                      {{ item.nomBloc }}
+                    </option>
+                  </select>
+                  <span class="select-arrow"></span>
+
+                  <div
+                    *ngIf="
+                      bookingForm.controls['bloc'].invalid &&
+                      (bookingForm.controls['bloc'].dirty ||
+                        bookingForm.controls['bloc'].touched)
+                    "
+                    class="alert alert-danger"
+                    role="alert"
+                  >
+                    Bloc is required.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Duplicate the template-driven form for "Chambres" -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="chm" class="form-label">Chambre</label>
+                  <select
+                    id="chm"
+                    name="chm"
+                    class="form-control"
+                    [(ngModel)]="selectedChambre"
+                    (change)="onChambre()"
+                    required
+                  >
+                    <option *ngFor="let item2 of chambres" [ngValue]="item2">
+                      {{ item2.numeroChambre }}
+                    </option>
+                  </select>
+                  <span class="select-arrow"></span>
+                  <div
+                    class="alert alert-danger"
+                    role="alert"
+                    *ngIf="
+                      bookingForm.controls['chm'].invalid &&
+                      (bookingForm.controls['chm'].dirty ||
+                        bookingForm.controls['chm'].touched)
+                    "
+                  >
+                    Chambre required
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <span class="form-label">Bloc</span>
-                  <select class="form-control">
-                    <option>A</option>
-                    <option>B</option>
-                    <option>C</option>
-                  </select>
-                  <span class="select-arrow"></span>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <span class="form-label">Chambres</span>
-                  <select class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                  </select>
-                  <span class="select-arrow"></span>
-                </div>
-              </div>
-            </div>
+
             <div class="form-btn">
-              <button class="submit-btn">Book Now</button>
+              <button
+                class="submit-btn"
+                type="submit"
+              >
+                Book Now
+              </button>
             </div>
           </form>
         </div>

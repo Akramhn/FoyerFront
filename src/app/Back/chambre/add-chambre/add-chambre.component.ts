@@ -23,7 +23,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class AddChambreComponent implements OnInit {
   chambForm: FormGroup;
-  newFoyer: Foyer= new Foyer();
+  newFoyer: Foyer = new Foyer();
 
   uni: Universite[] = [];
   foyers!: Foyer;
@@ -45,7 +45,10 @@ export class AddChambreComponent implements OnInit {
       university: new FormControl('', Validators.required),
       foyer: new FormControl('', Validators.required),
       bloc: new FormControl('', Validators.required),
-      numChamb: new FormControl('', Validators.required),
+      numChamb: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^\d+$/),
+      ]),
       typeCh: new FormControl('', Validators.required),
     });
   }
@@ -67,7 +70,6 @@ export class AddChambreComponent implements OnInit {
   getBlocByFoyer(): void {
     console.log(this.selectedFoyer?.idFoyer);
 
-
     this.blocS.getBlocByFoyer(this.selectedFoyer!.idFoyer).subscribe((data) => {
       this.bloc = data;
       console.log(this.bloc);
@@ -87,7 +89,7 @@ export class AddChambreComponent implements OnInit {
 
   onFormSubmit() {
     this.newFoyer.idFoyer = this.selectedFoyer!.idFoyer;
-    this.selectedBloc!.foyer=this.newFoyer
+    this.selectedBloc!.foyer = this.newFoyer;
     console.log('Form submitted');
     if (this.chambForm.valid) {
       console.log(this.chambForm.value);

@@ -8,6 +8,7 @@ import { Universite } from 'src/app/Model/universite';
 import { UserRole } from 'src/app/Model/user.model';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',

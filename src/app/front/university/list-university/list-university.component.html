@@ -17,7 +17,7 @@
     </div>
 
     <div class="property-list" >
-      <div class="card" *ngFor="let i of list">
+      <div class="card" *ngFor="let i of list" (click)="onUniversitySelected(i)">
         <div class="card-banner">
           <figure class="img-holder" style="--width: 585; --height: 390">
             <img

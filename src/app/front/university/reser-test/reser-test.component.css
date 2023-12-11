@@ -130,6 +130,7 @@
   .booking-form .form-group {
     position: relative;
     margin-bottom: 20px;
+    
   }
   
   .booking-form .form-control {
@@ -301,3 +302,4 @@
     color: #191a1e;
     margin-left: 1rem;
   }
+
