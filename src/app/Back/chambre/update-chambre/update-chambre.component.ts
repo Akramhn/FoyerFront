@@ -34,8 +34,7 @@ export class UpdateChambreComponent implements OnInit {
   selectedFoyer!: Foyer;
   selectedBloc!: Bloc;
 
-  newFoyer: Foyer= new Foyer();
-
+  newFoyer: Foyer = new Foyer();
 
   constructor(
     private universiteS: UniversityService,
@@ -53,7 +52,11 @@ export class UpdateChambreComponent implements OnInit {
       university: new FormControl('', Validators.required),
       foyer: new FormControl('', Validators.required),
       bloc: new FormControl('', Validators.required),
-      numChamb: new FormControl('', Validators.required),
+      numChamb: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^\d+$/),
+        Validators.min(1),
+      ]),
       typeCh: new FormControl('', Validators.required),
     });
   }
@@ -74,7 +77,7 @@ export class UpdateChambreComponent implements OnInit {
 
     this.chambForm
       .get('foyer')
-      ?.valueChanges.pipe(debounceTime(200), distinctUntilChanged())
+      ?.valueChanges.pipe(debounceTime(100), distinctUntilChanged())
       .subscribe((selectfoy) => {
         this.selectedFoyer =
           this.foyers.find((u) => u.nomFoyer === selectfoy) || new Foyer();
@@ -84,7 +87,7 @@ export class UpdateChambreComponent implements OnInit {
 
     this.chambForm
       .get('bloc')
-      ?.valueChanges.pipe(debounceTime(300), distinctUntilChanged())
+      ?.valueChanges.pipe(debounceTime(150), distinctUntilChanged())
       .subscribe((selectedblo) => {
         this.selectedBloc =
           this.blocs.find((u) => u.nomBloc === selectedblo) || new Bloc();
@@ -118,7 +121,7 @@ export class UpdateChambreComponent implements OnInit {
   }
 
   getUni() {
-    this.universiteS.getUniversites().subscribe((data) => {
+    this.universiteS.getUniversites().pipe(debounceTime(200), distinctUntilChanged()).subscribe((data) => {
       this.uni = data;
     });
   }
@@ -127,7 +130,7 @@ export class UpdateChambreComponent implements OnInit {
     console.log('hani lenna', this.selectedUni);
     this.blocs = [];
     this.foyers = [];
-    this.FoyerS.getFoyerByUni(this.selectedUni.idUniversite).subscribe(
+    this.FoyerS.getFoyerByUni(this.selectedUni.idUniversite).pipe(debounceTime(250), distinctUntilChanged()).subscribe(
       (data) => {
         this.foyers.push(data);
       }
@@ -138,7 +141,7 @@ export class UpdateChambreComponent implements OnInit {
 
     this.blocs = []; // Clear the array before fetching new data
 
-    this.blocS.getBlocByFoyer(this.selectedFoyer.idFoyer).subscribe((data) => {
+    this.blocS.getBlocByFoyer(this.selectedFoyer.idFoyer).pipe(debounceTime(300), distinctUntilChanged()).subscribe((data) => {
       this.blocs = data;
     });
   }
@@ -147,8 +150,11 @@ export class UpdateChambreComponent implements OnInit {
   }
 
   onFormSubmit() {
+    console.log('Form status:', this.chambForm.status);
     this.newFoyer.idFoyer = this.selectedFoyer!.idFoyer;
-    this.selectedBloc!.foyer=this.newFoyer
+    this.selectedBloc!.foyer = this.newFoyer;
+    console.log('Selected Bloc:', this.selectedBloc);
+
     if (this.chambForm.valid) {
       console.log(this.chambForm.value);
       console.log('numChambre:', this.chambForm.value.numChamb);
@@ -174,6 +180,8 @@ export class UpdateChambreComponent implements OnInit {
           this._dialogRef.close(true);
         });
       }
+    }else {
+      this.toastr.error('Invalid form submission', 'Validation Error');
     }
   }
 }
