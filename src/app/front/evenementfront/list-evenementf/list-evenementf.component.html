@@ -1,0 +1,47 @@
+
+
+<section class="section property" aria-labelledby="property-label">
+    <div class="container">
+      <div class="title-wrapper">
+        <div>
+          <h2 class="orangeText">Best events</h2>
+  
+          <p class="primaryText">Popular events</p>
+        </div>
+        <a href="#" class="btn btn-outline">
+          <span class="label-medium">Explore more</span>
+  
+          <span class="material-symbols-rounded" aria-hidden="true"
+            >arrow_outward</span
+          >
+        </a>
+      </div>
+  
+      <div class="property-list" >
+        <div class="card" *ngFor="let i of list" (click)="openQrCodePopup">
+            <img [src]="'data:image/jpeg;base64,' + i.imageUrl" alt="{{ i.nomEvenement }}" >
+            <div class="card-content">
+              <h2>
+                {{ i.nomEvenement }}
+              </h2>
+              <div>
+              <p>
+                {{ truncateDescription(i.description, 20) }} {{i.lieu}} {{i.dateEvenement}}
+              </p>
+
+            </div>
+            <button  class="button" 
+            [disabled]="disabledButtons[i.idEvenement]"
+            (click)="onAddParticipation">
+                participate
+           </button>
+            </div>
+          </div>
+  
+        
+      </div>
+    </div>
+  </section>
+  
+
+

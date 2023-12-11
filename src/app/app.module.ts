@@ -52,6 +52,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { EvenementModule } from './Back/evenement/evenement.module';
 import { ParticipationModule } from './Back/participation/participation.module';
+
+import { HOVERTableDirective } from './Back/directive2/hovertable.directive';
+import { EvenementfrontModule } from './front/evenementfront/evenementfront.module';
+
 import { ResModule } from './front/res/res.module';
 import { ReservationComponent } from './front/reservation/reservation.component';
 
@@ -78,10 +82,10 @@ register();
     ContactComponent,
     GetStartedComponent,
     AccessdeniedComponent,
+  
+
     ReservationComponent
 
-
-    
   ],
   imports: [
     BrowserModule,
@@ -114,11 +118,10 @@ register();
     ToastrModule.forRoot(),
     ReactiveFormsModule,
     EvenementModule,
+    EvenementModule,
     ParticipationModule,
+    EvenementfrontModule,
     ResModule,
-
-    
-    
   ],
 
   providers: [],

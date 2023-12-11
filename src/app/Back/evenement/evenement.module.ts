@@ -27,13 +27,14 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { QrcodepopupComponent } from './qrcodepopup/qrcodepopup.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { HOVERTableDirective } from '../directive2/hovertable.directive';
 
 
 
 
 
 @NgModule({
-  declarations: [ ListEvenementComponent, UpdateEvenementComponent, AddEvenementComponent, AddModalEvenementComponent, QrcodepopupComponent],
+  declarations: [ ListEvenementComponent, UpdateEvenementComponent, AddEvenementComponent, AddModalEvenementComponent, QrcodepopupComponent,  HOVERTableDirective],
   imports: [
     
     CommonModule,
