@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EvenementService } from '../../service/evenement.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -27,10 +27,10 @@ export class AddModalEvenementComponent {
     
   ) {
     this.eventForm = this.fb.group({
-      nomEvenement: [''],
-      lieu: [''],
-      dateEvenement:[''],
-      description:[''],
+      nomEvenement: ['', Validators.required],
+      lieu: ['', Validators.required],
+      dateEvenement: ['', Validators.required],
+      description: ['', Validators.required], 
     });
   }
 

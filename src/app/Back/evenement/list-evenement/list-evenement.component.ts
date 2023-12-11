@@ -59,10 +59,10 @@ export class ListEvenementComponent {
       this.evenements.deleteEvenement(id).subscribe((res) => {
         this.toastr.success('Deleted Successfully');
 
-        // Introduce a delay of, for example, 2 seconds (2000 milliseconds) before reloading
+        
         setTimeout(() => {
-          location.reload(); // Reload the page after deletion
-        }, 2000);
+          location.reload(); 
+        }, 500);
       });
     } else {
       console.log('Deletion canceled by user');

@@ -14,6 +14,9 @@
                 formControlName="nomEvenement"
               />
             </mat-form-field>
+            <div class="row" *ngIf="eventForm.get('nomEvenement')?.hasError('required') && eventForm.get('nomEvenement')?.touched">
+              <mat-error>Le nom de l'événement est requis.</mat-error>
+            </div>
           </div>
      
       <div class="row">
@@ -26,6 +29,9 @@
             formControlName="lieu"
           />
         </mat-form-field>
+        <div class="row" *ngIf="eventForm.get('lieu')?.hasError('required') && eventForm.get('lieu')?.touched">
+          <mat-error>Le lieu est requis.</mat-error>
+        </div>
       </div>
       <div class="row">
         <mat-form-field appearance="outline">
@@ -35,7 +41,12 @@
             type="date"
             formControlName="dateEvenement"
           />
+  
         </mat-form-field>
+        <div class="row" *ngIf="eventForm.get('dateEvenement')?.hasError('required') && eventForm.get('dateEvenement')?.touched">
+          <mat-error>La date de l'événement est requise.</mat-error>
+        </div>
+    
       </div>
       <div class="row">
         <mat-form-field appearance="outline">
@@ -47,6 +58,9 @@
             formControlName="description"
           />
         </mat-form-field>
+        <div class="row" *ngIf="eventForm.get('description')?.hasError('required') && eventForm.get('description')?.touched">
+          <mat-error>La description est requise.</mat-error>
+        </div>
       </div>
       <div class="row">
         <label for="image">Image:</label>
@@ -62,5 +76,8 @@
       </button>
       <button mat-raised-button color="primary" type="submit">save</button>
     </div>
+
+
+
   </form>
   
