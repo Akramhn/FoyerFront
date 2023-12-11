@@ -32,8 +32,9 @@ export class AddFoyerComponent {
   ) {
     this.foyerFormGroup = this.fb.group({
       university: new FormControl('', Validators.required),
-      nomFoyer: new FormControl('', Validators.required),
-  capaciteFoyer: new FormControl('', Validators.required),
+      nomFoyer: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]),
+      capaciteFoyer: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/)]),
+      image:new FormControl('', Validators.required)
       
     });
   }

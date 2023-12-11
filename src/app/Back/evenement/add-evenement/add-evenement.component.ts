@@ -16,17 +16,17 @@ export class AddEvenementComponent {
   selectedFile?: File;
   constructor(
     private fb: FormBuilder,
-    private eventS: EvenementService,
+    private evenements: EvenementService,
     private router: Router,
     private toastr: ToastrService,
     private httpClient: HttpClient ,
-  //  private modalService: NgbModal
     
   ) {
     this.eventForm = this.fb.group({
-      nomUniversite: [''],
-      adresse: [''],
-      
+      nomEvenement: ['', Validators.required],
+      lieu: ['', Validators.required],
+      dateEvenement: ['', Validators.required],
+      description: ['', Validators.required],
     });
   }
 
@@ -40,14 +40,42 @@ export class AddEvenementComponent {
     this.selectedFile = event.target.files[0];
   }
   onAddEvenement() {
+    if (this.eventForm.invalid) {
+      this.toastr.error('Please fill out all required fields.');
+      return;
+    }
+    
     const formData = this.eventForm.value;
-
-  }
-
-  }
+    const imageFile = this.selectedFile;
   
 
+    console.log('FormData:', formData);
+    console.log('ImageFile:', imageFile);
+    if (imageFile) {
+      
 
-  
+      this.evenements.addEvenement(formData, imageFile ).subscribe(
+        (response) => {
+          this.toastr.success('Evenement ajoutée avec succès');
+          this.resetForm();
+         
+        },
+      (error) => {
+        console.error('Erreur lors de l\'ajout de l\'université', error);
+        this.toastr.error('Erreur lors de l\'ajout de l\'université');
+      }
+      );
+      
+      this.router.navigate([`admin/evenement`]);
+    
+  }
 
 
+ /**  public onFileChanged(event:any) {
+    //Select File
+    this.selectedFile = event.target.files[0];
+  }*/
+
+
+  }
+}

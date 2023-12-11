@@ -17,13 +17,57 @@ export class EvenementService {
   getEvenements() {
     return this.http.get<Evenement[]>(`${this.data}`);
   }
-  getEvenement(id: number) {
-    return this.http.get<Evenement[]>(`${this.data}/${id}`);
+  updateEvenement(evenement: Evenement, image: File): Observable<Evenement> {
+    
+    const formData = new FormData();
+    formData.append("idEvenement", evenement.idEvenement.toString());
+    formData.append('nomEvenement', evenement.nomEvenement.toString());
+    formData.append('lieu', evenement.lieu.toString());
+    const dateEvenement =
+    evenement.dateEvenement instanceof Date
+      ? evenement.dateEvenement.toLocaleDateString('en-US')  // Adjust the locale as needed
+      : evenement.dateEvenement;
+      
+    formData.append('dateEvenement',dateEvenement);
+
+    
+    formData.append('image', image);
+    formData.append('description', evenement.description.toString());
+    console.log(evenement);
+    console.log(image);
+
+
+    return this.http.put<Evenement>(`${this.data}`, formData);
+  }
+  getEvenementById(id: number): Observable<Evenement> {
+    return this.http.get<Evenement>(`${this.data}/${id}`);
   }
   deleteEvenement(id: number): Observable<any> {
     return this.http.delete(`${this.data}/${id}`);
   }
-  addEvenement(c: Evenement): Observable<any> {
-    return this.http.post(`${this.data}`, c);
+  addEvenement(evenement: Evenement, image: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('nomEvenement', evenement.nomEvenement.toString());
+    formData.append('lieu', evenement.lieu.toString());
+    const dateEvenement =
+    evenement.dateEvenement instanceof Date
+      ? evenement.dateEvenement.toLocaleDateString('en-US')  // Adjust the locale as needed
+      : evenement.dateEvenement;
+      
+    formData.append('dateEvenement',dateEvenement);
+
+    
+    formData.append('image', image);
+    formData.append('description', evenement.description.toString());
+    console.log(evenement);
+    console.log(image);
+
+ 
+  
+    return this.http.post<any>(`${this.data}`, formData );
+    //return this.http.post(`${this.data}`, formData);
+  }
+  searchEvenementByNom(nomEvenement: string): Observable<Evenement[]> {
+    return this.http.get<Evenement[]>(`${this.data}/search/${nomEvenement}`);
   }
 }

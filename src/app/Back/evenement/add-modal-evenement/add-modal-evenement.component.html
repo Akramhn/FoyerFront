@@ -1,0 +1,66 @@
+<div mat-dialog-title class="cc">
+    <h1>Evenement Form</h1>
+    <hr />
+  </div>
+  <form [formGroup]="eventForm" (ngSubmit)="onAddEvenement()">
+    <div mat-dialog-content class="content custom-dialog-content">
+        <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Nom Evenement</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="new event"
+                formControlName="nomEvenement"
+              />
+            </mat-form-field>
+          </div>
+     
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Lieu</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="esprit"
+            formControlName="lieu"
+          />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Date Evenement</mat-label>
+          <input
+            matInput
+            type="date"
+            formControlName="dateEvenement"
+          />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="welcome to the event"
+            formControlName="description"
+          />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <label for="image">Image:</label>
+        <input type="file" id="image" (change)="onFileChanged($event)" />
+      </div>        
+
+     
+    </div>
+    <hr />
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">
+        Cancel
+      </button>
+      <button mat-raised-button color="primary" type="submit">save</button>
+    </div>
+  </form>
+  

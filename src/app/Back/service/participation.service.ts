@@ -24,7 +24,11 @@ export class ParticipationService {
   deleteParticipation(id: number): Observable<any> {
     return this.http.delete(`${this.data}/${id}`);
   }
-  addParticpation(c: Participation): Observable<any> {
-    return this.http.post(`${this.data}`, c);
+  addParticipation(idEvenement: number, idEtudiant: number): Observable<any> {
+    const url = `${this.data}/${idEvenement}/${idEtudiant}`;
+    return this.http.post(url, null); 
+  }
+  getEvenementByParticipation(idParticipation: number): Observable<any> {
+    return this.http.get(`${this.data}/by-participation/${idParticipation}`);
   }
 }

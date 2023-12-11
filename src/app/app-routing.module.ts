@@ -23,7 +23,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirect to 'dashboard' by default
       { path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard,AdminGuardGuard] },
-      { path: 'profile', component: ProfileAdminComponent,canActivate:[AuthGuard,AdminGuardGuard] },
+      { path: 'profile/:id', component: ProfileAdminComponent,canActivate:[AuthGuard,AdminGuardGuard] },
       {path:"ListUsers", component:ListUserComponent,canActivate:[AuthGuard,AdminGuardGuard]},
       {
         path: 'chambre',

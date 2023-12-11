@@ -1,3 +1,4 @@
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -12,6 +13,7 @@
     <title>Sign in &amp; Sign up Form</title>
   </head>
   <body>
+    
     <div class="container sign-up-mode">
       <div class="forms-container">
         <div class="signin-signup">
@@ -51,28 +53,18 @@
 
             <div class="input-field">
               <i class="fas fa-user" aria-hidden="true"></i>
-              <input
-                type="text"
-                formControlName="nom"
-                placeholder="first name"
-              />
-              <span
-                class="text text-danger"
-                *ngIf="
-                  registerForm.controls['nom'].invalid &&
-                  registerForm.controls['nom'].touched
-                "
-                >First Name is required and</span
-              >
+
+              <input type="text" formControlName="nom" placeholder="first name">
             </div>
+            <span class="text text-danger" *ngIf="registerForm.controls['nom'].invalid && registerForm.controls['nom'].touched">First Name is required </span>
+
+
             <div class="input-field">
               <i class="fas fa-user" aria-hidden="true"></i>
-              <input
-                type="text"
-                formControlName="prenom"
-                placeholder="last name"
-              />
+              <input type="text" formControlName="prenom" placeholder="last name">
             </div>
+            <span class="text text-danger" *ngIf="registerForm.controls['prenom'].invalid && registerForm.controls['prenom'].touched">prenom is required </span>
+
             <div class="input-field">
               <i class="fas fa-school" aria-hidden="true"></i>
               <select
@@ -128,7 +120,10 @@
                 formControlName="password"
               />
             </div>
-            <input type="submit" class="btn" value="Sign up" />
+
+
+            <input type="submit" class="btn" value="Sign up"  >
+            
             <p class="social-text">Or Sign up with social platforms</p>
             <div class="social-media">
               <a href="#" class="social-icon">

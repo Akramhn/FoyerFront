@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Etudiant } from 'src/app/Model/etudiant';
 import { Universite } from 'src/app/Model/universite';
 import Swal from 'sweetalert2';
 import { EtudiantService } from '../../service/etudiant.service';
-import { UniversiteService } from '../../service/universite.service';
 import { formatDate } from '@angular/common';
 
 @Component({
@@ -17,16 +16,16 @@ export class ProfileAdminComponent {
   etudiant!: Etudiant;
   listUniversite: Universite[] = [];
   fileToUpload: Array<File> = [];
-
+   newUniversite: Universite=new Universite;
   updateForm: FormGroup;
 
-  constructor(private etudiantService: EtudiantService, private formBuilder: FormBuilder, private universiteService: UniversiteService) {
+  constructor(private etudiantService: EtudiantService, private formBuilder: FormBuilder) {
     this.updateForm = this.formBuilder.group({
-      nom: ['', [Validators.required, Validators.minLength(3)]],
+      nom: ['', [Validators.required, Validators.maxLength(10)]],
       prenom: ['', Validators.required],
       image: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', Validators.required],
+  
       cin: [0, Validators.required],
       dateNaissance: ['', Validators.required]
     });
@@ -35,7 +34,7 @@ export class ProfileAdminComponent {
   ngOnInit(): void {
     this.userconnect;
     this.getOneEtudiant();
-    this.getAllUniversites();
+  
   }
 
   getOneEtudiant() {
@@ -67,19 +66,17 @@ export class ProfileAdminComponent {
     }
   }
 
-  getAllUniversites() {
-    this.universiteService.getAllUniversites().subscribe((data: Universite[]) => {
-      this.listUniversite = data;
-    });
-  }
-
   updateAdmin() {
  
       const updatedEtudiant: Etudiant = {
         ...this.etudiant,
         ...this.updateForm.value
       };
-      console.log(this.updateForm.value)
+      updatedEtudiant.id=this.etudiant.id;
+      console.log("updated user",updatedEtudiant)
+      this.newUniversite.idUniversite=updatedEtudiant.universite.idUniversite;
+      updatedEtudiant.universite=this.newUniversite;
+
       this.etudiantService.updateEtudiant(updatedEtudiant).subscribe(res => {
         Swal.fire({
           icon: 'success',
@@ -100,38 +97,41 @@ export class ProfileAdminComponent {
       });
     } 
   
-
-  updatePassword() {
-    this.etudiantService.updatePassword(this.userconnect.id, this.updateForm.value.password).subscribe(res => {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 1000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      });
-
-      Toast.fire({
-        icon: 'success',
-        title: 'Mot de passe modifié avec succès'
-      });
-
-      localStorage.setItem('userconnect', JSON.stringify(res));
-      setTimeout(() => {
-        window.location.href = "http://localhost:4200/admin/profile";
-      }, 1000);
-    }, error => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Erreur',
-        text: 'Erreur lors de la modification du mot de passe'
-      });
-    });
-  }
+    updatePassword(form: NgForm) {
+      if (form.valid) {
+        const newPassword = form.value.newpassword;
+  
+        this.etudiantService.updatePassword(this.userconnect.id, newPassword).subscribe(res => {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          });
+    
+          Toast.fire({
+            icon: 'success',
+            title: 'Mot de passe modifié avec succès'
+          });
+    
+          localStorage.setItem('userconnect', JSON.stringify(res));
+          setTimeout(() => {
+            window.location.href = "http://localhost:4200/admin/profile";
+          }, 1000);
+        }, error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Erreur lors de la modification du mot de passe'
+          });
+        });
+      }
+    }
 
   handleFileInput(files:any){
     this.fileToUpload=<Array<File>>files.target.files;

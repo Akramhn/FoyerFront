@@ -54,7 +54,10 @@ import { EvenementModule } from './Back/evenement/evenement.module';
 import { ParticipationModule } from './Back/participation/participation.module';
 import { ResModule } from './front/res/res.module';
 import { ReservationComponent } from './front/reservation/reservation.component';
-;
+
+
+import { HoverHighlightDirective } from './Back/directive2/hover-highlight.directive';
+
 
 register();
 
@@ -78,6 +81,8 @@ register();
     AccessdeniedComponent,
     ReservationComponent
 
+
+    
   ],
   imports: [
     BrowserModule,
@@ -113,6 +118,8 @@ register();
     ParticipationModule,
     ResModule,
 
+    
+    
   ],
 
   providers: [],

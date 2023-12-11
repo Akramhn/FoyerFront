@@ -6,7 +6,6 @@
 
         <p class="primaryText">Popular university</p>
       </div>
-
       <a href="#" class="btn btn-outline">
         <span class="label-medium">Explore more</span>
 
@@ -52,10 +51,15 @@
           </h3>
 
           <address class="body-medium card-text">
-            {{ i.adresse }}<br>
-            Une université est une institution d'enseignement supérieur,
-             d'étude et de recherche, constituée par la réunion de divers  
+            {{ i.adresse }}
              </address>
+             <address class="body-medium card-text">
+              {{ i.description }}
+            </address>
+            <!--<div *ngIf="depasseLimiteMots(i.description, 140)">
+              <p class="text-danger">La description dépasse la limite de 140 mots.</p>
+            </div>-->
+               
 
           <div class="card-meta-list">
             <div class="meta-item">

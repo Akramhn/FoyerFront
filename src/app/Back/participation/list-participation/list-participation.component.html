@@ -48,7 +48,7 @@
                       data-bs-toggle="modal"
                     data-bs-target="#exampleModalLong"
                   >
-                    <i class="zmdi zmdi-plus"></i>add Evenement
+                    <i class="zmdi zmdi-plus"></i>add Participation
                   </button>
                   <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
                     <select class="js-select2" name="type">
@@ -71,6 +71,9 @@
                         </label>
                       </th>
                       <th>Date Participation</th>
+                      <th>Nom Evenement</th>
+                      <th>action</th>
+                      
                     </tr>
                   </thead>
                   <tbody *ngFor="let i of list">
@@ -82,7 +85,7 @@
                         </label>
                       </td>
                       <td>{{ i.dateParticipation }}</td>
-  
+                      <td>{{ i.nomEvenement }}</td>
                       <td>
                         <div class="table-data-feature">
                           <button

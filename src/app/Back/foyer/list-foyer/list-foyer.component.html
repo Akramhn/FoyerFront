@@ -17,40 +17,28 @@
         <div class="row">
           <div class="col-md-12">
             <!-- DATA TABLE -->
-
             <div class="table-data__tool">
               <div class="table-data__tool-left">
-                <input
-                  type="search"
-                  placeholder="search"
-                  style="
+                <input type="search" placeholder="search" style="
                     border: 3px solid rgb(177, 172, 172);
                     border-radius: 10px;
-                  "
-                />
-                <button
-                  style="
+                  " [(ngModel)]="searchTerm" (input)="onSearch()" />
+                <button style="
                     color: white;
                     background-color: #4154f1;
                     padding: 3px 3px;
                     border-radius: 3px;
                     margin-left: 0.8rem;
-                  "
-                >
+                  ">
                   Search
                 </button>
               </div>
               <div class="table-data__tool-right">
-                <button
-                  type="button"
-                  class="au-btn au-btn-icon au-btn--green au-btn--small"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModalLong"
-                  routerLink="/admin/foyer/addFoyer"
-                >
-                  <i class="zmdi zmdi-plus"></i>add foyer
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalLong" routerLink="/admin/foyer/addFoyer">
+                  <i class="zmdi zmdi-plus"></i>Ajouter un foyer
                 </button>
-                <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+              
+                <div class="export-select">
                   <select class="js-select2" name="type">
                     <option selected="selected">Export</option>
                     <option value="">Option 1</option>
@@ -68,52 +56,28 @@
                     <th>Nom foyer</th>
                     <th>Capacité foyer</th>
                     <!--<th>Nom univercité</th>-->
-
                     <th style="text-align: center">Action</th>
                   </tr>
                 </thead>
                 <tbody *ngFor="let i of listFoyer">
                   <tr class="tr-shadow">
                     <td>
-                      <img
-                        [src]="'data:image/jpeg;base64,' + i.imageUrl"
-                        alt="Université Image"
-                      />
+                      <img width="200" height="100" [src]="'data:image/jpeg;base64,' + i.imageUrl" alt="Image du foyer" />
                     </td>
-
                     <td>{{ i.nomFoyer }}</td>
-                    <td>
-                      <span class="block-email">{{ i.capaciteFoyer }}</span>
-                    </td>
+                    <td>{{ i.capaciteFoyer }}</td>
                     <!--<td>
-                        <span >{{i.universite.nomUniversite}}</span>
-                      </td> -->
-
+                        <span>{{i.universite.nomUniversite}}</span>
+                      </td>-->
                     <td>
                       <div class="table-data-feature">
-                        <button
-                          class="item"
-                          data-toggle="tooltip"
-                          data-placement="top"
-                          title="Send"
-                        >
+                        <button class="item" data-toggle="tooltip" data-placement="top" title="Envoyer">
                           <i class="bi bi-house-add-fill"></i>
                         </button>
-                        <button
-                          class="item"
-                          data-toggle="tooltip"
-                          data-placement="top"
-                          title="Edit"
-                        >
+                        <button class="item" data-toggle="tooltip" data-placement="top" title="Modifier" (click)="openUpdate(i)">
                           <i class="bx bx-edit-alt"></i>
                         </button>
-                        <button
-                          class="item"
-                          data-toggle="tooltip"
-                          data-placement="top"
-                          title="Delete"
-                          (click)="onDelete(i.idFoyer)"
-                        >
+                        <button class="item" data-toggle="tooltip" data-placement="top" title="Supprimer" (click)="onDelete(i.idFoyer)">
                           <i class="bi bi-archive-fill"></i>
                         </button>
                       </div>
