@@ -32,7 +32,8 @@
             </div>
             <button  class="button" 
             [disabled]="disabledButtons[i.idEvenement]"
-            (click)="onAddParticipation(i.idEvenement,userconnect.id)">
+            (click)="onAddParticipation(i.idEvenement,userconnect.id)"
+            [ngStyle]="{'background-color': disabledButtons[i.idEvenement] ? 'grey' : 'red'}">
                 participate
            </button>
            
