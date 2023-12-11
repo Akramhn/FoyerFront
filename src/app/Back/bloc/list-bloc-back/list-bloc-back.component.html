@@ -27,6 +27,8 @@
                       border: 3px solid rgb(177, 172, 172);
                       border-radius: 10px;
                     "
+                    [(ngModel)]="searchTerm"
+                    (input)="onSearch()"
                   />
                   <button
                     style="
@@ -45,14 +47,18 @@
                     <i class="zmdi zmdi-plus"></i>add Bloc
                   </button>
                   <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
-                    <select class="js-select2" name="type">
+                    <select class="js-select2" name="exportType" [(ngModel)]="exportType">
                       <option selected="selected">Export</option>
-                      <option value="">Option 1</option>
-                      <option value="">Option 2</option>
+                      <option value="excel">Excel</option>
+                      <option value="pdf">PDF</option>
                     </select>
                     <div class="dropDownSelect2"></div>
+                    <button mat-raised-button color="primary" class="export-button" (click)="exportData()">
+                      Export
+                    </button>
                   </div>
                 </div>
+                
               </div>
               <div class="table-responsive table-responsive-data2">
                 <table class="table table-data2">
@@ -71,7 +77,7 @@
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody  *ngFor="let i of list">
+                  <tbody  *ngFor="let i of list" >
                     <tr class="tr-shadow">
                       <td>
                         <label class="au-checkbox">
@@ -79,13 +85,13 @@
                           <span class="au-checkmark"></span>
                         </label>
                       </td>
-                      <td>{{ i.foyer.universite.nomUniversite }}</td>
+                      <td>">{{ i.foyer.universite.nomUniversite }}</td>
                       <td>
                         <span class="block-email">{{
                           i.foyer.nomFoyer
                         }}</span>
                       </td>
-                      <td class="desc">{{ i.nomBloc }}</td>
+                      <td class="desc" >{{ i.nomBloc }}</td>
                       <td>{{ i.capaciteBloc }}</td>
                      
   

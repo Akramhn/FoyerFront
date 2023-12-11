@@ -1,4 +1,4 @@
-<main id="main" class="main">
+<main id="main" class="main container">
   <div class="pagetitle">
     <h1>Liste des universités</h1>
     <nav>
@@ -9,57 +9,35 @@
       </ol>
     </nav>
   </div>
-  <!-- End Page Title -->
   <br />
   <section class="section">
     <div class="section__content section__content--p30">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <!-- DATA TABLE -->
-
             <div class="table-data__tool">
               <div class="table-data__tool-left">
-                <input
-                  type="search"
-                  placeholder="search"
-                  style="
+                <input type="search" placeholder="search" style="
                     border: 3px solid rgb(177, 172, 172);
                     border-radius: 10px;
-                  "
-                />
-                <button
-                  style="
+                  " [(ngModel)]="searchTerm" (input)="onSearch()" />
+                <button style="
                     color: white;
                     background-color: #4154f1;
                     padding: 3px 3px;
                     border-radius: 3px;
                     margin-left: 0.8rem;
-                  "
-                >
+                  ">
                   Search
                 </button>
               </div>
               <div class="table-data__tool-right">
-                <button
-                  style="
-                    color: white;
-                    background-color: #4154f1;
-                    padding: 3px 3px;
-                    border-radius: 3px;
-                    margin-left: 0.8rem;
-                  "
-                  type="button"
-                  class="au-btn au-btn-icon au-btn--green au-btn--small"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModalLong"
-                  routerLink="/admin/university/addUniversite"
-                >
-                  <i class="zmdi zmdi-plus"></i>add université
+                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalLong"
+                  routerLink="/admin/university/addUniversite">
+                  <i class="zmdi zmdi-plus"></i>Ajouter université
                 </button>
-
                 <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
-                  <select class="js-select2" name="type">
+                  <select class="js-select2 form-control" name="type">
                     <option selected="selected">Export</option>
                     <option value="">Option 1</option>
                     <option value="">Option 2</option>
@@ -73,8 +51,8 @@
                 <thead>
                   <tr>
                     <th>Image université</th>
-                    <th>adresse</th>
-                    <th>Nom Universite</th>
+                    <th>Adresse</th>
+                    <th>Nom Université</th>
                     <th>Nom Foyer</th>
                     <th style="text-align: center">Action</th>
                   </tr>
@@ -82,14 +60,11 @@
                 <tbody *ngFor="let i of list">
                   <tr class="tr-shadow">
                     <td>
-                      <img
-                        width="200"
-                        height="100"
-                        [src]="'data:image/jpeg;base64,' + i.imageUrl"
-                        alt="Université Image"
-                      />
+                      <div appHoverHighlight>
+                        <img width="200" height="100" [src]="'data:image/jpeg;base64,' + i.imageUrl"
+                          alt="Université Image" />
+                      </div>
                     </td>
-
                     <td>{{ i.adresse }}</td>
                     <td>
                       <span class="block-email">{{ i.nomUniversite }}</span>
@@ -97,34 +72,18 @@
                     <td class="desc" *ngIf="i.foyer; else autreContenu">
                       {{ i.foyer.nomFoyer }}
                     </td>
-                    <ng-template #autreContenu>pas du foyer</ng-template>
-
+                    <ng-template #autreContenu>pas de foyer</ng-template>
                     <td>
                       <div class="table-data-feature">
-                        <button
-                          class="item"
-                          data-toggle="tooltip"
-                          data-placement="top"
-                          title="Send"
-                        >
+                        <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
                           <i class="bi bi-house-add-fill"></i>
                         </button>
-                        <button
-                          class="item"
-                          data-toggle="tooltip"
-                          data-placement="top"
-                          title="Edit"
-                          (click)="openUpdate(i)"
-                        >
+                        <button class="item" data-toggle="tooltip" data-placement="top" title="Edit"
+                          (click)="openUpdate(i)">
                           <i class="bx bx-edit-alt"></i>
                         </button>
-                        <button
-                          class="item"
-                          data-toggle="tooltip"
-                          data-placement="top"
-                          title="Delete"
-                          (click)="onDelete(i.idUniversite)"
-                        >
+                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete"
+                          (click)="onDelete(i.idUniversite)">
                           <i class="bi bi-trash-fill"></i>
                         </button>
                       </div>
@@ -134,11 +93,9 @@
                 </tbody>
               </table>
             </div>
-            <!-- END DATA TABLE -->
           </div>
         </div>
       </div>
     </div>
   </section>
 </main>
-<!-- End #main -->

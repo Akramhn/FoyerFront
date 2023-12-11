@@ -15,6 +15,11 @@ export class ChambreService {
   getChambre(id: number) {
     return this.http.get<Chambre>(`${this.data}/${id}`);
   }
+
+  getChambreByBloc(id: number) { 
+    return this.http.get<Chambre[]>(`${this.data}/ch/${id}`);
+  }
+  
   deleteChambre(id: number): Observable<any> {
     return this.http.delete(`${this.data}/${id}`);
   }

@@ -13,6 +13,8 @@ import { EtudiantGuardGuard } from './guard/etudiant/etudiant-guard.guard';
 import { EtudiantProfileComponent } from './front/user-front/etudiant-profile/etudiant-profile.component';
 import { ProfileAdminComponent } from './Back/user-back/profile-admin/profile-admin.component';
 import { ListUserComponent } from './Back/user-back/list-user/list-user.component';
+import { ReserTestComponent } from './front/university/reser-test/reser-test.component';
+import { ReservationComponent } from './front/reservation/reservation.component';
 
 const routes: Routes = [
   {
@@ -104,6 +106,7 @@ const routes: Routes = [
       },
     ],
   },
+  {path:'reservation/:id' , component:ReservationComponent},
   {path:'accessdenied', component:AccessdeniedComponent},
   { path: '**', component: Error404Component },
 

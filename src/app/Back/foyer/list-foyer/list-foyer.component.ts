@@ -12,14 +12,29 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./list-foyer.component.css'],
 })
 export class ListFoyerComponent implements OnInit {
+  searchTerm: string = '';
+  originalList: Foyer[] = [];
   listFoyer: Foyer[] = [];
   constructor(private router: Router, private foyerS: FoyerService, private toastr: ToastrService,    private _dialog: MatDialog
     ) {}
   ngOnInit(): void {
     this.foyerS.getFoyers().subscribe((data)=>{
+      this.originalList = data;
+
       this.listFoyer=data;
       console.log(data);
     });
+  }
+  onSearch(): void {
+    if (this.searchTerm.trim() === '') {
+      // If search term is empty, reset the list to the original list
+      this.listFoyer = this.originalList;
+    } else {
+      // If search term is not empty, filter the list
+      this.listFoyer = this.originalList.filter((item) =>
+        item.nomFoyer.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
   }
 
   onDelete(id: number) {

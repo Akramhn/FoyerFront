@@ -13,7 +13,7 @@ import { ValueComponent } from './front/value/value.component';
 import { AccordionItemDirective } from './front/directives/accordion-item.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReservationModule } from './reservation/reservation.module';
-import { ReserTestComponent } from './front/reser-test/reser-test.component';
+import { ReserTestComponent } from './front/university/reser-test/reser-test.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { Error404Component } from './error404/error404.component';
@@ -52,9 +52,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { EvenementModule } from './Back/evenement/evenement.module';
 import { ParticipationModule } from './Back/participation/participation.module';
+
 import { HOVERTableDirective } from './Back/directive2/hovertable.directive';
 import { EvenementfrontModule } from './front/evenementfront/evenementfront.module';
 
+import { ResModule } from './front/res/res.module';
+import { ReservationComponent } from './front/reservation/reservation.component';
+
+
+import { HoverHighlightDirective } from './Back/directive2/hover-highlight.directive';
 
 register();
 
@@ -66,7 +72,7 @@ register();
     FooterComponent,
     LogoComponent,
     ValueComponent,
-    ReserTestComponent,
+
     HeaderBackComponent,
     BackoffComponent,
     Error404Component,
@@ -77,6 +83,9 @@ register();
     GetStartedComponent,
     AccessdeniedComponent,
   
+
+    ReservationComponent
+
   ],
   imports: [
     BrowserModule,
@@ -112,6 +121,7 @@ register();
     EvenementModule,
     ParticipationModule,
     EvenementfrontModule,
+    ResModule,
   ],
 
   providers: [],

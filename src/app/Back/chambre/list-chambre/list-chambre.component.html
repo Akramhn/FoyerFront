@@ -27,6 +27,8 @@
                     border: 3px solid rgb(177, 172, 172);
                     border-radius: 10px;
                   "
+                  [(ngModel)]="searchQuery"
+                  (input)="getChambres()"
                 />
                 <button
                   style="
@@ -41,7 +43,11 @@
                 </button>
               </div>
               <div class="table-data__tool-right">
-                <button mat-raised-button color="primary" (click)="openAddEditChambreForm()">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="openAddEditChambreForm()"
+                >
                   <i class="zmdi zmdi-plus"></i>add Chambre
                 </button>
                 <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">

@@ -21,6 +21,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
+import { BlocHoverDirective } from '../directive2/bloc-hover.directive';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { MatButtonModule } from '@angular/material/button';
     ListBlocBackComponent,
     AddBlocBackComponent,
     ModifBlocBackComponent,
+    BlocHoverDirective,
   ],
   imports: [
     CommonModule,
@@ -49,6 +51,7 @@ import { MatButtonModule } from '@angular/material/button';
   MatNativeDateModule,
   MatRadioModule,
   MatSelectModule,
-  ]
+  ],
+  exports: [BlocHoverDirective]
 })
 export class BlocModule { }
