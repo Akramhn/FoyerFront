@@ -77,7 +77,7 @@
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody  *ngFor="let i of list">
+                  <tbody  *ngFor="let i of list" >
                     <tr class="tr-shadow">
                       <td>
                         <label class="au-checkbox">
@@ -85,13 +85,13 @@
                           <span class="au-checkmark"></span>
                         </label>
                       </td>
-                      <td>{{ i.foyer.universite.nomUniversite }}</td>
+                      <td>">{{ i.foyer.universite.nomUniversite }}</td>
                       <td>
                         <span class="block-email">{{
                           i.foyer.nomFoyer
                         }}</span>
                       </td>
-                      <td class="desc">{{ i.nomBloc }}</td>
+                      <td class="desc" >{{ i.nomBloc }}</td>
                       <td>{{ i.capaciteBloc }}</td>
                      
   

@@ -58,7 +58,6 @@ import { ReservationComponent } from './front/reservation/reservation.component'
 
 import { HoverHighlightDirective } from './Back/directive2/hover-highlight.directive';
 
-
 register();
 
 @NgModule({
