@@ -16,6 +16,7 @@ import Swiper from 'swiper';
 })
 
 export class ListEvenementfComponent {
+  userconnect = JSON.parse(localStorage.getItem("userconnect")!);
   list: Evenement[] = [];
   buttonColorClass = 'not-clicked';
   disabledButtons: { [key: number]: boolean } = {};

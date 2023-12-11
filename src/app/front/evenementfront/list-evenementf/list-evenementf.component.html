@@ -32,7 +32,7 @@
             </div>
             <button  class="button" 
             [disabled]="disabledButtons[i.idEvenement]"
-            (click)="onAddParticipation">
+            (click)="onAddParticipation(i.idEvenement,userconnect.id)">
                 participate
            </button>
             </div>
