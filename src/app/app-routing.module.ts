@@ -11,60 +11,71 @@ import { AuthGuard } from './guard/auth.guard';
 import { AdminGuardGuard } from './guard/admin/admin-guard.guard';
 import { EtudiantGuardGuard } from './guard/etudiant/etudiant-guard.guard';
 import { EtudiantProfileComponent } from './front/user-front/etudiant-profile/etudiant-profile.component';
-import { ProfileAdminComponent } from './Back/user-back/profile-admin/profile-admin.component';
-import { ListUserComponent } from './Back/user-back/list-user/list-user.component';
-import { ReserTestComponent } from './front/university/reser-test/reser-test.component';
-import { ReservationComponent } from './front/reservation/reservation.component';
+
 
 const routes: Routes = [
   {
     path: 'admin',
-    component: BackoffComponent,canActivate:[AuthGuard,AdminGuardGuard],
+    component: BackoffComponent,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirect to 'dashboard' by default
-      { path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard,AdminGuardGuard] },
-      { path: 'profile/:id', component: ProfileAdminComponent,canActivate:[AuthGuard,AdminGuardGuard] },
-      {path:"ListUsers", component:ListUserComponent,canActivate:[AuthGuard,AdminGuardGuard]},
-      {
-        path: 'chambre',
-        loadChildren: () =>
-          import('./Back/chambre/chambre.module').then((m) => m.ChambreModule),
-      },
-      {
-        path: 'profile',
-        loadChildren: () =>
-          import('./Back/user-back/user-back.module').then((m) => m.UserBackModule),
-      },
-      {
-        path: 'bloc',
-        loadChildren: () =>
-          import('./Back/bloc/bloc.module').then((m) => m.BlocModule),
-      },
+      { path: 'dashboard', component: DashboardComponent},
 
       {
-        path: 'evenement',
+        path: 'salle',
         loadChildren: () =>
-          import('./Back/evenement/evenement.module').then((m) => m.EvenementModule),
-
-      },     
-        {
-        path: 'university',
+          import('./Back/salle/salle.module').then((m) => m.SalleModule),
+      },
+       {
+         path: 'Coach',
+         loadChildren: () =>
+           import('./Back/coach/coach.module').then((m) => m.CoachModule),
+       },
+       {
+        path: 'Plant',
         loadChildren: () =>
-          import('./Back/university/university.module').then((c) => c.UniversityModule),
-
-
+          import('./Back/plant/plant.module').then((m) => m.PlantModule),
       },
       {
-        path: 'foyer',
+        path: 'Exercice',
         loadChildren: () =>
-          import('./Back/foyer/foyer.module').then((f) => f.FoyerModule),
+          import('./Back/exercice/exercice.module').then((m) => m.ExerciceModule),
       },
       {
-        path: 'participation',
+        path: 'Product',
         loadChildren: () =>
-          import('./Back/participation/participation.module').then((m) => m.ParticipationModule),
-
+          import('./Back/product/product.module').then((m) => m.ProductModule),
       },
+      // {
+      //   path: 'bloc',
+      //   loadChildren: () =>
+      //     import('./Back/bloc/bloc.module').then((m) => m.BlocModule),
+      // },
+
+      // {
+      //   path: 'evenement',
+      //   loadChildren: () =>
+      //     import('./Back/evenement/evenement.module').then((m) => m.EvenementModule),
+
+      // },     
+      //   {
+      //   path: 'university',
+      //   loadChildren: () =>
+      //     import('./Back/university/university.module').then((c) => c.UniversityModule),
+
+
+      // },
+      // {
+      //   path: 'foyer',
+      //   loadChildren: () =>
+      //     import('./Back/foyer/foyer.module').then((f) => f.FoyerModule),
+      // },
+      // {
+      //   path: 'participation',
+      //   loadChildren: () =>
+      //     import('./Back/participation/participation.module').then((m) => m.ParticipationModule),
+
+      // },
     ],
   },
   {
@@ -106,7 +117,6 @@ const routes: Routes = [
       },
     ],
   },
-  {path:'reservation/:id' , component:ReservationComponent},
   {path:'accessdenied', component:AccessdeniedComponent},
   { path: '**', component: Error404Component },
 

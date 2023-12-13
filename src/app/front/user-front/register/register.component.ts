@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder,FormControl,FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/Back/service/auth.service';
-import { RegisterService } from 'src/app/Back/service/register.service';
-import { UniversiteService } from 'src/app/Back/service/universite.service';
-import { Universite } from 'src/app/Model/universite';
-import { UserRole } from 'src/app/Model/user.model';
+
+
 import Swal from 'sweetalert2';
 
 
@@ -14,8 +11,7 @@ import Swal from 'sweetalert2';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
-  listUniversite: Universite[] = [];
+export class RegisterComponent  {
 
   registerForm = new FormGroup({
     nom: new FormControl('', [Validators.required,Validators.maxLength(10)]),
@@ -34,21 +30,14 @@ export class RegisterComponent implements OnInit {
 
   selectedFile: File | null = null;
 
-  constructor(private router: Router, private authenticationService: AuthService,private universiteService: UniversiteService) { }
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {
-    this.getAllUniversites();
-  }
+
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0] as File;
   }
 
-  getAllUniversites() {
-    this.universiteService.getAllUniversites().subscribe((data: Universite[]) => {
-      this.listUniversite = data;
-    });
-  }
 
     
 
@@ -77,43 +66,6 @@ export class RegisterComponent implements OnInit {
   
       
   
-      this.authenticationService.registerEtudiant(formData).subscribe(
-        (response: any) => {
-          // Display success message
-          Swal.fire({
-            icon: 'success',
-            title: 'Inscription réussie',
-            text: 'Vous pouvez maintenant vous connecter',
-            showConfirmButton: false,
-            timer: 1500
-          });
-          this.router.navigate(['/login']);
-        },
-        (error: any) => {
-          // Handle specific error cases
-          if (error.status === 400 && error.error && error.error.errors) {
-            let errorMessage = 'Erreur lors de l\'inscription :<br>';
-            Object.keys(error.error.errors).forEach((key: string) => {
-              errorMessage += `${error.error.errors[key]}<br>`;
-            });
-  
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              html: errorMessage,
-              footer: 'Veuillez corriger les erreurs et réessayer'
-            });
-          } else {
-            // Display generic error message
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Une erreur est survenue lors de l\'inscription',
-              footer: 'Veuillez réessayer'
-            });
-          }
-        }
-      );
     } else {
       // Display form validation errors
       let errorText = '<ul>';

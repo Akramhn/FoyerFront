@@ -1,50 +1,29 @@
-
-
 <section class="section property" aria-labelledby="property-label">
-    <div class="container">
-      <div class="title-wrapper">
-        <div>
-
-  
-          <p class="primaryText">Popular events</p>
-        </div>
-        <a href="#" class="btn btn-outline">
-          <span class="label-medium">Explore more</span>
-  
-          <span class="material-symbols-rounded" aria-hidden="true"
-            >arrow_outward</span
-          >
-        </a>
+  <div class="container">
+    <div class="title-wrapper">
+      <div>
+        <p class="primaryText">Popular events</p>
       </div>
-  
-      <div class="property-list" >
-        <div class="card" *ngFor="let i of list" (click)="openQrCodePopup">
-            <img [src]="'data:image/jpeg;base64,' + i.imageUrl" alt="{{ i.nomEvenement }}" (click)="openQrCodePopup(i)">
-            <div class="card-content">
-              <h2>
-                {{ i.nomEvenement }}
-              </h2>
-              <div>
-              <p>
-                {{ truncateDescription(i.description, 20) }} {{i.lieu}} {{i.dateEvenement}}
-              </p>
+      <a href="#" class="btn btn-outline">
+        <span class="label-medium">Explore more</span>
 
-            </div>
-            <button  class="button" 
-            [disabled]="disabledButtons[i.idEvenement]"
-            (click)="onAddParticipation(i.idEvenement,userconnect.id)"
-            [ngStyle]="{'background-color': disabledButtons[i.idEvenement] ? 'grey' : 'red'}">
-                participate
-           </button>
-           
-            </div>
-            
+        <span class="material-symbols-rounded" aria-hidden="true"
+          >arrow_outward</span
+        >
+      </a>
+    </div>
+
+    <div class="property-list">
+      <div class="card">
+        <img alt="" />
+        <div class="card-content">
+          <h2>test</h2>
+          <div>
+            <p>0911-2000</p>
           </div>
-  
-        
+          <button class="button">participate</button>
+        </div>
       </div>
     </div>
-  </section>
-  
-
-
+  </div>
+</section>

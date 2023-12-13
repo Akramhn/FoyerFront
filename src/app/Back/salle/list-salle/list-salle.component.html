@@ -1,0 +1,212 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Chambre List</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item">Gestion Chambre</li>
+        <li class="breadcrumb-item active">List Chambres</li>
+      </ol>
+    </nav>
+  </div>
+  <!-- End Page Title -->
+  <br />
+  <section class="section">
+    <div class="section__content section__content--p30">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- DATA TABLE -->
+
+            <div class="table-data__tool">
+              <div class="table-data__tool-left">
+                <input
+                  type="search"
+                  placeholder="search"
+                  style="
+                    border: 3px solid rgb(177, 172, 172);
+                    border-radius: 10px;
+                  "
+                />
+                <button
+                  style="
+                    color: white;
+                    background-color: #4154f1;
+                    padding: 3px 3px;
+                    border-radius: 3px;
+                    margin-left: 0.8rem;
+                  "
+                >
+                  Search
+                </button>
+              </div>
+              <div class="table-data__tool-right">
+                <button mat-raised-button color="primary">
+                  <i class="zmdi zmdi-plus"></i>add Chambre
+                </button>
+                <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                  <select class="js-select2" name="type">
+                    <option selected="selected">Export</option>
+                    <option value="">Option 1</option>
+                    <option value="">Option 2</option>
+                  </select>
+                  <div class="dropDownSelect2"></div>
+                </div>
+              </div>
+            </div>
+            <!-- list-salle.component.html -->
+            <div class="table-responsive table-responsive-data2">
+              <table class="table table-data2">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Capacity</th>
+                    <th>Image</th>
+                    <th>Coaches</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let salle of salles" class="tr-shadow">
+                    <td>{{ salle.idSalle }}</td>
+                    <td>{{ salle.name }}</td>
+                    <td>{{ salle.location }}</td>
+                    <td>{{ salle.capacity }}</td>
+                    <td>{{ salle.image }}</td>
+                    <td *ngFor="let coach of salle.coaches">
+                      {{ coach.nomCoach }}
+                    </td>
+
+                    <!-- Action buttons -->
+                    <td>
+                      <div class="table-data-feature">
+                        <button
+                          class="item"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Send"
+                        >
+                          <i class="bi bi-house-add-fill"></i>
+                        </button>
+                        <button
+                          class="item"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Edit"
+                        >
+                          <i class="bx bx-edit-alt"></i>
+                        </button>
+                        <button
+                          class="item"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Delete"
+                        >
+                          <i class="bi bi-archive-fill"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="spacer"></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- END DATA TABLE -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <div
+      class="modal fade"
+      id="exampleModalLong"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #63c76a">
+            <img
+              src="../../../../assets/images/lo.png"
+              alt=""
+              width="80px"
+              height="50px"
+            />
+            <button
+              type="button"
+              class="close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              style="color: aliceblue;"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h1 style="text-align: center; color: #333">Add Chambre</h1>
+            <form class="booking-form" action="#" method="post">
+              <div class="elem-group">
+                <label for="name">Your Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="visitor_name"
+                  placeholder="John Doe"
+                  pattern="[A-Z\sa-z]{3,20}"
+                  required
+                />
+              </div>
+              <div class="elem-group">
+                <label for="email">Your E-mail</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="visitor_email"
+                  placeholder="john.doe@email.com"
+                  required
+                />
+              </div>
+              <div class="elem-group">
+                <label for="phone">Your Phone</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="visitor_phone"
+                  placeholder="498-348-3872"
+                  pattern="(\d{3})-?\s?(\d{3})-?\s?(\d{4})"
+                  required
+                />
+              </div>
+              <hr />
+          
+  
+              <div class="elem-group">
+                <label for="room-selection">Select Room Preference</label>
+                <select id="room-selection" name="room_preference" required>
+                  <option value="">Choose a Room from the List</option>
+                  <option value="connecting">Connecting</option>
+                  <option value="adjoining">Adjoining</option>
+                  <option value="adjacent">Adjacent</option>
+                </select>
+              </div>
+              <hr />
+  
+              <button
+                class="au-btn au-btn-icon au-btn--green au-btn--small"
+                type="submit"
+              >
+                Book The Rooms
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div> -->
+</main>
+<!-- End #main -->

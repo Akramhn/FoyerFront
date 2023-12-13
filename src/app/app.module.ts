@@ -7,13 +7,10 @@ import { HeaderComponent } from './front/header/header.component';
 import { HomeComponent } from './front/home/home.component';
 import { FooterComponent } from './front/footer/footer.component';
 import { LogoComponent } from './front/logo/logo.component';
-import { UniversityModule } from './front/university/university.module';
 import { register } from 'swiper/element/bundle';
 import { ValueComponent } from './front/value/value.component';
 import { AccordionItemDirective } from './front/directives/accordion-item.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReservationModule } from './reservation/reservation.module';
-import { ReserTestComponent } from './front/university/reser-test/reser-test.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { Error404Component } from './error404/error404.component';
@@ -22,13 +19,10 @@ import { FrontOfficeComponent } from './front/front-office/front-office.componen
 import { ContactComponent } from './front/contact/contact.component';
 import { GetStartedComponent } from './front/get-started/get-started.component';
 import { HttpClientModule } from '@angular/common/http';
-import { BlocModule } from './Back/bloc/bloc.module';
 import { DashboardComponent } from './Back/dashboard/dashboard.component';
 import { SidebarBackComponent } from './Back/sidebar-back/sidebar-back.component';
 import { BackoffComponent } from './Back/backoff/backoff.component';
 import { HeaderBackComponent } from './Back/header-back/header-back.component';
-import { FoyerModule } from './Back/foyer/foyer.module';
-import { ChambreModule } from './Back/chambre/chambre.module';
 import { MaterialModule } from 'src/material.module';
 import { AccessdeniedComponent } from './accessdenied/accessdenied.component';
 import { RouterModule } from '@angular/router';
@@ -50,17 +44,17 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { EvenementModule } from './Back/evenement/evenement.module';
-import { ParticipationModule } from './Back/participation/participation.module';
-
 import { HOVERTableDirective } from './Back/directive2/hovertable.directive';
 import { EvenementfrontModule } from './front/evenementfront/evenementfront.module';
 
 import { ResModule } from './front/res/res.module';
-import { ReservationComponent } from './front/reservation/reservation.component';
-
 
 import { HoverHighlightDirective } from './Back/directive2/hover-highlight.directive';
+import { SalleModule } from './Back/salle/salle.module';
+import { ExerciceModule } from './Back/exercice/exercice.module';
+import { PlantModule } from './Back/plant/plant.module';
+import { CoachModule } from './Back/coach/coach.module';
+import { ProductModule } from './Back/product/product.module';
 
 register();
 
@@ -82,17 +76,12 @@ register();
     ContactComponent,
     GetStartedComponent,
     AccessdeniedComponent,
-  
-
-    ReservationComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    UniversityModule,
     BrowserAnimationsModule,
-    ReservationModule,
     MatExpansionModule,
     MatToolbarModule,
     MatTableModule,
@@ -108,20 +97,18 @@ register();
     MatNativeDateModule,
     MatRadioModule,
     MatSelectModule,
-    ChambreModule,
     HttpClientModule,
-    FoyerModule,
-    BlocModule,
     MaterialModule,
     RouterModule.forRoot([]),
-    RouterModule ,
+    RouterModule,
     ToastrModule.forRoot(),
     ReactiveFormsModule,
-    EvenementModule,
-    EvenementModule,
-    ParticipationModule,
-    EvenementfrontModule,
     ResModule,
+    SalleModule,
+    ExerciceModule,
+    PlantModule,
+    CoachModule,
+    ProductModule,
   ],
 
   providers: [],

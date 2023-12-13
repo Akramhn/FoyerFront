@@ -1,0 +1,124 @@
+<!-- list-product.component.html -->
+<main id="main" class="main">
+    <div class="pagetitle">
+      <h1>Product List</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item">Gestion Product</li>
+          <li class="breadcrumb-item active">List Products</li>
+        </ol>
+      </nav>
+    </div>
+    <!-- End Page Title -->
+    <br />
+    <section class="section">
+      <div class="section__content section__content--p30">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <!-- DATA TABLE -->
+              <div class="table-data__tool">
+                <div class="table-data__tool-left">
+                  <input
+                    type="search"
+                    placeholder="search"
+                    style="
+                      border: 3px solid rgb(177, 172, 172);
+                      border-radius: 10px;
+                    "
+                  />
+                  <button
+                    style="
+                      color: white;
+                      background-color: #4154f1;
+                      padding: 3px 3px;
+                      border-radius: 3px;
+                      margin-left: 0.8rem;
+                    "
+                  >
+                    Search
+                  </button>
+                </div>
+                <div class="table-data__tool-right">
+                  <button mat-raised-button color="primary">
+                    <i class="zmdi zmdi-plus"></i>add Product
+                  </button>
+                  <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                    <select class="js-select2" name="type">
+                      <option selected="selected">Export</option>
+                      <option value="">Option 1</option>
+                      <option value="">Option 2</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="table-responsive table-responsive-data2">
+                <table class="table table-data2">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>image</th>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let product of products" class="tr-shadow">
+                      <td>{{ product.id }}</td>
+                      <img
+                      width="200"
+                      height="100"
+                      [src]="'data:image/jpeg;base64,' + product.image"
+                      alt="Université Image"
+                    />
+                      <td>{{ product.nomProduit }}</td>
+                      <td>{{ product.description }}</td>
+                      <td>{{ product.qte }}</td>
+                      <td>{{ product.prix }}</td>
+                      <td>
+                        <div class="table-data-feature">
+                          <button
+                            class="item"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Send"
+                          >
+                            <i class="bi bi-house-add-fill"></i>
+                          </button>
+                          <button
+                            class="item"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Edit"
+                          >
+                            <i class="bx bx-edit-alt"></i>
+                          </button>
+                          <button
+                            class="item"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Delete"
+                            (click)="deleteProduct(product.id)"
+                          >
+                            <i class="bi bi-archive-fill"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="spacer"></tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- END DATA TABLE -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
